@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/petition_spring?useSSL=false</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+
+        <mapping class="com.bsuir.petition.bean.User"/>
+        <mapping class="com.bsuir.petition.bean.City"/>
+        <mapping class="com.bsuir.petition.bean.Country"/>
+        <mapping class="com.bsuir.petition.bean.UserInformation"/>
+        <mapping class="com.bsuir.petition.bean.Role"/>
+        <mapping class="com.bsuir.petition.bean.Category"/>
+        <mapping class="com.bsuir.petition.bean.Petition"/>
+        <mapping class="com.bsuir.petition.bean.Vote"/>
+        <mapping class="com.bsuir.petition.bean.Comment"/>
+    </session-factory>
+</hibernate-configuration>
