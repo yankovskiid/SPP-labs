@@ -1,5 +1,6 @@
 package com.bsuir.petition.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -20,20 +21,25 @@ public class User extends BaseTable {
     @ColumnDefault("0")
     private boolean blocked;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private UserInformation userInformation;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Vote> votes = new HashSet<Vote>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Comment> comments = new HashSet<Comment>();
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
                                     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<Role>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "createdUser", fetch = FetchType.LAZY)
     private Set<Petition> petitions = new HashSet<Petition>();
 
