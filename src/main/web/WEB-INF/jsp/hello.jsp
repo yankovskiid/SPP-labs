@@ -3,8 +3,9 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="/resources/css/style.css" rel="stylesheet" />
 </head>
 <body>
-    ${message}
+<h1 id="hello">${message}</h1>
 </body>
 </html>

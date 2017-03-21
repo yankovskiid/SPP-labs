@@ -11,7 +11,7 @@ public class WelcomeController {
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public ModelAndView helloWorld() {
-        String temp = "<h1>Hello, World, finally</h1>";
+        String temp = "Hello, World, finally";
 
         return new ModelAndView("hello", "message", temp);
     }
