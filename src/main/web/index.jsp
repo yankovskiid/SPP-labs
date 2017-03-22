@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <base href="/">
     <title>Petition</title>
     <script src="https://unpkg.com/systemjs@0.19.6/dist/system.src.js"></script>
     <script src="https://code.angularjs.org/tools/typescript.js"></script>

@@ -1,4 +1,5 @@
-var angularVersion = '2.0.0-rc.5';
+var angularVersion = '2.4.10';
+var routerVersion = '3.4.10';
 
 System.config({
     baseUrl: '/',
@@ -24,8 +25,9 @@ System.config({
     ],
 
     map: {
-        app : "/resources/app",
+        app : "/resources/static/app",
         '@angular/core': 'unpkg:@angular/core@'+angularVersion,
+        '@angular/router': 'unpkg:@angular/router@'+routerVersion,
         '@angular/compiler': 'unpkg:@angular/compiler@'+angularVersion,
         '@angular/common': 'unpkg:@angular/common@'+angularVersion,
         '@angular/platform-browser': 'unpkg:@angular/platform-browser@'+angularVersion,
