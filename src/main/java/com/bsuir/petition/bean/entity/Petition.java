@@ -1,8 +1,7 @@
-package com.bsuir.petition.bean;
+package com.bsuir.petition.bean.entity;
 
 
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -12,14 +12,14 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
 
-        <mapping class="com.bsuir.petition.bean.User"/>
-        <mapping class="com.bsuir.petition.bean.City"/>
-        <mapping class="com.bsuir.petition.bean.Country"/>
-        <mapping class="com.bsuir.petition.bean.UserInformation"/>
-        <mapping class="com.bsuir.petition.bean.Role"/>
-        <mapping class="com.bsuir.petition.bean.Category"/>
-        <mapping class="com.bsuir.petition.bean.Petition"/>
-        <mapping class="com.bsuir.petition.bean.Vote"/>
-        <mapping class="com.bsuir.petition.bean.Comment"/>
+        <mapping class="com.bsuir.petition.bean.entity.User"/>
+        <mapping class="com.bsuir.petition.bean.entity.City"/>
+        <mapping class="com.bsuir.petition.bean.entity.Country"/>
+        <mapping class="com.bsuir.petition.bean.entity.UserInformation"/>
+        <mapping class="com.bsuir.petition.bean.entity.Role"/>
+        <mapping class="com.bsuir.petition.bean.entity.Category"/>
+        <mapping class="com.bsuir.petition.bean.entity.Petition"/>
+        <mapping class="com.bsuir.petition.bean.entity.Vote"/>
+        <mapping class="com.bsuir.petition.bean.entity.Comment"/>
     </session-factory>
 </hibernate-configuration>

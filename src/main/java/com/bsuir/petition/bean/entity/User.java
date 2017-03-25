@@ -1,4 +1,4 @@
-package com.bsuir.petition.bean;
+package com.bsuir.petition.bean.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;

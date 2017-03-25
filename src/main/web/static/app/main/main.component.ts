@@ -6,6 +6,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 
 export class MainComponent {
+	private id: number;
 	constructor() {
+		this.id = 1;
 	}
 }

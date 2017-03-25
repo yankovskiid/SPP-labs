@@ -1,6 +1,6 @@
 package com.bsuir.petition.controller;
 
-import com.bsuir.petition.bean.User;
+import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

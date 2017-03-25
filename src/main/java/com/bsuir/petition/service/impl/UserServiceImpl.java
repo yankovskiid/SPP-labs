@@ -1,6 +1,6 @@
 package com.bsuir.petition.service.impl;
 
-import com.bsuir.petition.bean.User;
+import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.dao.UserDao;
 import com.bsuir.petition.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

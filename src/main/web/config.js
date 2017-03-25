@@ -1,5 +1,5 @@
-var angularVersion = '2.4.10';
-var routerVersion = '3.4.10';
+var angularVersion = '4.0.0';
+var routerVersion = '4.0.0';
 
 System.config({
     baseUrl: '/',

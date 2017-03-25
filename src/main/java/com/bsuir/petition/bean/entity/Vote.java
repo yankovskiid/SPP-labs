@@ -1,6 +1,4 @@
-package com.bsuir.petition.bean;
-
-import org.hibernate.annotations.ColumnDefault;
+package com.bsuir.petition.bean.entity;
 
 import javax.persistence.*;
 

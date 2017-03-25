@@ -1,6 +1,6 @@
 package com.bsuir.petition.dao.impl;
 
-import com.bsuir.petition.bean.User;
+import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.dao.UserDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

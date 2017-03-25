@@ -1,6 +1,6 @@
 package com.bsuir.petition.dao;
 
-import com.bsuir.petition.bean.User;
+import com.bsuir.petition.bean.entity.User;
 
 public interface UserDao {
     User getUserById(long id);
