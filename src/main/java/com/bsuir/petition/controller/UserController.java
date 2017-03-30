@@ -19,9 +19,22 @@ public class UserController {
         this.userService = userService;
     }
 
+
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable long id) {
         User user = userService.getUser(id);
+        return user;
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public User getLogin() {
+        User user = userService.getUser(1);
+        return user;
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public User getSignUp() {
+        User user = userService.getUser(1);
         return user;
     }
 

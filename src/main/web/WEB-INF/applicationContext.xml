@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="springSecurityFilterChain" class="org.springframework.web.filter.DelegatingFilterProxy" />
+
+
+    <security:global-method-security pre-post-annotations="enabled" />
+
+    <bean id="userDetailsService" class="com.bsuir.petition.security.service.UserDetailsServiceImpl" />
+
+    <security:http pattern="/login" security="none" />
+
+    <security:http auto-config="false" disable-url-rewriting="true"
+                   create-session="stateless" entry-point-ref="restAuthenticationEntryPoint">
+        <security:csrf disabled="true" />
+        <security:custom-filter ref="restAuthenticationFilter" before="FORM_LOGIN_FILTER"/>
+        <security:intercept-url pattern="/login/**" access="permitAll"/>
+        <security:intercept-url pattern="/app/**" access="permitAll"/>
+        <security:intercept-url pattern="/signup/**" access="USER"/>
+    </security:http>
+
+    <bean id="tokenAuthenticationManager" class="com.bsuir.petition.security.TokenAuthenticationManager" />
+
+    <bean id="restAuthenticationFilter" class="com.bsuir.petition.security.TokenAuthenticationFilter" >
+        <property name="authenticationManager" ref="tokenAuthenticationManager" />
+        <property name="authenticationSuccessHandler" ref="restAuthenticationSuccessesHandler" />
+    </bean>
+
+    <bean id="restAuthenticationSuccessesHandler" class="com.bsuir.petition.security.RestAuthenticationSuccesses" />
+
+    <bean id="restAuthenticationEntryPoint" class="com.bsuir.petition.security.RestAuthenticationEntryPoint" />
+
 </beans>
