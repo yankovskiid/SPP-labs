@@ -37,7 +37,7 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
         if (token == null) {
 //            throw new JwtTokenMissingException("Message ept");
             TokenAuthentication tokenAuthentication = new TokenAuthentication(null, null);
-            tokenAuthentication.setAuthenticated(true);
+            tokenAuthentication.setAuthenticated(false);
             return tokenAuthentication;
         }
 

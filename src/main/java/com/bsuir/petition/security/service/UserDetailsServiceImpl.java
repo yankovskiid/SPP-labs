@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.net.URLDecoder;
 
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserService userService;

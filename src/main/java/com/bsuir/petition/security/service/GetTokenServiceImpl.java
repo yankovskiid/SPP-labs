@@ -1,5 +1,6 @@
 package com.bsuir.petition.security.service;
 
+import com.bsuir.petition.security.GetTokenService;
 import com.bsuir.petition.security.util.SecurityUser;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class GetTokenServiceImpl {
+public class GetTokenServiceImpl implements GetTokenService {
 
     private UserDetailsService userDetailsService;
 
@@ -27,6 +28,7 @@ public class GetTokenServiceImpl {
         this.userDetailsService = userDetailsService;
     }
 
+    @Override
     public String getToken(String email, String password) throws Exception {
 
         if (email == null || password == null) {
@@ -37,14 +39,13 @@ public class GetTokenServiceImpl {
         Map<String, Object> tokenData = new HashMap<String, Object>();
 
         if (password.equals(user.getPassword())) {
-            tokenData.put("clintType", "USER");
-            tokenData.put("userID", user.getId());
-            tokenData.put("email", user.getUsername());
+            tokenData.put("USER_ID", user.getId());
+            tokenData.put("EMAIL", user.getUsername());
 
-            tokenData.put("creationDate", new Date().getTime());
+            tokenData.put("CREATION_DATE", new Date().getTime());
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.YEAR, 100);
-            tokenData.put("tokenExpirationDate", calendar.getTime());
+            tokenData.put("TOKEN_EXPIRATION_DATE", calendar.getTime());
 
             JwtBuilder jwtBuilder = Jwts.builder();
             jwtBuilder.setExpiration(calendar.getTime());

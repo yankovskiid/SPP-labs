@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name="users", schema = "petition_spring")
 public class User extends BaseTable {
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "password", nullable = false)
