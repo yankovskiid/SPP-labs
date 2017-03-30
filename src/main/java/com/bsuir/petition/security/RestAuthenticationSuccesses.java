@@ -11,9 +11,8 @@ import java.io.IOException;
 
 public class RestAuthenticationSuccesses implements AuthenticationSuccessHandler{
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                        Authentication authentication) throws IOException, ServletException {
         SecurityContextHolder.getContext().setAuthentication(authentication);
-//        request.getRequestDispatcher(request.getServletPath()).forward(request, response);
     }
 }

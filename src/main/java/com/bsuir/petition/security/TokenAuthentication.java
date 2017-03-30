@@ -4,9 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
-import javax.servlet.ServletRequest;
 import java.util.Collection;
 
 public class TokenAuthentication implements Authentication {
