@@ -12,23 +12,32 @@
 
     <bean id="userDetailsService" class="com.bsuir.petition.security.service.UserDetailsServiceImpl" />
 
-    <security:http pattern="/login" security="none" />
+    <!--<security:http pattern="/login" security="none" />-->
+    <security:http pattern="/app/**" security="none" />
 
     <security:http auto-config="false" disable-url-rewriting="true"
                    create-session="stateless" entry-point-ref="restAuthenticationEntryPoint">
+        <security:custom-filter ref="restAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
+        <security:access-denied-handler ref="accessDeniedHandler" />
         <security:csrf disabled="true" />
-        <security:custom-filter ref="restAuthenticationFilter" before="FORM_LOGIN_FILTER"/>
-        <security:intercept-url pattern="/login/**" access="permitAll"/>
-        <security:intercept-url pattern="/app/**" access="permitAll"/>
-        <security:intercept-url pattern="/signup/**" access="USER"/>
+        <security:intercept-url pattern="/signup" access="hasRole('USER')" />
+        <security:intercept-url pattern="/login" access="permitAll" />
+
+        <!--<security:intercept-url pattern="/login/**" access="permitAll"/>-->
+        <!--<security:intercept-url pattern="/signup/**" access="permitAll"/>-->
     </security:http>
+
+    <bean id="accessDeniedHandler" class="com.bsuir.petition.security.AuthorizationError" />
 
     <bean id="tokenAuthenticationManager" class="com.bsuir.petition.security.TokenAuthenticationManager" />
 
     <bean id="restAuthenticationFilter" class="com.bsuir.petition.security.TokenAuthenticationFilter" >
         <property name="authenticationManager" ref="tokenAuthenticationManager" />
         <property name="authenticationSuccessHandler" ref="restAuthenticationSuccessesHandler" />
+        <property name="authenticationFailureHandler" ref="restAuthenticationFailureHandler" />
     </bean>
+
+    <bean id="restAuthenticationFailureHandler" class="com.bsuir.petition.security.RestAuthenticationFailure" />
 
     <bean id="restAuthenticationSuccessesHandler" class="com.bsuir.petition.security.RestAuthenticationSuccesses" />
 

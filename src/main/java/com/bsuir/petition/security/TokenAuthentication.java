@@ -2,6 +2,7 @@ package com.bsuir.petition.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,12 @@ import java.util.Collection;
 public class TokenAuthentication implements Authentication {
 
     private String token;
-    private Collection<? extends GrantedAuthority> authorities;
+    private Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList();
     private boolean isAuthenticated;
     private UserDetails principal;
     private Object details;
 
-    public TokenAuthentication(String token, ServletRequest request) {
+    public TokenAuthentication(String token, Object request) {
         this.token = token;
         this.details = request;
     }

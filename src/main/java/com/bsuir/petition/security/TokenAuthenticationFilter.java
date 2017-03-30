@@ -1,5 +1,6 @@
 package com.bsuir.petition.security;
 
+import com.bsuir.petition.security.exception.JwtTokenMissingException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +19,7 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
     private final static String TOKEN = "token";
 
     public TokenAuthenticationFilter() {
-        super("/user/**");
+        super("/*");
     }
 
 
@@ -34,12 +35,9 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
         }
 
         if (token == null) {
+//            throw new JwtTokenMissingException("Message ept");
             TokenAuthentication tokenAuthentication = new TokenAuthentication(null, null);
-            try {
-                tokenAuthentication.setAuthenticated(false);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            tokenAuthentication.setAuthenticated(false);
             return tokenAuthentication;
         }
 
@@ -51,5 +49,11 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
     @Override
     protected boolean requiresAuthentication(HttpServletRequest request, HttpServletResponse response) {
         return true;
+    }
+
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        super.successfulAuthentication(request, response, chain, authResult);
+        chain.doFilter(request, response);
     }
 }
