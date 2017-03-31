@@ -1,4 +1,4 @@
-package com.bsuir.petition.security.service;
+package com.bsuir.petition.security.service.impl;
 
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.security.util.SecurityUser;

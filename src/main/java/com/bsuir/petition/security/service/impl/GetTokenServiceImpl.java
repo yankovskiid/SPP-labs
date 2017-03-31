@@ -1,6 +1,6 @@
-package com.bsuir.petition.security.service;
+package com.bsuir.petition.security.service.impl;
 
-import com.bsuir.petition.security.GetTokenService;
+import com.bsuir.petition.security.service.GetTokenService;
 import com.bsuir.petition.security.util.SecurityUser;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -16,6 +16,11 @@ import java.util.Map;
 
 @Service
 public class GetTokenServiceImpl implements GetTokenService {
+
+    private final static String TOKEN_KEY = "petition";
+    private final static String EMAIL = "EMAIL";
+    private final static String USER_ID = "USER_ID";
+    private final static String EXPIRATION_DATE = "TOKEN_EXPIRATION_DATE";
 
     private UserDetailsService userDetailsService;
 
@@ -39,22 +44,18 @@ public class GetTokenServiceImpl implements GetTokenService {
         Map<String, Object> tokenData = new HashMap<String, Object>();
 
         if (password.equals(user.getPassword())) {
-            tokenData.put("USER_ID", user.getId());
-            tokenData.put("EMAIL", user.getUsername());
+            tokenData.put(USER_ID, user.getId());
+            tokenData.put(EMAIL, user.getUsername());
 
-            tokenData.put("CREATION_DATE", new Date().getTime());
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.YEAR, 100);
-            tokenData.put("TOKEN_EXPIRATION_DATE", calendar.getTime());
+            tokenData.put(EXPIRATION_DATE, calendar.getTime());
 
             JwtBuilder jwtBuilder = Jwts.builder();
             jwtBuilder.setExpiration(calendar.getTime());
             jwtBuilder.setClaims(tokenData);
 
-            String key = "abc123";
-            String token = jwtBuilder.signWith(SignatureAlgorithm.HS512, key).compact();
-
-            return token;
+            return jwtBuilder.signWith(SignatureAlgorithm.HS512, TOKEN_KEY).compact();
         } else {
             throw new Exception("Authentication error");
         }

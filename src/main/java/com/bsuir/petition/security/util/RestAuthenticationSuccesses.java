@@ -1,4 +1,4 @@
-package com.bsuir.petition.security;
+package com.bsuir.petition.security.util;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -5,7 +5,7 @@ import com.bsuir.petition.bean.dto.request.UserRegistrationDTO;
 import com.bsuir.petition.bean.dto.response.UserInformationDTO;
 import com.bsuir.petition.bean.dto.response.message.MessageDTO;
 import com.bsuir.petition.bean.entity.User;
-import com.bsuir.petition.security.GetTokenService;
+import com.bsuir.petition.security.service.GetTokenService;
 import com.bsuir.petition.service.DtoService;
 import com.bsuir.petition.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,14 +38,9 @@ public class UserController {
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public UserInformationDTO getUser(@PathVariable long id) {
-     /*   UserInformationDTO userInformationDTO;
+        UserInformationDTO userInformationDTO;
         User user = userService.getUser(id);
         userInformationDTO = dtoService.getUserInformationDTO(user);
-        return userInformationDTO;*/
-     UserInformationDTO userInformationDTO = new UserInformationDTO();
-        userInformationDTO.setSurname("dsa");
-        userInformationDTO.setUsername("dsa");
-        userInformationDTO.setCity("dsa");
         return userInformationDTO;
     }
 

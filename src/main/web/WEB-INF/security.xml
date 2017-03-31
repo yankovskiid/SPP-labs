@@ -28,7 +28,7 @@
         <security:intercept-url pattern="/user/**" access="hasAuthority('USER')" />
     </security:http>
 
-    <bean id="accessDeniedHandler" class="com.bsuir.petition.security.AuthorizationError" />
+    <bean id="accessDeniedHandler" class="com.bsuir.petition.security.util.AuthorizationError" />
 
     <bean id="tokenAuthenticationManager" class="com.bsuir.petition.security.TokenAuthenticationManager" />
 
@@ -38,10 +38,10 @@
         <property name="authenticationFailureHandler" ref="restAuthenticationFailureHandler" />
     </bean>
 
-    <bean id="restAuthenticationFailureHandler" class="com.bsuir.petition.security.RestAuthenticationFailure" />
+    <bean id="restAuthenticationFailureHandler" class="com.bsuir.petition.security.util.RestAuthenticationFailure" />
 
-    <bean id="restAuthenticationSuccessesHandler" class="com.bsuir.petition.security.RestAuthenticationSuccesses" />
+    <bean id="restAuthenticationSuccessesHandler" class="com.bsuir.petition.security.util.RestAuthenticationSuccesses" />
 
-    <bean id="restAuthenticationEntryPoint" class="com.bsuir.petition.security.RestAuthenticationEntryPoint" />
+    <bean id="restAuthenticationEntryPoint" class="com.bsuir.petition.security.util.RestAuthenticationEntryPoint" />
 
 </beans>
