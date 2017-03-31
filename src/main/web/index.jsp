@@ -14,7 +14,7 @@
 
 <body>
     <my-app>
-        загрузка...
+        Loading...
     </my-app>
     </body>
 </html>

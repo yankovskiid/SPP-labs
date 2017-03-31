@@ -5,6 +5,7 @@ import com.bsuir.petition.bean.dto.request.UserRegistrationDTO;
 import com.bsuir.petition.bean.dto.response.UserInformationDTO;
 import com.bsuir.petition.bean.dto.response.message.MessageDTO;
 import com.bsuir.petition.bean.entity.User;
+import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.security.service.GetTokenService;
 import com.bsuir.petition.service.DtoService;
 import com.bsuir.petition.service.UserService;
@@ -39,14 +40,15 @@ public class UserController {
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public UserInformationDTO getUser(@PathVariable long id) {
         UserInformationDTO userInformationDTO;
-        User user = userService.getUser(id);
-        userInformationDTO = dtoService.getUserInformationDTO(user);
+        UserInformation userInformation = userService.getUserInformation(id);
+        userInformationDTO = dtoService.getUserInformationDTO(userInformation);
         return userInformationDTO;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public MessageDTO getLogin(@RequestBody UserRegistrationDTO userRegistrationDTO) {
         MessageDTO messageDTO = new MessageDTO();
+        userService.registration(userRegistrationDTO);
         return messageDTO;
     }
 

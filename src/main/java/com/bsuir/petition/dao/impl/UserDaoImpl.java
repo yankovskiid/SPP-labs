@@ -1,6 +1,8 @@
 package com.bsuir.petition.dao.impl;
 
+import com.bsuir.petition.bean.entity.Role;
 import com.bsuir.petition.bean.entity.User;
+import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.dao.UserDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,10 +14,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.HashSet;
+import java.util.Set;
 
 @Repository
 @Transactional
 public class UserDaoImpl implements UserDao {
+
+    private final static long USER_ROLE = 1;
 
     private SessionFactory sessionFactory;
 
@@ -55,8 +61,25 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void addUser(User user) {
+    public UserInformation getUserInformation(long id) {
+        User user;
+        Session session = sessionFactory.getCurrentSession();
+        user = session.load(User.class, id);
+        return user.getUserInformation();
+    }
 
+    @Override
+    public void addUser(User user) {
+        Session session = sessionFactory.getCurrentSession();
+        Role role = session.load(Role.class, USER_ROLE);
+        Set<Role> roles = new HashSet<Role>(0);
+        roles.add(role);
+        user.setRoles(roles);
+        try {
+            session.save(user);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     @Override

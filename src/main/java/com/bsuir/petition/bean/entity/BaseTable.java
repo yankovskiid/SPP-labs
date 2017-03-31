@@ -1,6 +1,4 @@
 package com.bsuir.petition.bean.entity;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,12 +11,10 @@ class BaseTable {
     private long id;
 
     @Column(name = "created_at", nullable = false)
-    @ColumnDefault("NOW()")
-    private Date createdAt;
+    private Date createdAt = new Date();
 
     @Column(name = "updated_at", nullable = false)
-    @ColumnDefault("NOW()")
-    private Date updatedAt;
+    private Date updatedAt = new Date();
 
     public long getId() {
         return id;

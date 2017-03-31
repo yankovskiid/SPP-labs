@@ -12,11 +12,11 @@ public class UserInformation extends BaseTable{
     @Column(name = "surname", length = 128)
     private String surname;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
