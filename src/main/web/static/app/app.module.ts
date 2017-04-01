@@ -7,6 +7,8 @@ import { MyApp } from './app.component.ts';
 import { UserComponent } from "./user/user.component.ts";
 import { AppRoutingModule } from "./app.routing.ts";
 import { MainComponent } from "./main/main.component";
+import { RegistrationComponent } from "./user/registration/registration.component";
+import { LoginComponent } from "./user/login/login.component";
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { MainComponent } from "./main/main.component";
     declarations: [
     	MyApp,
 	    UserComponent,
-	    MainComponent
+	    MainComponent,
+	    RegistrationComponent,
+	    LoginComponent
     ],
     bootstrap: [MyApp]
 })
