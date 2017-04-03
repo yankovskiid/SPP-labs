@@ -1,16 +1,7 @@
 package com.bsuir.petition.bean.dto.response.message;
 
-public class MessageDTO {
-    private boolean isError;
+public class ErrorMessageDTO {
     private String message;
-
-    public boolean isError() {
-        return isError;
-    }
-
-    public void setError(boolean error) {
-        isError = error;
-    }
 
     public String getMessage() {
         return message;

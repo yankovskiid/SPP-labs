@@ -20,6 +20,7 @@ export class RegistrationComponent {
 			this.hidden = false;
 		} else {
 			this.registrationService.sendData(this.registrationUser)
+				.catch((errorMessage) => alert(errorMessage.json().message))
 				.subscribe((response) => this.registrationResponse = response);
 		}
 		return false;
