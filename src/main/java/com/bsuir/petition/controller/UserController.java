@@ -48,7 +48,15 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public MessageDTO getLogin(@RequestBody UserRegistrationDTO userRegistrationDTO) {
         MessageDTO messageDTO = new MessageDTO();
-        userService.registration(userRegistrationDTO);
+        messageDTO.setError(false);
+        try {
+            userService.registration(userRegistrationDTO);
+            messageDTO.setMessage("Registration successes");
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            messageDTO.setError(true);
+            messageDTO.setMessage(exception.getMessage());
+        }
         return messageDTO;
     }
 

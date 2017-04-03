@@ -9,13 +9,14 @@ import { AppRoutingModule } from "./app.routing.ts";
 import { MainComponent } from "./main/main.component";
 import { RegistrationComponent } from "./user/registration/registration.component";
 import { LoginComponent } from "./user/login/login.component";
-
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
     imports: [
     	BrowserModule,
 	    HttpModule,
-	    AppRoutingModule
+	    AppRoutingModule,
+	    FormsModule
     ],
     declarations: [
     	MyApp,

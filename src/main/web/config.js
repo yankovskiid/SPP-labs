@@ -29,6 +29,7 @@ System.config({
         '@angular/core': 'unpkg:@angular/core@'+angularVersion,
         '@angular/router': 'unpkg:@angular/router@'+routerVersion,
         '@angular/compiler': 'unpkg:@angular/compiler@'+angularVersion,
+        '@angular/forms': 'unpkg:@angular/forms@'+angularVersion,
         '@angular/common': 'unpkg:@angular/common@'+angularVersion,
         '@angular/platform-browser': 'unpkg:@angular/platform-browser@'+angularVersion,
         '@angular/http': 'unpkg:@angular/http@'+angularVersion,

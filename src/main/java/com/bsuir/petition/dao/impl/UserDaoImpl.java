@@ -75,11 +75,7 @@ public class UserDaoImpl implements UserDao {
         Set<Role> roles = new HashSet<Role>(0);
         roles.add(role);
         user.setRoles(roles);
-        try {
-            session.save(user);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        session.save(user);
     }
 
     @Override
