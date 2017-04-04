@@ -12,6 +12,7 @@ public class ExchangerImpl implements Exchanger {
         User user = new User();
         user.setEmail(userRegistrationDTO.getEmail());
         user.setPassword(userRegistrationDTO.getPassword());
+        user.setNick(userRegistrationDTO.getNick());
         return user;
     }
 }

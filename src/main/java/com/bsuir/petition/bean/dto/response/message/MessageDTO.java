@@ -1,6 +1,6 @@
 package com.bsuir.petition.bean.dto.response.message;
 
-public class ErrorMessageDTO {
+public class MessageDTO {
     private String message;
 
     public String getMessage() {

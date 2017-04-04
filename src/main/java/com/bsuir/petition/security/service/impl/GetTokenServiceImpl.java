@@ -1,12 +1,14 @@
 package com.bsuir.petition.security.service.impl;
 
 import com.bsuir.petition.security.service.GetTokenService;
+import com.bsuir.petition.security.service.exception.AuthenticationException;
 import com.bsuir.petition.security.util.SecurityUser;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -34,13 +36,19 @@ public class GetTokenServiceImpl implements GetTokenService {
     }
 
     @Override
-    public String getToken(String email, String password) throws Exception {
+    public String getToken(String email, String password) throws AuthenticationException {
 
         if (email == null || password == null) {
             return null;
         }
 
-        SecurityUser user = (SecurityUser) userDetailsService.loadUserByUsername(email);
+        SecurityUser user;
+        try {
+            user = (SecurityUser) userDetailsService.loadUserByUsername(email);
+        } catch (UsernameNotFoundException exception) {
+            throw new AuthenticationException("No user with suh email!", exception);
+        }
+
         Map<String, Object> tokenData = new HashMap<String, Object>();
 
         if (password.equals(user.getPassword())) {
@@ -57,7 +65,7 @@ public class GetTokenServiceImpl implements GetTokenService {
 
             return jwtBuilder.signWith(SignatureAlgorithm.HS512, TOKEN_KEY).compact();
         } else {
-            throw new Exception("Authentication error");
+            throw new AuthenticationException("Wrong password!");
         }
     }
 }

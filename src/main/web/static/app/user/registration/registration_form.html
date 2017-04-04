@@ -13,6 +13,19 @@
         Please enter e-mail!
     </div>
 
+    <input type="text"
+           id="nick"
+           name="nick"
+           required
+           [(ngModel)]="registrationUser.nick"
+           #nick="ngModel"
+           placeholder="Enter your nick"
+    />
+    <br>
+    <div [hidden]="nick.valid || nick.pristine" class="error-message">
+        Please enter your nick!
+    </div>
+
     <input type="password"
            required
            id="password"
@@ -44,7 +57,3 @@
 
     <button (click)="onSubmit()" >Submit</button>
 </form>
-{{registrationUser.email}}
-{{registrationUser.password}}
-{{registrationUser.repeatPassword}}
-{{registrationResponse | json}}

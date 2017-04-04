@@ -1,6 +1,26 @@
 <h2>Login</h2>
-<form>
-    <input type="email">
-    <input type="password">
-    <input type="submit" name="Submit">
+<form #loginForm="ngForm">
+    <input type="email"
+           id="email"
+           name="email"
+           required
+           [(ngModel)]="loginUser.email"
+           #email="ngModel">
+    <br>
+    <div [hidden]="email.valid || email.pristine">
+        Please enter your email!
+    </div>
+
+    <input type="password"
+           id="password"
+           name="password"
+           required
+           [(ngModel)]="loginUser.password"
+           #password="ngModel">
+    <br>
+    <div [hidden]="password.valid || password.pristine">
+        Please enter password!
+    </div>
+
+    <button (click)="onSubmit()" >Sign in</button>
 </form>

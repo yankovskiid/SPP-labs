@@ -20,6 +20,9 @@ public class User extends BaseTable {
     @ColumnDefault("0")
     private boolean blocked;
 
+    @Column(name = "nick", nullable = false, length = 128)
+    private String nick;
+
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private UserInformation userInformation;
 
@@ -101,4 +104,11 @@ public class User extends BaseTable {
         this.blocked = blocked;
     }
 
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String name) {
+        this.nick = name;
+    }
 }

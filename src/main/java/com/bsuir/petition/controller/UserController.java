@@ -3,9 +3,12 @@ package com.bsuir.petition.controller;
 import com.bsuir.petition.bean.dto.request.UserLoginDTO;
 import com.bsuir.petition.bean.dto.request.UserRegistrationDTO;
 import com.bsuir.petition.bean.dto.response.UserInformationDTO;
-import com.bsuir.petition.bean.dto.response.message.ErrorMessageDTO;
+import com.bsuir.petition.bean.dto.response.message.MessageDTO;
+import com.bsuir.petition.bean.dto.response.message.TokenDTO;
+import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.security.service.GetTokenService;
+import com.bsuir.petition.security.service.exception.AuthenticationException;
 import com.bsuir.petition.service.DtoService;
 import com.bsuir.petition.service.UserService;
 import com.bsuir.petition.service.exception.user.DifferentPasswordsException;
@@ -49,21 +52,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ErrorMessageDTO getLogin(@RequestBody UserRegistrationDTO userRegistrationDTO)
-            throws ErrorInputException, SuchUserExistsException, DifferentPasswordsException {
-        ErrorMessageDTO errorMessageDTO = new ErrorMessageDTO();
-        userService.registration(userRegistrationDTO);
-        errorMessageDTO.setMessage("Registration successes");
-        return errorMessageDTO;
+    public TokenDTO getLogin(@RequestBody UserRegistrationDTO userRegistrationDTO)
+            throws AuthenticationException, DifferentPasswordsException, ErrorInputException, SuchUserExistsException {
+
+        User user = userService.registration(userRegistrationDTO);
+        String token;
+        token = getTokenService.getToken(user.getEmail(), user.getPassword());
+        return new TokenDTO(token);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ErrorMessageDTO getSignUp(@RequestBody UserLoginDTO userLoginDTO) throws Exception {
-        ErrorMessageDTO response = new ErrorMessageDTO();
+    public TokenDTO getSignUp(@RequestBody UserLoginDTO userLoginDTO) throws AuthenticationException {
         String token;
         token = getTokenService.getToken(userLoginDTO.getEmail(), userLoginDTO.getPassword());
-        response.setMessage(token);
-
-        return response;
+        return new TokenDTO(token);
     }
 }

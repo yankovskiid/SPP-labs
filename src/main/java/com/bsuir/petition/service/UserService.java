@@ -6,8 +6,8 @@ import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.service.exception.user.*;
 
 public interface UserService {
-    User getUser(String userEmail);
+    User getUser(String userEmail) throws UserNotFoundException;
     UserInformation getUserInformation(long id) throws UserInformationNotFoundException;
-    void registration(UserRegistrationDTO userRegistrationDTO)
+    User registration(UserRegistrationDTO userRegistrationDTO)
             throws SuchUserExistsException, ErrorInputException, DifferentPasswordsException;
 }

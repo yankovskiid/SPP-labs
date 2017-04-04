@@ -5,10 +5,7 @@ import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.dao.UserDao;
 import com.bsuir.petition.service.UserService;
-import com.bsuir.petition.service.exception.user.DifferentPasswordsException;
-import com.bsuir.petition.service.exception.user.ErrorInputException;
-import com.bsuir.petition.service.exception.user.SuchUserExistsException;
-import com.bsuir.petition.service.exception.user.UserInformationNotFoundException;
+import com.bsuir.petition.service.exception.user.*;
 import com.bsuir.petition.service.util.Exchanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,27 +28,36 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String userEmail) {
+    public User getUser(String userEmail) throws UserNotFoundException {
         User user;
-        user = userDao.getUserByEmail(userEmail);
+        try {
+            user = userDao.getUserByEmail(userEmail);
+        } catch (Exception exception) {
+            throw new UserNotFoundException(exception);
+        }
         return user;
     }
 
     @Override
     public UserInformation getUserInformation(long id) throws UserInformationNotFoundException {
         UserInformation userInformation;
-        userInformation = userDao.getUserInformation(id);
+        try {
+            userInformation = userDao.getUserInformation(id);
+        } catch (Exception exception) {
+            throw new UserInformationNotFoundException("No such user information!", exception);
+        }
         return userInformation;
     }
 
     @Override
-    public void registration(UserRegistrationDTO userRegistrationDTO)
+    public User registration(UserRegistrationDTO userRegistrationDTO)
             throws DifferentPasswordsException, ErrorInputException, SuchUserExistsException {
 
+        User user;
         if (userRegistrationDTO.getRepeatPassword().equals(userRegistrationDTO.getPassword())) {
 
             try {
-                User user = exchanger.getUser(userRegistrationDTO);
+                user = exchanger.getUser(userRegistrationDTO);
                 userDao.addUser(user);
             } catch (Exception exception) {
                 throw new SuchUserExistsException("User with such name exists!", exception);
@@ -59,6 +65,7 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new DifferentPasswordsException("Password and repeat password, must be equals!");
         }
+        return user;
     }
 
 

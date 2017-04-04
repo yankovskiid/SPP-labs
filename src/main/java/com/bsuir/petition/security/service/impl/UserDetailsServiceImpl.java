@@ -4,11 +4,10 @@ import com.bsuir.petition.bean.entity.Role;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.security.util.SecurityUser;
 import com.bsuir.petition.service.UserService;
+import com.bsuir.petition.service.exception.user.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -35,10 +34,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        User user = userService.getUser(userEmail);
+        User user = null;
+
+        try {
+            user = userService.getUser(userEmail);
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
 
         if (user == null) {
-            System.out.println("No such user");
             throw new UsernameNotFoundException("User " + userEmail + " not found!");
         }
 

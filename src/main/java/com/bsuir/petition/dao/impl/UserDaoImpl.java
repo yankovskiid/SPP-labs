@@ -32,31 +32,23 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(long id) {
-        User user = null;
-        try {
-            Session session = sessionFactory.getCurrentSession();
-            user = session.load(User.class, id);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        User user;
+        Session session = sessionFactory.getCurrentSession();
+        user = session.load(User.class, id);
         return user;
     }
 
     @Override
     public User getUserByEmail(String userEmail) {
-        User user = null;
-        try {
-            Session session = sessionFactory.getCurrentSession();
-            EntityManagerFactory entityManagerFactory = session.getEntityManagerFactory();
-            CriteriaBuilder builder = entityManagerFactory.getCriteriaBuilder();
-            CriteriaQuery<User> criteria = builder.createQuery( User.class );
-            Root<User> personRoot = criteria.from( User.class );
-            criteria.select( personRoot );
-            criteria.where( builder.equal( personRoot.get("email"), userEmail));
-            user = session.createQuery(criteria).getSingleResult();
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        User user;
+        Session session = sessionFactory.getCurrentSession();
+        EntityManagerFactory entityManagerFactory = session.getEntityManagerFactory();
+        CriteriaBuilder builder = entityManagerFactory.getCriteriaBuilder();
+        CriteriaQuery<User> criteria = builder.createQuery( User.class );
+        Root<User> personRoot = criteria.from( User.class );
+        criteria.select( personRoot );
+        criteria.where( builder.equal( personRoot.get("email"), userEmail));
+        user = session.createQuery(criteria).getSingleResult();
         return user;
     }
 

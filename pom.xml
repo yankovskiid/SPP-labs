@@ -31,6 +31,8 @@
 
         <jackson-version-databind>2.5.0</jackson-version-databind>
         <jackson-version-mapper>1.9.10</jackson-version-mapper>
+        <aspectj-version>1.7.3</aspectj-version>
+        <jjwt-version>0.6.0</jjwt-version>
     </properties>
 
     <dependencies>
@@ -134,11 +136,26 @@
             <version>3.1.0</version>
         </dependency>
 
+        <!-- Token dependency -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.6.0</version>
+            <version>${jjwt-version}</version>
         </dependency>
+
+        <!-- AspectJ -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj-version}</version>
+        </dependency>
+
 
 
     </dependencies>
