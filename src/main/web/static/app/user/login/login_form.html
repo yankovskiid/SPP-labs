@@ -21,6 +21,8 @@
     <div [hidden]="password.valid || password.pristine">
         Please enter password!
     </div>
-
-    <button (click)="onSubmit()" >Sign in</button>
+    <div [hidden]="hidden">
+        {{errorMessage}}
+    </div>
+    <button (click)="onSubmit()" [disabled]="!loginForm.valid">Sign in</button>
 </form>

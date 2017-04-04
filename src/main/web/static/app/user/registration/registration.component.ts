@@ -12,6 +12,7 @@ import { HttpService } from "../../httpService/httpService.component";
 })
 export class RegistrationComponent {
 	public registrationResponse;
+	public errorMessage : string;
 	public hidden = true;
 	public registrationUser = new RegistrationUser();
 	constructor (private httpService : HttpService,
@@ -19,11 +20,16 @@ export class RegistrationComponent {
 	}
 
 	public onSubmit() {
+		this.hidden = true;
 		if (this.registrationUser.password !== this.registrationUser.repeatPassword) {
+			this.errorMessage = "Repeat password and password, must be equals!";
 			this.hidden = false;
 		} else {
 			this.httpService.sendData('/registration', this.registrationUser)
-				.catch((errorMessage) => alert(errorMessage.json().message))
+				.catch((response) => {
+					this.hidden = false;
+					this.errorMessage = response.json().message;
+				})
 				.subscribe((response) => {
 					this.registrationResponse = response;
 					this.httpService.setToken(this.registrationReponse.token);

@@ -13,17 +13,24 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
+	public hidden = true;
 	public loginUser = new LoginUser();
 	public loginResponse;
+	public errorMessage : string;
 
 	constructor (private httpService : HttpService,
 	             private router : Router) {
 	}
 
 	public onSubmit() {
+		this.hidden = true;
 		this.httpService.sendData('/login', this.loginUser)
-			.catch((errorMessage) => alert(errorMessage.json().message))
+			.catch((response) => {
+				this.hidden = false;
+				this.errorMessage = response.json().message;
+			})
 			.subscribe((response) => {
+				alert("i am here");
 				this.loginResponse = response;
 				this.httpService.setToken(this.loginResponse.token);
 				this.router.navigate(['/user', 1]);

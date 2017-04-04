@@ -52,8 +52,8 @@
         Please repeat password!
     </div>
     <div [hidden]="hidden">
-        Passwords not equals!
+        {{errorMessage}}
     </div>
 
-    <button (click)="onSubmit()" >Submit</button>
+    <button (click)="onSubmit()" [disabled]="!registrationForm.valid">Submit</button>
 </form>
