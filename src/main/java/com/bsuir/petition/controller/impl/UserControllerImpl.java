@@ -1,11 +1,10 @@
 package com.bsuir.petition.controller.impl;
 
-import com.bsuir.petition.bean.dto.UserDTO;
-import com.bsuir.petition.bean.dto.request.UserLoginDTO;
-import com.bsuir.petition.bean.dto.request.UserRegistrationDTO;
-import com.bsuir.petition.bean.dto.response.UserInformationDTO;
-import com.bsuir.petition.bean.dto.response.message.MessageDTO;
-import com.bsuir.petition.bean.dto.response.message.TokenDTO;
+import com.bsuir.petition.bean.dto.user.UserDTO;
+import com.bsuir.petition.bean.dto.user.UserLoginDTO;
+import com.bsuir.petition.bean.dto.user.UserRegistrationDTO;
+import com.bsuir.petition.bean.dto.user.UserInformationDTO;
+import com.bsuir.petition.bean.dto.message.TokenDTO;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.controller.UserController;
@@ -83,13 +82,6 @@ public class UserControllerImpl implements UserController {
         UserInformation userInformation = userService.getUserInformation(id);
         userInformationDTO = dtoService.getUserInformationDTO(userInformation);
         return userInformationDTO;
-    }
-
-    @Override
-    public void updateUserInformation(@PathVariable long id,
-                                      @RequestBody UserInformationDTO userInformationDTO)
-                                        throws UserInformationNotFoundException, ErrorInputException {
-        userService.updateUserInformation(id, userInformationDTO);
     }
 
     @Override

@@ -1,10 +1,9 @@
 package com.bsuir.petition.controller;
 
-import com.bsuir.petition.bean.dto.response.message.MessageDTO;
+import com.bsuir.petition.bean.dto.message.MessageDTO;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
 import com.bsuir.petition.service.exception.user.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

@@ -1,6 +1,6 @@
 package com.bsuir.petition.service.util.impl;
 
-import com.bsuir.petition.bean.dto.request.UserRegistrationDTO;
+import com.bsuir.petition.bean.dto.user.UserRegistrationDTO;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.service.util.Exchanger;
 import org.springframework.stereotype.Component;

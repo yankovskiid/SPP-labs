@@ -1,4 +1,4 @@
-package com.bsuir.petition.bean.dto.response;
+package com.bsuir.petition.bean.dto.user;
 
 public class UserInformationDTO {
     private String username;

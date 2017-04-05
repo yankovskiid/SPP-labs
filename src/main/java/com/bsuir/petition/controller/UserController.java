@@ -1,11 +1,11 @@
 package com.bsuir.petition.controller;
 
 
-import com.bsuir.petition.bean.dto.UserDTO;
-import com.bsuir.petition.bean.dto.request.UserLoginDTO;
-import com.bsuir.petition.bean.dto.request.UserRegistrationDTO;
-import com.bsuir.petition.bean.dto.response.UserInformationDTO;
-import com.bsuir.petition.bean.dto.response.message.TokenDTO;
+import com.bsuir.petition.bean.dto.user.UserDTO;
+import com.bsuir.petition.bean.dto.user.UserLoginDTO;
+import com.bsuir.petition.bean.dto.user.UserRegistrationDTO;
+import com.bsuir.petition.bean.dto.user.UserInformationDTO;
+import com.bsuir.petition.bean.dto.message.TokenDTO;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
 import com.bsuir.petition.service.exception.user.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,10 +32,6 @@ public interface UserController {
     @RequestMapping(value = "/user/information/{id}", method = RequestMethod.GET)
     UserInformationDTO getUserInformation(long id)
             throws UserInformationNotFoundException;
-
-    @RequestMapping(value = "/user/information/{id}", method = RequestMethod.POST)
-    void updateUserInformation(long id, UserInformationDTO userInformationDTO)
-            throws UserInformationNotFoundException, ErrorInputException;
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     TokenDTO registration(UserRegistrationDTO userRegistrationDTO)

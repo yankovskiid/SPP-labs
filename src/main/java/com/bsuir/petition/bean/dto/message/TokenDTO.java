@@ -1,4 +1,4 @@
-package com.bsuir.petition.bean.dto.response.message;
+package com.bsuir.petition.bean.dto.message;
 
 public class TokenDTO {
     private String token;

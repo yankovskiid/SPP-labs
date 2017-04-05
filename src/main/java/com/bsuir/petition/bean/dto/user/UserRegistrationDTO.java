@@ -1,4 +1,4 @@
-package com.bsuir.petition.bean.dto.request;
+package com.bsuir.petition.bean.dto.user;
 
 public class UserRegistrationDTO extends UserLoginDTO {
 

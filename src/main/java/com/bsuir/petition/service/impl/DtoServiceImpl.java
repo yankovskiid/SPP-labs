@@ -1,12 +1,9 @@
 package com.bsuir.petition.service.impl;
 
-import com.bsuir.petition.bean.dto.response.UserInformationDTO;
-import com.bsuir.petition.bean.entity.City;
-import com.bsuir.petition.bean.entity.User;
+import com.bsuir.petition.bean.dto.user.UserInformationDTO;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.service.DtoService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DtoServiceImpl implements DtoService {
