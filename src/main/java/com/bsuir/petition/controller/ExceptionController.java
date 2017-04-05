@@ -2,6 +2,7 @@ package com.bsuir.petition.controller;
 
 import com.bsuir.petition.bean.dto.message.MessageDTO;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
+import com.bsuir.petition.service.exception.server.ServerException;
 import com.bsuir.petition.service.exception.user.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,6 +17,13 @@ public class ExceptionController {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public MessageDTO differentPasswordExceptionHandler(DifferentPasswordsException exception) {
+        return getErrorMessage(exception);
+    }
+
+    @ExceptionHandler(ServerException.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public MessageDTO differentPasswordExceptionHandler(ServerException exception) {
         return getErrorMessage(exception);
     }
 

@@ -6,13 +6,12 @@ import com.bsuir.petition.bean.dto.user.UserRegistrationDTO;
 import com.bsuir.petition.bean.dto.user.UserInformationDTO;
 import com.bsuir.petition.bean.dto.message.TokenDTO;
 import com.bsuir.petition.bean.entity.User;
-import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.controller.UserController;
 import com.bsuir.petition.security.TokenAuthentication;
 import com.bsuir.petition.security.service.GetTokenService;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
-import com.bsuir.petition.service.DtoService;
 import com.bsuir.petition.service.UserService;
+import com.bsuir.petition.service.exception.server.ServerException;
 import com.bsuir.petition.service.exception.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,8 +25,6 @@ public class UserControllerImpl implements UserController {
 
     private UserService userService;
 
-    private DtoService dtoService;
-
     @Autowired
     public void setGetTokenService(GetTokenService getTokenService) {
         this.getTokenService = getTokenService;
@@ -38,38 +35,33 @@ public class UserControllerImpl implements UserController {
         this.userService = userService;
     }
 
-    @Autowired
-    public void setDtoService(DtoService dtoService) {
-        this.dtoService = dtoService;
-    }
-
-
     @Override
-    public UserDTO getUser(@PathVariable long id) throws UserNotFoundException {
-        return null;
+    public UserDTO getUser(@PathVariable long id) throws UserNotFoundException, ServerException {
+        UserDTO userDTO;
+        userDTO = userService.getUser(id);
+        return userDTO;
     }
 
     @Override
     public void updateUser(@PathVariable long id,
                            @RequestBody UserDTO userDTO)
-                            throws UserNotFoundException, ErrorInputException {
-
+            throws UserNotFoundException, ErrorInputException, ServerException {
+        userService.updateUser(id, userDTO);
     }
 
     @Override
-    public UserInformationDTO getUserInformation() throws UserInformationNotFoundException {
+    public UserInformationDTO getUserInformation() throws UserInformationNotFoundException, ServerException {
         TokenAuthentication tokenAuthentication;
         tokenAuthentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
 
         UserInformationDTO userInformationDTO;
-        UserInformation userInformation = userService.getUserInformation((Long)tokenAuthentication.getDetails());
-        userInformationDTO = dtoService.getUserInformationDTO(userInformation);
+        userInformationDTO = userService.getUserInformation((Long)tokenAuthentication.getDetails());
         return userInformationDTO;
     }
 
     @Override
     public void updateUserInformation(@RequestBody UserInformationDTO userInformationDTO)
-            throws UserInformationNotFoundException, ErrorInputException {
+            throws UserInformationNotFoundException, ErrorInputException, ServerException {
         TokenAuthentication tokenAuthentication;
         tokenAuthentication = (TokenAuthentication)SecurityContextHolder.getContext().getAuthentication();
         userService.updateUserInformation((Long)tokenAuthentication.getDetails(), userInformationDTO);
@@ -77,17 +69,15 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public UserInformationDTO getUserInformation(@PathVariable long id)
-            throws UserInformationNotFoundException {
+            throws UserInformationNotFoundException, ServerException {
         UserInformationDTO userInformationDTO;
-        UserInformation userInformation = userService.getUserInformation(id);
-        userInformationDTO = dtoService.getUserInformationDTO(userInformation);
+        userInformationDTO = userService.getUserInformation(id);
         return userInformationDTO;
     }
 
     @Override
     public TokenDTO registration(@RequestBody UserRegistrationDTO userRegistrationDTO)
-            throws AuthenticationException, DifferentPasswordsException,
-                    ErrorInputException, SuchUserExistsException {
+            throws AuthenticationException, DifferentPasswordsException, ErrorInputException, SuchUserExistsException, ServerException {
 
         User user = userService.registration(userRegistrationDTO);
         String token;
@@ -96,7 +86,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public TokenDTO login(@RequestBody UserLoginDTO userLoginDTO) throws AuthenticationException {
+    public TokenDTO login(@RequestBody UserLoginDTO userLoginDTO) throws AuthenticationException, ServerException {
         String token;
         token = getTokenService.getToken(userLoginDTO.getEmail(), userLoginDTO.getPassword());
         return new TokenDTO(token);

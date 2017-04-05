@@ -1,22 +1,40 @@
 package com.bsuir.petition.service.impl;
 
+import com.bsuir.petition.bean.dto.user.UserDTO;
 import com.bsuir.petition.bean.dto.user.UserRegistrationDTO;
 import com.bsuir.petition.bean.dto.user.UserInformationDTO;
+import com.bsuir.petition.bean.entity.City;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
+import com.bsuir.petition.dao.CityDao;
 import com.bsuir.petition.dao.UserDao;
 import com.bsuir.petition.service.UserService;
+import com.bsuir.petition.service.exception.server.ServerException;
 import com.bsuir.petition.service.exception.user.*;
+import com.bsuir.petition.service.util.DtoService;
 import com.bsuir.petition.service.util.Exchanger;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    private CityDao cityDao;
+
     private UserDao userDao;
 
+    private DtoService dtoExchanger;
+
     private Exchanger exchanger;
+
+    @Autowired
+    public void setCityDao(CityDao cityDao) {
+        this.cityDao = cityDao;
+    }
+
+    @Autowired
+    public void setDtoExchanger(DtoService dtoExchanger) { this.dtoExchanger = dtoExchanger; }
 
     @Autowired
     public void setExchanger(Exchanger exchanger) {
@@ -26,6 +44,24 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
+    }
+
+    @Override
+    public void updateUser(long id, UserDTO userDTO) throws UserNotFoundException, ServerException {
+        User user;
+        try {
+            user = userDao.getUserById(id);
+        } catch (Exception exception) {
+            throw new ServerException("Server exception!", exception);
+        }
+        if (user == null) {
+            throw new UserNotFoundException("No such user!");
+        }
+        try {
+            userDao.updateUser(user);
+        } catch (Exception exception) {
+            throw new ServerException("Server exception!", exception);
+        }
     }
 
     @Override
@@ -40,19 +76,38 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserInformation getUserInformation(long id) throws UserInformationNotFoundException {
+    public UserDTO getUser(long id) throws UserNotFoundException, ServerException {
+        User user;
+        try {
+            user = userDao.getUserById(id);
+        } catch (Exception exception) {
+            throw new UserNotFoundException(exception);
+        }
+        UserDTO userDTO;
+        userDTO = dtoExchanger.getUserDTO(user);
+        return userDTO;
+    }
+
+    @Override
+    public UserInformationDTO getUserInformation(long id)
+                        throws UserInformationNotFoundException, ServerException {
         UserInformation userInformation;
         try {
             userInformation = userDao.getUserInformationById(id);
-        } catch (Exception exception) {
-            throw new UserInformationNotFoundException("No such user information!", exception);
+            if (userInformation == null) {
+                throw new UserInformationNotFoundException("No such user information!");
+            }
+        } catch (HibernateException | NullPointerException exception) {
+            throw new ServerException("Server exception!", exception);
         }
-        return userInformation;
+
+        return dtoExchanger.getUserInformationDTO(userInformation);
     }
 
     @Override
     public User registration(UserRegistrationDTO userRegistrationDTO)
-            throws DifferentPasswordsException, ErrorInputException, SuchUserExistsException {
+            throws DifferentPasswordsException, ErrorInputException,
+            SuchUserExistsException, ServerException {
 
         User user;
         if (userRegistrationDTO.getRepeatPassword().equals(userRegistrationDTO.getPassword())) {
@@ -70,9 +125,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUserInformation(long id, UserInformationDTO userInformationDTO) throws ErrorInputException, UserInformationNotFoundException {
+    public void updateUserInformation(long id, UserInformationDTO userInformationDTO)
+            throws ErrorInputException, ServerException {
 
+        UserInformation userInformation;
+        userInformation = userDao.getUserInformationById(id);
+
+        try {
+            userDao.updateUserInformation(userInformation);
+            if (userInformation == null) {
+                userInformation = getUserInformation(id, userInformationDTO.getCity());
+            }
+            userDao.updateUserInformation(userInformation);
+        } catch (Exception exception) {
+            throw new ServerException("Server exception!", exception);
+        }
     }
 
+    private UserInformation getUserInformation(long id, String cityName) {
+        UserInformation userInformation = new UserInformation();
+
+        User user = userDao.getUserById(id);
+        userInformation.setUser(user);
+
+        City city = cityDao.getCityByName(cityName);
+        userInformation.setCity(city);
+
+        return userInformation;
+    }
 
 }

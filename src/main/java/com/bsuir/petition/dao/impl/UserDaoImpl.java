@@ -10,11 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -74,7 +70,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUserById(long id, User user) {
+    public void updateUser(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(user);
     }
