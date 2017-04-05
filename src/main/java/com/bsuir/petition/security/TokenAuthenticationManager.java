@@ -1,5 +1,6 @@
 package com.bsuir.petition.security;
 
+import com.bsuir.petition.security.util.SecurityUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.impl.DefaultClaims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,6 @@ public class TokenAuthenticationManager implements AuthenticationManager {
     @Autowired
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
-    }
-
-    public UserDetailsService getUserDetailsService() {
-        return userDetailsService;
     }
 
     @Override
@@ -80,13 +77,13 @@ public class TokenAuthenticationManager implements AuthenticationManager {
 
     private TokenAuthentication buildFullTokenAuthentication(TokenAuthentication authentication, DefaultClaims claims)
                                                                 throws AuthenticationServiceException {
-        User user = (User) userDetailsService.loadUserByUsername(claims.get(EMAIL, String.class));
+        SecurityUser user = (SecurityUser) userDetailsService.loadUserByUsername(claims.get(EMAIL, String.class));
 
         if (!user.isEnabled()) {
             throw new AuthenticationServiceException("User disabled");
         }
 
         Collection<GrantedAuthority> authorities = user.getAuthorities();
-        return new TokenAuthentication(authentication.getToken(), authorities, true, user);
+        return new TokenAuthentication(authentication.getToken(), authorities, true, user, user.getId());
     }
 }

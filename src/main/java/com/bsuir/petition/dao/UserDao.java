@@ -6,8 +6,10 @@ import com.bsuir.petition.bean.entity.UserInformation;
 public interface UserDao {
     User getUserById(long id);
     User getUserByEmail(String email);
-    UserInformation getUserInformation(long id);
+
+    UserInformation getUserInformationById(long id);
+    void updateUserInformation(UserInformation userInformation);
+
     void addUser(User user);
     void updateUserById(long id, User user);
-    void deleteUserById(long id);
 }

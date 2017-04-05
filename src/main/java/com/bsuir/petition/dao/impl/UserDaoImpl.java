@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -42,22 +43,24 @@ public class UserDaoImpl implements UserDao {
     public User getUserByEmail(String userEmail) {
         User user;
         Session session = sessionFactory.getCurrentSession();
-        EntityManagerFactory entityManagerFactory = session.getEntityManagerFactory();
-        CriteriaBuilder builder = entityManagerFactory.getCriteriaBuilder();
-        CriteriaQuery<User> criteria = builder.createQuery( User.class );
-        Root<User> personRoot = criteria.from( User.class );
-        criteria.select( personRoot );
-        criteria.where( builder.equal( personRoot.get("email"), userEmail));
-        user = session.createQuery(criteria).getSingleResult();
+        Query query = session.createQuery("from User where email = :inputEmail");
+        query.setParameter("inputEmail", userEmail);
+        user = (User)query.getSingleResult();
         return user;
     }
 
     @Override
-    public UserInformation getUserInformation(long id) {
+    public UserInformation getUserInformationById(long id) {
         User user;
         Session session = sessionFactory.getCurrentSession();
         user = session.load(User.class, id);
         return user.getUserInformation();
+    }
+
+    @Override
+    public void updateUserInformation(UserInformation userInformation) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(userInformation);
     }
 
     @Override
@@ -72,11 +75,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void updateUserById(long id, User user) {
-
-    }
-
-    @Override
-    public void deleteUserById(long id) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(user);
     }
 }

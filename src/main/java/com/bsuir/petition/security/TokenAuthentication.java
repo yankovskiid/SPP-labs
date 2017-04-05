@@ -15,9 +15,9 @@ public class TokenAuthentication implements Authentication {
     private UserDetails principal;
     private Object details;
 
-    public TokenAuthentication(String token, Object request) {
+    public TokenAuthentication(String token, Object details) {
         this.token = token;
-        this.details = request;
+        this.details = details;
     }
 
     public TokenAuthentication(String token) {
@@ -29,11 +29,12 @@ public class TokenAuthentication implements Authentication {
     }
 
     public TokenAuthentication(String token, Collection<GrantedAuthority> authorities, boolean isAuthenticated,
-                               UserDetails principal) {
+                               UserDetails principal, Object details) {
         this.token = token;
         this.authorities = authorities;
         this.isAuthenticated = isAuthenticated;
         this.principal = principal;
+        this.details = details;
     }
 
     @Override

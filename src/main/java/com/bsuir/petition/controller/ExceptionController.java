@@ -29,7 +29,7 @@ public class ExceptionController {
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ResponseBody
     public MessageDTO userNotFoundExceptionHandler(UserNotFoundException exception) {
         return getErrorMessage(exception);

@@ -1,6 +1,7 @@
 package com.bsuir.petition.service.impl;
 
 import com.bsuir.petition.bean.dto.request.UserRegistrationDTO;
+import com.bsuir.petition.bean.dto.response.UserInformationDTO;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.dao.UserDao;
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
     public UserInformation getUserInformation(long id) throws UserInformationNotFoundException {
         UserInformation userInformation;
         try {
-            userInformation = userDao.getUserInformation(id);
+            userInformation = userDao.getUserInformationById(id);
         } catch (Exception exception) {
             throw new UserInformationNotFoundException("No such user information!", exception);
         }
@@ -66,6 +67,11 @@ public class UserServiceImpl implements UserService {
             throw new DifferentPasswordsException("Password and repeat password, must be equals!");
         }
         return user;
+    }
+
+    @Override
+    public void updateUserInformation(long id, UserInformationDTO userInformationDTO) throws ErrorInputException, UserInformationNotFoundException {
+
     }
 
 
