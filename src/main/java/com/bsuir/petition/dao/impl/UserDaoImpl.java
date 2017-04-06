@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
     public User getUserById(long id) {
         User user;
         Session session = sessionFactory.getCurrentSession();
-        user = session.load(User.class, id);
+        user = session.get(User.class, id);
         return user;
     }
 

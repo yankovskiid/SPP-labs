@@ -1,10 +1,7 @@
 package com.bsuir.petition.controller;
 
 
-import com.bsuir.petition.bean.dto.user.UserDTO;
-import com.bsuir.petition.bean.dto.user.UserLoginDTO;
-import com.bsuir.petition.bean.dto.user.UserRegistrationDTO;
-import com.bsuir.petition.bean.dto.user.UserInformationDTO;
+import com.bsuir.petition.bean.dto.user.*;
 import com.bsuir.petition.bean.dto.message.TokenDTO;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
 import com.bsuir.petition.service.exception.server.ServerException;
@@ -18,7 +15,7 @@ public interface UserController {
             throws UserNotFoundException, ServerException;
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
-    void updateUser(long id, UserDTO userDTO)
+    void updateUser(long id, UpdateUserDTO updateUserDTO)
             throws UserNotFoundException, ErrorInputException, ServerException;
 
     @RequestMapping(value = "/user/information", method = RequestMethod.GET)

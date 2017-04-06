@@ -1,9 +1,6 @@
 package com.bsuir.petition.controller.impl;
 
-import com.bsuir.petition.bean.dto.user.UserDTO;
-import com.bsuir.petition.bean.dto.user.UserLoginDTO;
-import com.bsuir.petition.bean.dto.user.UserRegistrationDTO;
-import com.bsuir.petition.bean.dto.user.UserInformationDTO;
+import com.bsuir.petition.bean.dto.user.*;
 import com.bsuir.petition.bean.dto.message.TokenDTO;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.controller.UserController;
@@ -44,9 +41,9 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public void updateUser(@PathVariable long id,
-                           @RequestBody UserDTO userDTO)
+                           @RequestBody UpdateUserDTO updateUserDTO)
             throws UserNotFoundException, ErrorInputException, ServerException {
-        userService.updateUser(id, userDTO);
+        userService.updateUser(id, updateUserDTO);
     }
 
     @Override

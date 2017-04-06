@@ -6,12 +6,14 @@ import com.bsuir.petition.bean.entity.Role;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.service.util.DtoService;
+import org.hibernate.Hibernate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Set;
 
-@Service
+@Component
 public class DtoExchangerImpl implements DtoService {
 
     @Override
@@ -31,6 +33,7 @@ public class DtoExchangerImpl implements DtoService {
     public UserDTO getUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setEmail(user.getEmail());
+
         userDTO.setBlocked(user.isBlocked());
         ArrayList<String> temp = new ArrayList<>(0);
         Set<Role> roles = user.getRoles();

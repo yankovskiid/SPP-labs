@@ -1,17 +1,17 @@
 package com.bsuir.petition.dao.impl;
 
-import com.bsuir.petition.bean.entity.City;
-import com.bsuir.petition.dao.CityDao;
+import com.bsuir.petition.bean.entity.Role;
+import com.bsuir.petition.dao.RoleDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import javax.persistence.Query;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class CityDaoImpl implements CityDao {
+public class RoleDaoImpl implements RoleDao {
 
     private SessionFactory sessionFactory;
 
@@ -21,12 +21,12 @@ public class CityDaoImpl implements CityDao {
     }
 
     @Override
-    public City getCityByName(String cityName) {
+    public Role getRoleByName(String name) {
         Session session = sessionFactory.getCurrentSession();
-        City city;
-        Query query = session.createQuery("from City where name = :cityName");
-        query.setParameter("cityName", cityName);
-        city = (City)query.getSingleResult();
-        return city;
+        Role role;
+        Query query = session.createQuery("from Role where roleName = :roleName");
+        query.setParameter("roleName", name);
+        role = (Role) query.getSingleResult();
+        return role;
     }
 }

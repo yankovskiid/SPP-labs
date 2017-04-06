@@ -1,5 +1,6 @@
 package com.bsuir.petition.service.impl;
 
+import com.bsuir.petition.bean.dto.user.UpdateUserDTO;
 import com.bsuir.petition.bean.dto.user.UserDTO;
 import com.bsuir.petition.bean.dto.user.UserRegistrationDTO;
 import com.bsuir.petition.bean.dto.user.UserInformationDTO;
@@ -11,6 +12,7 @@ import com.bsuir.petition.dao.UserDao;
 import com.bsuir.petition.service.UserService;
 import com.bsuir.petition.service.exception.server.ServerException;
 import com.bsuir.petition.service.exception.user.*;
+import com.bsuir.petition.service.util.Creator;
 import com.bsuir.petition.service.util.DtoService;
 import com.bsuir.petition.service.util.Exchanger;
 import org.hibernate.HibernateException;
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private CityDao cityDao;
+    private Creator creator;
 
     private UserDao userDao;
 
@@ -29,8 +31,8 @@ public class UserServiceImpl implements UserService {
     private Exchanger exchanger;
 
     @Autowired
-    public void setCityDao(CityDao cityDao) {
-        this.cityDao = cityDao;
+    public void setCreator(Creator creator) {
+        this.creator = creator;
     }
 
     @Autowired
@@ -47,16 +49,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(long id, UserDTO userDTO) throws UserNotFoundException, ServerException {
+    public void updateUser(long id, UpdateUserDTO updateUserDTO) throws UserNotFoundException, ServerException {
         User user;
         try {
             user = userDao.getUserById(id);
         } catch (Exception exception) {
             throw new ServerException("Server exception!", exception);
         }
+
         if (user == null) {
             throw new UserNotFoundException("No such user!");
         }
+
+        exchanger.getUser(user, updateUserDTO);
+
         try {
             userDao.updateUser(user);
         } catch (Exception exception) {
@@ -80,8 +86,11 @@ public class UserServiceImpl implements UserService {
         User user;
         try {
             user = userDao.getUserById(id);
-        } catch (Exception exception) {
-            throw new UserNotFoundException(exception);
+            if (user == null) {
+                throw new UserNotFoundException("Such user not found!");
+            }
+        } catch (HibernateException exception) {
+            throw new ServerException("Server exception!", exception);
         }
         UserDTO userDTO;
         userDTO = dtoExchanger.getUserDTO(user);
@@ -132,26 +141,15 @@ public class UserServiceImpl implements UserService {
         userInformation = userDao.getUserInformationById(id);
 
         try {
-            userDao.updateUserInformation(userInformation);
             if (userInformation == null) {
-                userInformation = getUserInformation(id, userInformationDTO.getCity());
+                User user = userDao.getUserById(id);
+                userInformation = creator.getUserInformation(user, userInformationDTO.getCity());
             }
+            exchanger.setUserInformation(userInformation, userInformationDTO);
             userDao.updateUserInformation(userInformation);
         } catch (Exception exception) {
             throw new ServerException("Server exception!", exception);
         }
-    }
-
-    private UserInformation getUserInformation(long id, String cityName) {
-        UserInformation userInformation = new UserInformation();
-
-        User user = userDao.getUserById(id);
-        userInformation.setUser(user);
-
-        City city = cityDao.getCityByName(cityName);
-        userInformation.setCity(city);
-
-        return userInformation;
     }
 
 }
