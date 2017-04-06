@@ -1,4 +1,4 @@
-package com.bsuir.petition.service.exception.user;
+package com.bsuir.petition.service.user.exception;
 
 public class UserInformationNotFoundException extends Exception {
     public UserInformationNotFoundException() {

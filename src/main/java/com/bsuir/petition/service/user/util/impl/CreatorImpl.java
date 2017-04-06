@@ -1,10 +1,10 @@
-package com.bsuir.petition.service.util.impl;
+package com.bsuir.petition.service.user.util.impl;
 
 import com.bsuir.petition.bean.entity.City;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.dao.CityDao;
-import com.bsuir.petition.service.util.Creator;
+import com.bsuir.petition.service.user.util.Creator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

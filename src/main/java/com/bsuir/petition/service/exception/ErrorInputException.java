@@ -1,4 +1,4 @@
-package com.bsuir.petition.service.exception.user;
+package com.bsuir.petition.service.exception;
 
 public class ErrorInputException extends Exception {
     public ErrorInputException() {

@@ -1,18 +1,24 @@
-package com.bsuir.petition.controller.impl;
+package com.bsuir.petition.controller.user.impl;
 
-import com.bsuir.petition.bean.dto.user.*;
 import com.bsuir.petition.bean.dto.message.TokenDTO;
+import com.bsuir.petition.bean.dto.user.*;
 import com.bsuir.petition.bean.entity.User;
-import com.bsuir.petition.controller.UserController;
+import com.bsuir.petition.controller.user.UserController;
 import com.bsuir.petition.security.TokenAuthentication;
 import com.bsuir.petition.security.service.GetTokenService;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
-import com.bsuir.petition.service.UserService;
-import com.bsuir.petition.service.exception.server.ServerException;
-import com.bsuir.petition.service.exception.user.*;
+import com.bsuir.petition.service.exception.ErrorInputException;
+import com.bsuir.petition.service.exception.ServerException;
+import com.bsuir.petition.service.user.UserService;
+import com.bsuir.petition.service.user.exception.DifferentPasswordsException;
+import com.bsuir.petition.service.user.exception.SuchUserExistsException;
+import com.bsuir.petition.service.user.exception.UserInformationNotFoundException;
+import com.bsuir.petition.service.user.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController

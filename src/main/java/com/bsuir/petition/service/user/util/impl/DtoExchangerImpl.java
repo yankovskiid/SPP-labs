@@ -1,14 +1,12 @@
-package com.bsuir.petition.service.util.impl;
+package com.bsuir.petition.service.user.util.impl;
 
 import com.bsuir.petition.bean.dto.user.UserDTO;
 import com.bsuir.petition.bean.dto.user.UserInformationDTO;
 import com.bsuir.petition.bean.entity.Role;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
-import com.bsuir.petition.service.util.DtoService;
-import org.hibernate.Hibernate;
+import com.bsuir.petition.service.user.util.DtoService;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Set;

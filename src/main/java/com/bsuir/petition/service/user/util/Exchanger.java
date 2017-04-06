@@ -1,4 +1,4 @@
-package com.bsuir.petition.service.util;
+package com.bsuir.petition.service.user.util;
 
 import com.bsuir.petition.bean.dto.user.UpdateUserDTO;
 import com.bsuir.petition.bean.dto.user.UserInformationDTO;

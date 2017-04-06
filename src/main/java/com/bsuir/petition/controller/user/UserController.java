@@ -1,11 +1,12 @@
-package com.bsuir.petition.controller;
+package com.bsuir.petition.controller.user;
 
 
 import com.bsuir.petition.bean.dto.user.*;
 import com.bsuir.petition.bean.dto.message.TokenDTO;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
-import com.bsuir.petition.service.exception.server.ServerException;
-import com.bsuir.petition.service.exception.user.*;
+import com.bsuir.petition.service.exception.ErrorInputException;
+import com.bsuir.petition.service.exception.ServerException;
+import com.bsuir.petition.service.user.exception.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 

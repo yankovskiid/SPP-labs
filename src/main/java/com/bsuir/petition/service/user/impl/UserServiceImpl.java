@@ -1,20 +1,19 @@
-package com.bsuir.petition.service.impl;
+package com.bsuir.petition.service.user.impl;
 
 import com.bsuir.petition.bean.dto.user.UpdateUserDTO;
 import com.bsuir.petition.bean.dto.user.UserDTO;
 import com.bsuir.petition.bean.dto.user.UserRegistrationDTO;
 import com.bsuir.petition.bean.dto.user.UserInformationDTO;
-import com.bsuir.petition.bean.entity.City;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
-import com.bsuir.petition.dao.CityDao;
 import com.bsuir.petition.dao.UserDao;
-import com.bsuir.petition.service.UserService;
-import com.bsuir.petition.service.exception.server.ServerException;
-import com.bsuir.petition.service.exception.user.*;
-import com.bsuir.petition.service.util.Creator;
-import com.bsuir.petition.service.util.DtoService;
-import com.bsuir.petition.service.util.Exchanger;
+import com.bsuir.petition.service.exception.ErrorInputException;
+import com.bsuir.petition.service.user.UserService;
+import com.bsuir.petition.service.exception.ServerException;
+import com.bsuir.petition.service.user.exception.*;
+import com.bsuir.petition.service.user.util.Creator;
+import com.bsuir.petition.service.user.util.DtoService;
+import com.bsuir.petition.service.user.util.Exchanger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,6 +91,7 @@ public class UserServiceImpl implements UserService {
         } catch (HibernateException exception) {
             throw new ServerException("Server exception!", exception);
         }
+
         UserDTO userDTO;
         userDTO = dtoExchanger.getUserDTO(user);
         return userDTO;

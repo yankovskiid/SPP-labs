@@ -1,4 +1,4 @@
-package com.bsuir.petition.service.util.impl;
+package com.bsuir.petition.service.user.util.impl;
 
 import com.bsuir.petition.bean.dto.user.UpdateUserDTO;
 import com.bsuir.petition.bean.dto.user.UserInformationDTO;
@@ -9,7 +9,7 @@ import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.dao.CityDao;
 import com.bsuir.petition.dao.RoleDao;
-import com.bsuir.petition.service.util.Exchanger;
+import com.bsuir.petition.service.user.util.Exchanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.bsuir.petition.service.exception.server;
+package com.bsuir.petition.service.exception;
 
 public class ServerException extends Exception{
     public ServerException() {
