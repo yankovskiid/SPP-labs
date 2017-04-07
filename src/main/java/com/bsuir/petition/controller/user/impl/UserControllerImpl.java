@@ -15,6 +15,7 @@ import com.bsuir.petition.service.user.exception.SuchUserExistsException;
 import com.bsuir.petition.service.user.exception.UserInformationNotFoundException;
 import com.bsuir.petition.service.user.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +37,13 @@ public class UserControllerImpl implements UserController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Override
+    public UserListDTO getUsers() throws ServerException {
+        UserListDTO userListDTO;
+        userListDTO = userService.getUsers();
+        return userListDTO;
     }
 
     @Override

@@ -1,18 +1,21 @@
 package com.bsuir.petition.service.user.util.impl;
 
+import com.bsuir.petition.bean.dto.user.ShortUserInformationDTO;
 import com.bsuir.petition.bean.dto.user.UserDTO;
 import com.bsuir.petition.bean.dto.user.UserInformationDTO;
+import com.bsuir.petition.bean.dto.user.UserListDTO;
 import com.bsuir.petition.bean.entity.Role;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
-import com.bsuir.petition.service.user.util.DtoService;
+import com.bsuir.petition.service.user.util.DtoExchanger;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Component
-public class DtoExchangerImpl implements DtoService {
+public class DtoExchangerImpl implements DtoExchanger {
 
     @Override
     public UserInformationDTO getUserInformationDTO(UserInformation userInformation) {
@@ -42,6 +45,20 @@ public class DtoExchangerImpl implements DtoService {
         userDTO.setRoles(temp);
 
         return userDTO;
+    }
+
+    @Override
+    public UserListDTO getUserListDTO(List<User> users) {
+        UserListDTO userListDTO = new UserListDTO();
+        for (User user : users) {
+            ShortUserInformationDTO shortUserInformationDTO = new ShortUserInformationDTO();
+            shortUserInformationDTO.setEmail(user.getEmail());
+            shortUserInformationDTO.setId(user.getId());
+            shortUserInformationDTO.setNick(user.getNick());
+
+            userListDTO.getUsers().add(shortUserInformationDTO);
+        }
+        return userListDTO;
     }
 
 }
