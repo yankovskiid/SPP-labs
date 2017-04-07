@@ -7,6 +7,7 @@ import com.bsuir.petition.security.service.exception.AuthenticationException;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.exception.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,7 +31,6 @@ public interface UserController {
     @RequestMapping(value = "/user/information", method = RequestMethod.POST)
     void updateUserInformation(UserInformationDTO userInformationDTO)
             throws UserInformationNotFoundException, ErrorInputException, ServerException;
-
 
     @RequestMapping(value = "/user/information/{id}", method = RequestMethod.GET)
     UserInformationDTO getUserInformation(long id)
