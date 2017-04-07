@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -73,5 +74,13 @@ public class UserDaoImpl implements UserDao {
     public void updateUser(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(user);
+    }
+
+    @Override
+    public List<User> getUsers() {
+        List<User> users;
+        Session session = sessionFactory.getCurrentSession();
+        users = (List<User>) session.createQuery("from User").list();
+        return users;
     }
 }

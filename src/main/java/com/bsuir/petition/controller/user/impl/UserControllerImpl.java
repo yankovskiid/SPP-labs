@@ -39,6 +39,13 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
+    public UserListDTO getUsers() throws ServerException {
+        UserListDTO userListDTO;
+        userListDTO = userService.getUsers();
+        return userListDTO;
+    }
+
+    @Override
     public UserDTO getUser(@PathVariable long id) throws UserNotFoundException, ServerException {
         UserDTO userDTO;
         userDTO = userService.getUser(id);

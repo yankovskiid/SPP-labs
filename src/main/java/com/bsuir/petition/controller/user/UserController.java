@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 public interface UserController {
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    UserListDTO getUsers() throws ServerException;
+
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     UserDTO getUser(long id)
             throws UserNotFoundException, ServerException;

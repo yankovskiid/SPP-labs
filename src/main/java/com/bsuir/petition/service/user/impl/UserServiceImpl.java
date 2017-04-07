@@ -1,9 +1,6 @@
 package com.bsuir.petition.service.user.impl;
 
-import com.bsuir.petition.bean.dto.user.UpdateUserDTO;
-import com.bsuir.petition.bean.dto.user.UserDTO;
-import com.bsuir.petition.bean.dto.user.UserRegistrationDTO;
-import com.bsuir.petition.bean.dto.user.UserInformationDTO;
+import com.bsuir.petition.bean.dto.user.*;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.dao.UserDao;
@@ -12,11 +9,13 @@ import com.bsuir.petition.service.user.UserService;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.exception.*;
 import com.bsuir.petition.service.user.util.Creator;
-import com.bsuir.petition.service.user.util.DtoService;
+import com.bsuir.petition.service.user.util.DtoExchanger;
 import com.bsuir.petition.service.user.util.Exchanger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
 
-    private DtoService dtoExchanger;
+    private DtoExchanger dtoExchanger;
 
     private Exchanger exchanger;
 
@@ -35,7 +34,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Autowired
-    public void setDtoExchanger(DtoService dtoExchanger) { this.dtoExchanger = dtoExchanger; }
+    public void setDtoExchanger(DtoExchanger dtoExchanger) { this.dtoExchanger = dtoExchanger; }
 
     @Autowired
     public void setExchanger(Exchanger exchanger) {
@@ -45,6 +44,19 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
+    }
+
+    @Override
+    public UserListDTO getUsers() throws ServerException {
+        UserListDTO userListDTO;
+        try {
+            List<User> users;
+            users = userDao.getUsers();
+            userListDTO = dtoExchanger.getUserListDTO(users);
+        } catch (HibernateException exception) {
+            throw new ServerException("Server exception!", exception);
+        }
+        return userListDTO;
     }
 
     @Override

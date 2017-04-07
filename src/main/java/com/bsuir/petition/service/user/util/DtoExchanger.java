@@ -2,10 +2,14 @@ package com.bsuir.petition.service.user.util;
 
 import com.bsuir.petition.bean.dto.user.UserDTO;
 import com.bsuir.petition.bean.dto.user.UserInformationDTO;
+import com.bsuir.petition.bean.dto.user.UserListDTO;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 
-public interface DtoService {
+import java.util.List;
+
+public interface DtoExchanger {
     UserInformationDTO getUserInformationDTO(UserInformation user);
     UserDTO getUserDTO(User user);
+    UserListDTO getUserListDTO(List<User> users);
 }
