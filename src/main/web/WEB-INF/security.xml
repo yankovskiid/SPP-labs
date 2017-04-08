@@ -26,7 +26,7 @@
         <security:access-denied-handler ref="accessDeniedHandler" />
         <security:csrf disabled="true" />
 
-        <security:intercept-url pattern="/users" access="hasRole('ADMIN')" />
+        <security:intercept-url pattern="/users" access="hasAuthority('ADMIN')" />
         <security:intercept-url pattern="/user/{id}" access="hasAuthority('ADMIN')" />
 
         <security:intercept-url pattern="/user/information" access="hasAuthority('USER')" />
