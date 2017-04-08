@@ -21,11 +21,20 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="${database.connection.url}"/>
-        <property name="username" value="${database.connection.user}"/>
-        <property name="password" value="${database.connection.password}"/>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="${database.connection.url}" />
+        <property name="user" value="${database.connection.user}" />
+        <property name="password" value="" />
+
+        <property name="checkoutTimeout" value="30000" />
+        <property name="idleConnectionTestPeriod" value="30"/>
+        <property name="initialPoolSize" value="10" />
+        <property name="maxIdleTime" value="30" />
+        <property name="maxPoolSize" value="100" />
+        <property name="minPoolSize" value="10" />
+        <property name="maxStatements" value="10" />
+
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
