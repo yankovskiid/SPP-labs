@@ -27,7 +27,7 @@
         <hibernate.version>5.2.8.Final</hibernate.version>
         <mysql-connector.version>6.0.5</mysql-connector.version>
         <jstl-version>1.2</jstl-version>
-        <tomcat-connection-pool.version>9.0.0.M17</tomcat-connection-pool.version>
+        <c3p0-pool.version>0.9.1.2</c3p0-pool.version>
 
         <jackson-version-databind>2.5.0</jackson-version-databind>
         <jackson-version-mapper>1.9.10</jackson-version-mapper>
@@ -112,13 +112,6 @@
             <version>${jstl-version}</version>
         </dependency>
 
-        <!-- Tomcat database connection pool -->
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-            <version>${tomcat-connection-pool.version}</version>
-        </dependency>
-
         <!-- JSON mapper -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -158,11 +151,11 @@
             <version>${aspectj-version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
+        <!-- C3P0 connection pool -->
         <dependency>
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
-            <version>0.9.1.2</version>
+            <version>${c3p0-pool.version}</version>
         </dependency>
 
 
