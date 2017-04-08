@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers} from '@angular/http';
-import {token} from "../global.settings";
+import { TokenService } from "../global.settings";
+import { Observable } from 'rxjs/Rx';
+
+ import 'rxjs/add/operator/map';
 
 
 @Injectable()
@@ -18,7 +21,7 @@ export class HttpService {
 			.map((data) => data.json());
 	}
 
-	public getData(url: string,  tail: string) {
+	public getDataWithParametr(url: string,  tail: string) {
 		var headers = this.getHeaders();
 		return this
 				.http
@@ -52,8 +55,8 @@ export class HttpService {
 	}
 
 	public getToken() {
-		if (token !== "") {
-			return token;
+		if (TokenService.token !== "") {
+			return TokenService.token;
 		} else {
 			//TODO : get from cookie
 		}
@@ -61,12 +64,12 @@ export class HttpService {
 	}
 
 	public setToken(temp : string) {
-		token = temp;
+		TokenService.token = temp;
 		// TODO : set to cookie
 	}
 
 	public deleteToken() {
-		token = "";
+		TokenService.token = "";
 		// TODO : delete from cookie
 	}
 

@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { RegistrationUser } from './RegistrationUser';
 import { Router } from '@angular/router';
-import { HttpService } from "../../httpService/httpService.component";
+import { HttpService } from "../../httpService/http.service.component";
+import 'rxjs/add/operator/catch';
+
 
 @Component  ({
-	templateUrl: '/resources/static/app/user/registration/registration_form.html',
-	styleUrls: [ 'resources/static/app/user/registration/registration_form.css'],
+	templateUrl: 'app/user/registration/registration_form.html',
+	styleUrls: [ 'app/user/registration/registration_form.css'],
 	providers: [
 		HttpService
 	]
 })
 export class RegistrationComponent {
-	public registrationResponse;
+	public registrationResponse : any;
 	public errorMessage : string;
 	public hidden = true;
 	public registrationUser = new RegistrationUser();
@@ -29,11 +31,13 @@ export class RegistrationComponent {
 				.catch((response) => {
 					this.hidden = false;
 					this.errorMessage = response.json().message;
+					return null;
 				})
 				.subscribe((response) => {
 					this.registrationResponse = response;
-					this.httpService.setToken(this.registrationReponse.token);
+					this.httpService.setToken(this.registrationResponse.token);
 					this.router.navigate(['/user', 1]);
+					return null;
 				});
 		}
 		return false;

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { LoginService } from "./login.service.component";
-import { HttpService } from "../../httpService/httpService.component";
+import { HttpService } from "../../httpService/http.service.component";
 import { LoginUser } from './LoginUser';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/catch';
+
 
 @Component ({
-	templateUrl: '/resources/static/app/user/login/login_form.html',
-	styleUrls: [ 'resources/static/app/user/login/login_form.css'],
+	templateUrl: 'app/user/login/login_form.html',
+	styleUrls: [ 'app/user/login/login_form.css'],
 	providers: [
 		HttpService
 	]
@@ -15,7 +16,7 @@ export class LoginComponent {
 
 	public hidden = true;
 	public loginUser = new LoginUser();
-	public loginResponse;
+	public loginResponse : any;
 	public errorMessage : string;
 
 	constructor (private httpService : HttpService,
@@ -28,12 +29,14 @@ export class LoginComponent {
 			.catch((response) => {
 				this.hidden = false;
 				this.errorMessage = response.json().message;
+				return null;
 			})
 			.subscribe((response) => {
 				alert("i am here");
 				this.loginResponse = response;
 				this.httpService.setToken(this.loginResponse.token);
 				this.router.navigate(['/user', 1]);
+				return null;
 			});
 		return false;
 	}
