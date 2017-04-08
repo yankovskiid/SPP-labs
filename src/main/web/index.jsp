@@ -3,9 +3,12 @@
 <head>
     <base href="/">
     <title>Petition</title>
-    <script src="https://unpkg.com/systemjs@0.19.6/dist/system.src.js"></script>
-    <script src="https://code.angularjs.org/tools/typescript.js"></script>
-    <script src="/resources/config.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/node_modules/core-js/client/shim.min.js"></script>
+    <script src="/node_modules/zone.js/dist/zone.js"></script>
+    <script src="/node_modules/systemjs/dist/system.src.js"></script>
+    <script src="/systemjs.config.js"></script>
     <script>
         System.import('app')
                 .catch(console.error.bind(console));

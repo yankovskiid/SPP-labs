@@ -10,7 +10,7 @@
 
     <context:property-placeholder location="WEB-INF/configuration/spring.properties"/>
 
-    <mvc:resources mapping="/resources/**" location="/" />
+    <mvc:resources mapping="/**" location="classpath:/" />
 
 
     <bean id="viewResolver"
