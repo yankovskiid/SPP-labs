@@ -2,18 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
-       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
 
+    <security:global-method-security pre-post-annotations="enabled" proxy-target-class="true"/>
 
     <bean id="springSecurityFilterChain" class="org.springframework.web.filter.DelegatingFilterProxy" />
-
-
-    <security:global-method-security pre-post-annotations="enabled" />
 
 
     <security:http pattern="/login" security="none" />
@@ -25,14 +22,6 @@
         <security:custom-filter ref="restAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
         <security:access-denied-handler ref="accessDeniedHandler" />
         <security:csrf disabled="true" />
-
-        <security:intercept-url pattern="/users" access="hasAuthority('ADMIN')" />
-        <security:intercept-url pattern="/user/{id}" access="hasAuthority('ADMIN')" />
-
-        <security:intercept-url pattern="/user/information" access="hasAuthority('USER')" />
-        <security:intercept-url pattern="/user/information/{id}" access="hasAuthority('USER')" />
-
-
     </security:http>
 
     <bean id="accessDeniedHandler" class="com.bsuir.petition.security.util.AuthorizationError" />

@@ -13,25 +13,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public interface UserController {
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     UserListDTO getUsers() throws ServerException;
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     UserDTO getUser(long id)
             throws UserNotFoundException, ServerException;
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
     void updateUser(long id, UpdateUserDTO updateUserDTO)
             throws UserNotFoundException, ErrorInputException, ServerException;
 
+    @PreAuthorize("hasAnyAuthority('USER')")
     @RequestMapping(value = "/user/information", method = RequestMethod.GET)
     UserInformationDTO getUserInformation()
             throws UserInformationNotFoundException, ServerException;
 
+    @PreAuthorize("hasAnyAuthority('USER')")
     @RequestMapping(value = "/user/information", method = RequestMethod.POST)
     void updateUserInformation(UserInformationDTO userInformationDTO)
             throws UserInformationNotFoundException, ErrorInputException, ServerException;
 
+    @PreAuthorize("hasAnyAuthority('USER')")
     @RequestMapping(value = "/user/information/{id}", method = RequestMethod.GET)
     UserInformationDTO getUserInformation(long id)
             throws UserInformationNotFoundException, ServerException;
