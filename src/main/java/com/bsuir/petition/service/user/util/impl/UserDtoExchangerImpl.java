@@ -7,7 +7,7 @@ import com.bsuir.petition.bean.dto.user.UserListDTO;
 import com.bsuir.petition.bean.entity.Role;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
-import com.bsuir.petition.service.user.util.DtoExchanger;
+import com.bsuir.petition.service.user.util.UserDtoExchanger;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @Component
-public class DtoExchangerImpl implements DtoExchanger {
+public class UserDtoExchangerImpl implements UserDtoExchanger {
 
     @Override
     public UserInformationDTO getUserInformationDTO(UserInformation userInformation) {

@@ -8,7 +8,7 @@ import com.bsuir.petition.bean.entity.UserInformation;
 
 import java.util.List;
 
-public interface DtoExchanger {
+public interface UserDtoExchanger {
     UserInformationDTO getUserInformationDTO(UserInformation user);
     UserDTO getUserDTO(User user);
     UserListDTO getUserListDTO(List<User> users);

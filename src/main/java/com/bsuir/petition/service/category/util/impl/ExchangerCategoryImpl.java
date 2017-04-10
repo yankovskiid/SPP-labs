@@ -27,7 +27,7 @@ public class ExchangerCategoryImpl implements ExchangerCategory {
     @Override
     public Category getCategory(ShortCategoryDTO categoryDTO) {
         Category category = new Category();
-        category.setName(category.getName());
+        category.setName(categoryDTO.getName());
         return category;
     }
 }
