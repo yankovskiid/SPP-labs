@@ -3,12 +3,12 @@ package com.bsuir.petition.service.category.util.impl;
 import com.bsuir.petition.bean.dto.category.ShortCategoryDTO;
 import com.bsuir.petition.bean.entity.Category;
 import com.bsuir.petition.dao.CategoryDao;
-import com.bsuir.petition.service.category.util.Exchanger;
+import com.bsuir.petition.service.category.util.ExchangerCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExchangerImpl implements Exchanger {
+public class ExchangerCategoryImpl implements ExchangerCategory {
 
     private CategoryDao categoryDao;
 

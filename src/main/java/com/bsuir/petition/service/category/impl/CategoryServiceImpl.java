@@ -5,8 +5,8 @@ import com.bsuir.petition.bean.dto.category.ShortCategoryDTO;
 import com.bsuir.petition.bean.entity.Category;
 import com.bsuir.petition.dao.CategoryDao;
 import com.bsuir.petition.service.category.CategoryService;
-import com.bsuir.petition.service.category.util.DtoExchanger;
-import com.bsuir.petition.service.category.util.Exchanger;
+import com.bsuir.petition.service.category.util.DtoExchangerCategory;
+import com.bsuir.petition.service.category.util.ExchangerCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,23 +17,23 @@ public class CategoryServiceImpl implements CategoryService {
 
     private CategoryDao categoryDao;
 
-    private DtoExchanger dtoExchanger;
+    private DtoExchangerCategory dtoExchangerCategory;
 
-    private Exchanger exchanger;
-
-    @Autowired
-    public void setDtoExchanger(DtoExchanger dtoExchanger) {
-        this.dtoExchanger = dtoExchanger;
-    }
-
-    @Autowired
-    public void setExchanger(Exchanger exchanger) {
-        this.exchanger = exchanger;
-    }
+    private ExchangerCategory exchangerCategory;
 
     @Autowired
     public void setCategoryDao(CategoryDao categoryDao) {
         this.categoryDao = categoryDao;
+    }
+
+    @Autowired
+    public void setDtoExchangerCategory(DtoExchangerCategory dtoExchangerCategory) {
+        this.dtoExchangerCategory = dtoExchangerCategory;
+    }
+
+    @Autowired
+    public void setExchangerCategory(ExchangerCategory exchangerCategory) {
+        this.exchangerCategory = exchangerCategory;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryListDTO categoryListDTO;
         List<Category> categories;
         categories = categoryDao.getCategories();
-        categoryListDTO = dtoExchanger.getCategoryListDTO(categories);
+        categoryListDTO = dtoExchangerCategory.getCategoryListDTO(categories);
         return categoryListDTO;
     }
 
@@ -55,14 +55,14 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void updateCategory(ShortCategoryDTO shortCategoryDTO, long id) {
         Category category;
-        category = exchanger.getCategory(shortCategoryDTO, id);
+        category = exchangerCategory.getCategory(shortCategoryDTO, id);
         categoryDao.updateCategory(category);
     }
 
     @Override
     public void addCategory(ShortCategoryDTO shortCategoryDTO) {
         Category category;
-        category = exchanger.getCategory(shortCategoryDTO);
+        category = exchangerCategory.getCategory(shortCategoryDTO);
         categoryDao.addCategory(category);
     }
 }

@@ -5,6 +5,6 @@ import com.bsuir.petition.bean.entity.Category;
 
 import java.util.List;
 
-public interface DtoExchanger {
+public interface DtoExchangerCategory {
     CategoryListDTO getCategoryListDTO(List<Category> categories);
 }
