@@ -1,7 +1,9 @@
-package com.bsuir.petition.controller.user;
+package com.bsuir.petition.controller;
 
 import com.bsuir.petition.bean.dto.message.MessageDTO;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
+import com.bsuir.petition.service.category.exception.CategoryNotFoundException;
+import com.bsuir.petition.service.category.exception.SuchCategoryExistsException;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.exception.*;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice(basePackages = "com.bsuir.petition.controller")
 public class ExceptionController {
+
+    /* ---USER EXCEPTIONS--- */
+
 
     @ExceptionHandler(DifferentPasswordsException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
@@ -69,6 +74,22 @@ public class ExceptionController {
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ResponseBody
     public MessageDTO userInformationNotFoundExceptionHandler(UserInformationNotFoundException exception) {
+        return getErrorMessage(exception);
+    }
+
+
+    /* ---CATEGORY EXCEPTIONS--- */
+
+
+    @ExceptionHandler(CategoryNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public MessageDTO categoryNotFoundExceptionHandler(CategoryNotFoundException exception) {
+        return getErrorMessage(exception);
+    }
+
+    @ExceptionHandler(SuchCategoryExistsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public MessageDTO suchCategoryExistsExceptionHandler(SuchCategoryExistsException exception) {
         return getErrorMessage(exception);
     }
 

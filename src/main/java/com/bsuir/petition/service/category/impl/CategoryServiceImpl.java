@@ -5,8 +5,11 @@ import com.bsuir.petition.bean.dto.category.ShortCategoryDTO;
 import com.bsuir.petition.bean.entity.Category;
 import com.bsuir.petition.dao.CategoryDao;
 import com.bsuir.petition.service.category.CategoryService;
+import com.bsuir.petition.service.category.exception.CategoryNotFoundException;
 import com.bsuir.petition.service.category.util.DtoExchangerCategory;
 import com.bsuir.petition.service.category.util.ExchangerCategory;
+import com.bsuir.petition.service.exception.ErrorInputException;
+import com.bsuir.petition.service.exception.ServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryListDTO getCategories() {
+    public CategoryListDTO getCategories() throws ServerException {
         CategoryListDTO categoryListDTO;
         List<Category> categories;
         categories = categoryDao.getCategories();
@@ -46,21 +49,21 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCategory(long id) {
+    public void deleteCategory(long id) throws CategoryNotFoundException, ServerException {
         Category category;
         category = categoryDao.getCategory(id);
         categoryDao.deleteCategory(category);
     }
 
     @Override
-    public void updateCategory(ShortCategoryDTO shortCategoryDTO, long id) {
+    public void updateCategory(ShortCategoryDTO shortCategoryDTO, long id) throws CategoryNotFoundException, ErrorInputException, ServerException {
         Category category;
         category = exchangerCategory.getCategory(shortCategoryDTO, id);
         categoryDao.updateCategory(category);
     }
 
     @Override
-    public void addCategory(ShortCategoryDTO shortCategoryDTO) {
+    public void addCategory(ShortCategoryDTO shortCategoryDTO) throws ErrorInputException, ServerException {
         Category category;
         category = exchangerCategory.getCategory(shortCategoryDTO);
         categoryDao.addCategory(category);

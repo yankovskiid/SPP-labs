@@ -4,6 +4,9 @@ import com.bsuir.petition.bean.dto.category.CategoryListDTO;
 import com.bsuir.petition.bean.dto.category.ShortCategoryDTO;
 import com.bsuir.petition.controller.category.CategoryController;
 import com.bsuir.petition.service.category.CategoryService;
+import com.bsuir.petition.service.category.exception.CategoryNotFoundException;
+import com.bsuir.petition.service.exception.ErrorInputException;
+import com.bsuir.petition.service.exception.ServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,23 +23,23 @@ public class CategoryControllerImpl implements CategoryController {
     }
 
     @Override
-    public void addCategory(@RequestBody ShortCategoryDTO shortCategoryDTO) {
+    public void addCategory(@RequestBody ShortCategoryDTO shortCategoryDTO) throws ServerException, ErrorInputException {
         categoryService.addCategory(shortCategoryDTO);
     }
 
     @Override
     public void updateCategory(@RequestBody ShortCategoryDTO shortCategoryDTO,
-                               @PathVariable long id) {
+                               @PathVariable long id) throws ErrorInputException, ServerException, CategoryNotFoundException {
         categoryService.updateCategory(shortCategoryDTO, id);
     }
 
     @Override
-    public void deleteCategory(@PathVariable long id) {
+    public void deleteCategory(@PathVariable long id) throws ServerException, CategoryNotFoundException {
         categoryService.deleteCategory(id);
     }
 
     @Override
-    public CategoryListDTO getCategories() {
+    public CategoryListDTO getCategories() throws ServerException {
         return categoryService.getCategories();
     }
 }
