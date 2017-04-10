@@ -15,7 +15,7 @@
         <mapping class="com.bsuir.petition.bean.entity.Country"/>
         <mapping class="com.bsuir.petition.bean.entity.UserInformation"/>
         <mapping class="com.bsuir.petition.bean.entity.Role"/>
-        <mapping class="com.bsuir.petition.bean.entity.Category"/>
+        <mapping class="com.bsuir.petition.bean.entity.CategoryDTO"/>
         <mapping class="com.bsuir.petition.bean.entity.Petition"/>
         <mapping class="com.bsuir.petition.bean.entity.Vote"/>
         <mapping class="com.bsuir.petition.bean.entity.Comment"/>

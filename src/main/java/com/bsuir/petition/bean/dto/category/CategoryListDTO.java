@@ -1,17 +1,15 @@
 package com.bsuir.petition.bean.dto.category;
 
-import com.bsuir.petition.bean.entity.Category;
-
 import java.util.ArrayList;
 
 public class CategoryListDTO {
-    private ArrayList<Category> categories = new ArrayList<>(0);
+    private ArrayList<CategoryDTO> categories = new ArrayList<>(0);
 
-    public ArrayList<Category> getCategories() {
+    public ArrayList<CategoryDTO> getCategories() {
         return categories;
     }
 
-    public void setCategories(ArrayList<Category> categories) {
+    public void setCategories(ArrayList<CategoryDTO> categories) {
         this.categories = categories;
     }
 }

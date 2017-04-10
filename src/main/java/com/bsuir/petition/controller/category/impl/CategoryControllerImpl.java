@@ -21,22 +21,22 @@ public class CategoryControllerImpl implements CategoryController {
 
     @Override
     public void addCategory(@RequestBody ShortCategoryDTO shortCategoryDTO) {
-
+        categoryService.addCategory(shortCategoryDTO);
     }
 
     @Override
     public void updateCategory(@RequestBody ShortCategoryDTO shortCategoryDTO,
                                @PathVariable long id) {
-
+        categoryService.updateCategory(shortCategoryDTO, id);
     }
 
     @Override
     public void deleteCategory(@PathVariable long id) {
-
+        categoryService.deleteCategory(id);
     }
 
     @Override
     public CategoryListDTO getCategories() {
-        return null;
+        return categoryService.getCategories();
     }
 }
