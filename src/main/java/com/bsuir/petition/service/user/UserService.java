@@ -8,8 +8,8 @@ import com.bsuir.petition.service.user.exception.*;
 
 public interface UserService {
     UserListDTO getUsers() throws ServerException;
-    void updateUser(long id, UpdateUserDTO updateUserDTO) throws UserNotFoundException, ServerException;
-    User getUser(String userEmail) throws UserNotFoundException;
+    void updateUser(long id, UpdateUserDTO updateUserDTO) throws UserNotFoundException, ServerException, ErrorInputException;
+    User getUser(String userEmail) throws UserNotFoundException, ErrorInputException;
     UserDTO getUser(long id) throws UserNotFoundException, ServerException;
     UserInformationDTO getUserInformation(long id) throws UserInformationNotFoundException, ServerException;
     User registration(UserRegistrationDTO userRegistrationDTO)

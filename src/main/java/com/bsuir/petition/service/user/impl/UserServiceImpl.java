@@ -68,8 +68,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(long id, UpdateUserDTO updateUserDTO) throws UserNotFoundException, ServerException {
+    public void updateUser(long id, UpdateUserDTO updateUserDTO) throws UserNotFoundException, ServerException, ErrorInputException {
         User user;
+
+        userDataValidator.validate(updateUserDTO);
+
         try {
             user = userDao.getUserById(id);
         } catch (Exception exception) {
@@ -90,7 +93,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String userEmail) throws UserNotFoundException {
+    public User getUser(String userEmail) throws UserNotFoundException, ErrorInputException {
+
+        userDataValidator.validate(userEmail);
+
         User user;
         try {
             user = userDao.getUserByEmail(userEmail);
@@ -139,6 +145,9 @@ public class UserServiceImpl implements UserService {
             SuchUserExistsException, ServerException {
 
         User user;
+
+        userDataValidator.validate(userRegistrationDTO);
+
         if (userRegistrationDTO.getRepeatPassword().equals(userRegistrationDTO.getPassword())) {
 
             try {
@@ -156,6 +165,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserInformation(long id, UserInformationDTO userInformationDTO)
             throws ErrorInputException, ServerException {
+
+        userDataValidator.validate(userInformationDTO);
 
         UserInformation userInformation;
         userInformation = userDao.getUserInformationById(id);
