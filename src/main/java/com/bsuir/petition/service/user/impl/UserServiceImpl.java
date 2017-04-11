@@ -9,6 +9,7 @@ import com.bsuir.petition.service.user.UserService;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.exception.*;
 import com.bsuir.petition.service.user.util.UserCreator;
+import com.bsuir.petition.service.user.util.UserDataValidator;
 import com.bsuir.petition.service.user.util.UserDtoExchanger;
 import com.bsuir.petition.service.user.util.UserExchanger;
 import org.hibernate.HibernateException;
@@ -22,11 +23,18 @@ public class UserServiceImpl implements UserService {
 
     private UserCreator userCreator;
 
+    private UserDataValidator userDataValidator;
+
     private UserDao userDao;
 
     private UserDtoExchanger userDtoExchanger;
 
     private UserExchanger userExchanger;
+
+    @Autowired
+    public void setUserDataValidator(UserDataValidator userDataValidator) {
+        this.userDataValidator = userDataValidator;
+    }
 
     @Autowired
     public void setUserCreator(UserCreator userCreator) {
@@ -60,8 +68,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(long id, UpdateUserDTO updateUserDTO) throws UserNotFoundException, ServerException {
+    public void updateUser(long id, UpdateUserDTO updateUserDTO) throws UserNotFoundException, ServerException, ErrorInputException {
         User user;
+
+        userDataValidator.validate(updateUserDTO);
+
         try {
             user = userDao.getUserById(id);
         } catch (Exception exception) {
@@ -82,7 +93,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String userEmail) throws UserNotFoundException {
+    public User getUser(String userEmail) throws UserNotFoundException, ErrorInputException {
+
+        userDataValidator.validate(userEmail);
+
         User user;
         try {
             user = userDao.getUserByEmail(userEmail);
@@ -118,7 +132,7 @@ public class UserServiceImpl implements UserService {
             if (userInformation == null) {
                 throw new UserInformationNotFoundException("No such user information!");
             }
-        } catch (HibernateException | NullPointerException exception) {
+        } catch (HibernateException exception) {
             throw new ServerException("Server exception!", exception);
         }
 
@@ -131,12 +145,15 @@ public class UserServiceImpl implements UserService {
             SuchUserExistsException, ServerException {
 
         User user;
+
+        userDataValidator.validate(userRegistrationDTO);
+
         if (userRegistrationDTO.getRepeatPassword().equals(userRegistrationDTO.getPassword())) {
 
             try {
                 user = userExchanger.getUser(userRegistrationDTO);
                 userDao.addUser(user);
-            } catch (Exception exception) {
+            } catch (HibernateException exception) {
                 throw new SuchUserExistsException("User with such name exists!", exception);
             }
         } else {
@@ -149,6 +166,8 @@ public class UserServiceImpl implements UserService {
     public void updateUserInformation(long id, UserInformationDTO userInformationDTO)
             throws ErrorInputException, ServerException {
 
+        userDataValidator.validate(userInformationDTO);
+
         UserInformation userInformation;
         userInformation = userDao.getUserInformationById(id);
 
@@ -159,7 +178,7 @@ public class UserServiceImpl implements UserService {
             }
             userExchanger.setUserInformation(userInformation, userInformationDTO);
             userDao.updateUserInformation(userInformation);
-        } catch (Exception exception) {
+        } catch (HibernateException exception) {
             throw new ServerException("Server exception!", exception);
         }
     }

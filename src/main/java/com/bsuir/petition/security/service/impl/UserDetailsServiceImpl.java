@@ -3,6 +3,7 @@ package com.bsuir.petition.security.service.impl;
 import com.bsuir.petition.bean.entity.Role;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.security.util.SecurityUser;
+import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.user.UserService;
 import com.bsuir.petition.service.user.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         try {
             user = userService.getUser(userEmail);
-        } catch (UserNotFoundException e) {
+        } catch (UserNotFoundException | ErrorInputException e) {
             e.printStackTrace();
         }
 
