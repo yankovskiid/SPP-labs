@@ -132,7 +132,7 @@ public class UserServiceImpl implements UserService {
             if (userInformation == null) {
                 throw new UserInformationNotFoundException("No such user information!");
             }
-        } catch (HibernateException | NullPointerException exception) {
+        } catch (HibernateException exception) {
             throw new ServerException("Server exception!", exception);
         }
 
@@ -153,7 +153,7 @@ public class UserServiceImpl implements UserService {
             try {
                 user = userExchanger.getUser(userRegistrationDTO);
                 userDao.addUser(user);
-            } catch (Exception exception) {
+            } catch (HibernateException exception) {
                 throw new SuchUserExistsException("User with such name exists!", exception);
             }
         } else {
@@ -178,7 +178,7 @@ public class UserServiceImpl implements UserService {
             }
             userExchanger.setUserInformation(userInformation, userInformationDTO);
             userDao.updateUserInformation(userInformation);
-        } catch (Exception exception) {
+        } catch (HibernateException exception) {
             throw new ServerException("Server exception!", exception);
         }
     }

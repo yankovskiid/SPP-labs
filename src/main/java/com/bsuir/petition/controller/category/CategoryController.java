@@ -3,6 +3,7 @@ package com.bsuir.petition.controller.category;
 import com.bsuir.petition.bean.dto.category.ShortCategoryDTO;
 import com.bsuir.petition.bean.dto.category.CategoryListDTO;
 import com.bsuir.petition.service.category.exception.CategoryNotFoundException;
+import com.bsuir.petition.service.category.exception.SuchCategoryExistsException;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,7 +14,7 @@ public interface CategoryController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/category", method = RequestMethod.POST)
-    void addCategory(ShortCategoryDTO shortCategoryDTO) throws ServerException, ErrorInputException;
+    void addCategory(ShortCategoryDTO shortCategoryDTO) throws ServerException, ErrorInputException, SuchCategoryExistsException;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/category/{id}")

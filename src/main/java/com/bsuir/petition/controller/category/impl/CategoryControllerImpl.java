@@ -5,6 +5,7 @@ import com.bsuir.petition.bean.dto.category.ShortCategoryDTO;
 import com.bsuir.petition.controller.category.CategoryController;
 import com.bsuir.petition.service.category.CategoryService;
 import com.bsuir.petition.service.category.exception.CategoryNotFoundException;
+import com.bsuir.petition.service.category.exception.SuchCategoryExistsException;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class CategoryControllerImpl implements CategoryController {
     }
 
     @Override
-    public void addCategory(@RequestBody ShortCategoryDTO shortCategoryDTO) throws ServerException, ErrorInputException {
+    public void addCategory(@RequestBody ShortCategoryDTO shortCategoryDTO) throws ServerException, ErrorInputException, SuchCategoryExistsException {
         categoryService.addCategory(shortCategoryDTO);
     }
 
