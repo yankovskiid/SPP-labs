@@ -9,6 +9,7 @@ import com.bsuir.petition.service.user.UserService;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.exception.*;
 import com.bsuir.petition.service.user.util.UserCreator;
+import com.bsuir.petition.service.user.util.UserDataValidator;
 import com.bsuir.petition.service.user.util.UserDtoExchanger;
 import com.bsuir.petition.service.user.util.UserExchanger;
 import org.hibernate.HibernateException;
@@ -22,11 +23,18 @@ public class UserServiceImpl implements UserService {
 
     private UserCreator userCreator;
 
+    private UserDataValidator userDataValidator;
+
     private UserDao userDao;
 
     private UserDtoExchanger userDtoExchanger;
 
     private UserExchanger userExchanger;
+
+    @Autowired
+    public void setUserDataValidator(UserDataValidator userDataValidator) {
+        this.userDataValidator = userDataValidator;
+    }
 
     @Autowired
     public void setUserCreator(UserCreator userCreator) {

@@ -6,6 +6,7 @@ import com.bsuir.petition.bean.entity.Category;
 import com.bsuir.petition.dao.CategoryDao;
 import com.bsuir.petition.service.category.CategoryService;
 import com.bsuir.petition.service.category.exception.CategoryNotFoundException;
+import com.bsuir.petition.service.category.util.CategoryDataValidator;
 import com.bsuir.petition.service.category.util.DtoExchangerCategory;
 import com.bsuir.petition.service.category.util.ExchangerCategory;
 import com.bsuir.petition.service.exception.ErrorInputException;
@@ -18,11 +19,18 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
+    private CategoryDataValidator categoryDataValidator;
+
     private CategoryDao categoryDao;
 
     private DtoExchangerCategory dtoExchangerCategory;
 
     private ExchangerCategory exchangerCategory;
+
+    @Autowired
+    public void setCategoryDataValidator(CategoryDataValidator categoryDataValidator) {
+        this.categoryDataValidator = categoryDataValidator;
+    }
 
     @Autowired
     public void setCategoryDao(CategoryDao categoryDao) {
