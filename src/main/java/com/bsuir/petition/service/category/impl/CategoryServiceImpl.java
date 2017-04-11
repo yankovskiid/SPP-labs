@@ -65,6 +65,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void updateCategory(ShortCategoryDTO shortCategoryDTO, long id) throws CategoryNotFoundException, ErrorInputException, ServerException {
+
+        categoryDataValidator.validate(shortCategoryDTO);
+
         Category category;
         category = exchangerCategory.getCategory(shortCategoryDTO, id);
         categoryDao.updateCategory(category);
@@ -72,6 +75,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void addCategory(ShortCategoryDTO shortCategoryDTO) throws ErrorInputException, ServerException {
+
+        categoryDataValidator.validate(shortCategoryDTO);
+
         Category category;
         category = exchangerCategory.getCategory(shortCategoryDTO);
         categoryDao.addCategory(category);
