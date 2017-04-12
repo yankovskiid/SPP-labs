@@ -33,7 +33,7 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
 
         if (token == null) {
             TokenAuthentication tokenAuthentication = new TokenAuthentication(null, null);
-            tokenAuthentication.setAuthenticated(false);
+            tokenAuthentication.setAuthenticated(true);
             return tokenAuthentication;
         }
 

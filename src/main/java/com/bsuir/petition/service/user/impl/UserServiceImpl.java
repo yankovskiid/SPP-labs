@@ -8,9 +8,10 @@ import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.user.UserService;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.exception.*;
-import com.bsuir.petition.service.user.util.Creator;
-import com.bsuir.petition.service.user.util.DtoExchanger;
-import com.bsuir.petition.service.user.util.Exchanger;
+import com.bsuir.petition.service.user.util.UserCreator;
+import com.bsuir.petition.service.user.util.UserDataValidator;
+import com.bsuir.petition.service.user.util.UserDtoExchanger;
+import com.bsuir.petition.service.user.util.UserExchanger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,25 +21,32 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private Creator creator;
+    private UserCreator userCreator;
+
+    private UserDataValidator userDataValidator;
 
     private UserDao userDao;
 
-    private DtoExchanger dtoExchanger;
+    private UserDtoExchanger userDtoExchanger;
 
-    private Exchanger exchanger;
+    private UserExchanger userExchanger;
 
     @Autowired
-    public void setCreator(Creator creator) {
-        this.creator = creator;
+    public void setUserDataValidator(UserDataValidator userDataValidator) {
+        this.userDataValidator = userDataValidator;
     }
 
     @Autowired
-    public void setDtoExchanger(DtoExchanger dtoExchanger) { this.dtoExchanger = dtoExchanger; }
+    public void setUserCreator(UserCreator userCreator) {
+        this.userCreator = userCreator;
+    }
 
     @Autowired
-    public void setExchanger(Exchanger exchanger) {
-        this.exchanger = exchanger;
+    public void setUserDtoExchanger(UserDtoExchanger userDtoExchanger) { this.userDtoExchanger = userDtoExchanger; }
+
+    @Autowired
+    public void setUserExchanger(UserExchanger userExchanger) {
+        this.userExchanger = userExchanger;
     }
 
     @Autowired
@@ -52,7 +60,7 @@ public class UserServiceImpl implements UserService {
         try {
             List<User> users;
             users = userDao.getUsers();
-            userListDTO = dtoExchanger.getUserListDTO(users);
+            userListDTO = userDtoExchanger.getUserListDTO(users);
         } catch (HibernateException exception) {
             throw new ServerException("Server exception!", exception);
         }
@@ -60,8 +68,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(long id, UpdateUserDTO updateUserDTO) throws UserNotFoundException, ServerException {
+    public void updateUser(long id, UpdateUserDTO updateUserDTO) throws UserNotFoundException, ServerException, ErrorInputException {
         User user;
+
+        userDataValidator.validate(updateUserDTO);
+
         try {
             user = userDao.getUserById(id);
         } catch (Exception exception) {
@@ -72,7 +83,7 @@ public class UserServiceImpl implements UserService {
             throw new UserNotFoundException("No such user!");
         }
 
-        exchanger.getUser(user, updateUserDTO);
+        userExchanger.getUser(user, updateUserDTO);
 
         try {
             userDao.updateUser(user);
@@ -82,7 +93,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String userEmail) throws UserNotFoundException {
+    public User getUser(String userEmail) throws UserNotFoundException, ErrorInputException {
+
+        userDataValidator.validate(userEmail);
+
         User user;
         try {
             user = userDao.getUserByEmail(userEmail);
@@ -105,7 +119,7 @@ public class UserServiceImpl implements UserService {
         }
 
         UserDTO userDTO;
-        userDTO = dtoExchanger.getUserDTO(user);
+        userDTO = userDtoExchanger.getUserDTO(user);
         return userDTO;
     }
 
@@ -118,11 +132,11 @@ public class UserServiceImpl implements UserService {
             if (userInformation == null) {
                 throw new UserInformationNotFoundException("No such user information!");
             }
-        } catch (HibernateException | NullPointerException exception) {
+        } catch (HibernateException exception) {
             throw new ServerException("Server exception!", exception);
         }
 
-        return dtoExchanger.getUserInformationDTO(userInformation);
+        return userDtoExchanger.getUserInformationDTO(userInformation);
     }
 
     @Override
@@ -131,12 +145,15 @@ public class UserServiceImpl implements UserService {
             SuchUserExistsException, ServerException {
 
         User user;
+
+        userDataValidator.validate(userRegistrationDTO);
+
         if (userRegistrationDTO.getRepeatPassword().equals(userRegistrationDTO.getPassword())) {
 
             try {
-                user = exchanger.getUser(userRegistrationDTO);
+                user = userExchanger.getUser(userRegistrationDTO);
                 userDao.addUser(user);
-            } catch (Exception exception) {
+            } catch (HibernateException exception) {
                 throw new SuchUserExistsException("User with such name exists!", exception);
             }
         } else {
@@ -149,17 +166,19 @@ public class UserServiceImpl implements UserService {
     public void updateUserInformation(long id, UserInformationDTO userInformationDTO)
             throws ErrorInputException, ServerException {
 
+        userDataValidator.validate(userInformationDTO);
+
         UserInformation userInformation;
         userInformation = userDao.getUserInformationById(id);
 
         try {
             if (userInformation == null) {
                 User user = userDao.getUserById(id);
-                userInformation = creator.getUserInformation(user, userInformationDTO.getCity());
+                userInformation = userCreator.getUserInformation(user, userInformationDTO.getCity());
             }
-            exchanger.setUserInformation(userInformation, userInformationDTO);
+            userExchanger.setUserInformation(userInformation, userInformationDTO);
             userDao.updateUserInformation(userInformation);
-        } catch (Exception exception) {
+        } catch (HibernateException exception) {
             throw new ServerException("Server exception!", exception);
         }
     }

@@ -13,7 +13,7 @@ public class Category extends BaseTable{
                                             inverseJoinColumns = @JoinColumn(name = "petition_id"))
     private Set<Petition> petitions = new HashSet<Petition>();
 
-    @Column(name = "category_name", nullable = false, length = 128)
+    @Column(name = "category_name", nullable = false, unique = true, length = 128)
     private String name;
 
     public Set<Petition> getPetitions() {
