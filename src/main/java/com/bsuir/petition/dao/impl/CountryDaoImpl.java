@@ -5,13 +5,14 @@ import com.bsuir.petition.dao.CountryDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import java.util.List;
 
-/**
- * Created by Александр on 12.04.2017.
- */
+@Repository
+@Transactional
 public class CountryDaoImpl implements CountryDao {
 
     private SessionFactory sessionFactory;

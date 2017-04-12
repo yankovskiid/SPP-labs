@@ -1,7 +1,13 @@
 package com.bsuir.petition.bean.dto.country;
 
-/**
- * Created by Александр on 12.04.2017.
- */
-public class CountryDTO {
+public class CountryDTO extends ShortCountryDTO {
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
