@@ -11,7 +11,7 @@ public class City extends BaseTable{
     @Column(name = "name", nullable = false, length = 128)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
 
