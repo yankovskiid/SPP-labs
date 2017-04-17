@@ -1,3 +1,128 @@
+body {
+    background: #2ecc71;
+}
 h2 {
-    color: red;
+    text-align: center;
+    color: white;
+}
+
+form.register-form {
+    width: 40%;
+    text-align: center;
+    margin: 0 auto;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .5rem .0rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: white;
+    background: transparent;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,.7);
+    border-radius: 0;
+    margin-bottom: 10px;
+}
+.form-control::-webkit-input-placeholder {color: white;}
+.form-control::-moz-placeholder          {color: white;}/* Firefox 19+ */
+.form-control:-moz-placeholder           {color: white;}/* Firefox 18- */
+.form-control:-ms-input-placeholder      {color: white;}
+.form-control:focus {
+    outline: none;
+}
+#signup-button {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    color: white;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#signup-button[disabled]:hover {
+    cursor: default;
+    background-color: transparent;
+    color: white;
+}
+#signup-button:hover {
+    color: black;
+    background-color: white;
+}
+
+a.additional-info {
+    text-align: center;
+    display: block;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 165px;
+}
+a.additional-info:hover {
+    text-decoration: underline;
+}
+div#error-block {
+    display: none;
+    width: 45%;
+    min-height: 30px;
+    background-color: #f9362f;
+    padding: 5px;
+    margin: 15px auto;
+    border-radius: 15px;
+    line-height: 30px;
+}
+div#error-block p {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    margin: 0;
+}
+/*div#error-block[hidden] {
+    display: none;
+}*/
+
+@media only screen and (max-width: 980px) {
+    div.content {
+        width: 720px;
+    }
+    form.login-form,
+    form.register-form {
+        width: 55%;
+    }
+    div#error-block {
+        width: 55%;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    div.content {
+        width: 480px;
+    }
+    form.login-form,
+    form.register-form {
+        width: 78%;
+    }
+    div#error-block {
+        width: 78%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    div.content {
+        width: 100%;
+    }
+    form.login-form,
+    form.register-form {
+        width: 87%;
+    }
+    div#error-block {
+        width: 87%;
+    }
 }
