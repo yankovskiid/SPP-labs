@@ -20,11 +20,13 @@ import com.bsuir.petition.service.role.util.RoleDataValidator;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.rmi.ServerError;
 import java.util.List;
 
 @Service
+@Transactional
 public class RoleServiceImpl implements RoleService {
     private RoleDataValidator roleDataValidator;
 

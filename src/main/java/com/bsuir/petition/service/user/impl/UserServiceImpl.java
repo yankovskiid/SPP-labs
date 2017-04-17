@@ -5,9 +5,12 @@ import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.dao.UserDao;
 import com.bsuir.petition.service.exception.ErrorInputException;
-import com.bsuir.petition.service.user.UserService;
 import com.bsuir.petition.service.exception.ServerException;
-import com.bsuir.petition.service.user.exception.*;
+import com.bsuir.petition.service.user.UserService;
+import com.bsuir.petition.service.user.exception.DifferentPasswordsException;
+import com.bsuir.petition.service.user.exception.SuchUserExistsException;
+import com.bsuir.petition.service.user.exception.UserInformationNotFoundException;
+import com.bsuir.petition.service.user.exception.UserNotFoundException;
 import com.bsuir.petition.service.user.util.UserCreator;
 import com.bsuir.petition.service.user.util.UserDataValidator;
 import com.bsuir.petition.service.user.util.UserDtoExchanger;
@@ -15,10 +18,12 @@ import com.bsuir.petition.service.user.util.UserExchanger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private UserCreator userCreator;

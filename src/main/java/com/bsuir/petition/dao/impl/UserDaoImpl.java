@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-@Transactional
 public class UserDaoImpl implements UserDao {
 
     private final static long USER_ROLE = 1;

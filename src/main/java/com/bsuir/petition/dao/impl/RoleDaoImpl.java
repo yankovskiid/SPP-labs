@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional
 public class RoleDaoImpl implements RoleDao {
 
     private SessionFactory sessionFactory;
