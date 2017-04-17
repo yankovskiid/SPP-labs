@@ -1,5 +1,6 @@
 package com.bsuir.petition.controller.petition;
 
+import com.bsuir.petition.bean.dto.petition.AddPetitionDTO;
 import com.bsuir.petition.bean.dto.petition.PetitionDTO;
 import com.bsuir.petition.bean.dto.petition.PetitionListDTO;
 import com.bsuir.petition.service.exception.ErrorInputException;
@@ -17,7 +18,7 @@ public interface PetitionController {
 
     @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = "/petition", method = RequestMethod.POST)
-    void addPetition(PetitionDTO petitionDTO) throws ServerException, ErrorInputException;
+    void addPetition(AddPetitionDTO addPetitionDTO) throws ServerException, ErrorInputException;
 
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/petitions", method = RequestMethod.GET)

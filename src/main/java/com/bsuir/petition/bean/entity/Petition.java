@@ -40,7 +40,9 @@ public class Petition extends BaseTable{
     @JoinColumn(name = "created_by", nullable = false)
     private User createdUser;
 
-    @ManyToMany(mappedBy = "petitions", fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "petition_category", joinColumns = @JoinColumn(name = "petition_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<Category>();
 
     public Set<Comment> getComments() {

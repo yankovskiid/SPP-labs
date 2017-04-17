@@ -1,5 +1,6 @@
 package com.bsuir.petition.controller.petition.impl;
 
+import com.bsuir.petition.bean.dto.petition.AddPetitionDTO;
 import com.bsuir.petition.bean.dto.petition.PetitionDTO;
 import com.bsuir.petition.bean.dto.petition.PetitionListDTO;
 import com.bsuir.petition.controller.petition.PetitionController;
@@ -30,8 +31,8 @@ public class PetitionControllerImpl implements PetitionController {
     }
 
     @Override
-    public void addPetition(@RequestBody PetitionDTO petitionDTO) throws ServerException, ErrorInputException {
-        petitionService.addPetition(petitionDTO);
+    public void addPetition(@RequestBody AddPetitionDTO addPetitionDTO) throws ServerException, ErrorInputException {
+        petitionService.addPetition(addPetitionDTO);
     }
 
     @Override
