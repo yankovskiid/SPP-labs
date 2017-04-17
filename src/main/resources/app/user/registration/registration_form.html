@@ -1,59 +1,67 @@
 <h2>Registration</h2>
-<form #registrationForm="ngForm">
+<div id="error-block" [hidden]="hidden">
+    <p>{{errorMessage}}</p>
+</div>
+<form #registrationForm="ngForm" class="register-form">
     <input type="email"
            id="email"
            name="email"
+           class="form-control"
            required
            [(ngModel)]="registrationUser.email"
            #email="ngModel"
            placeholder="Enter your e-mail"/>
 
     <br>
-    <div [hidden]="email.valid || email.pristine" class="error-message">
+    <!--<div [hidden]="email.valid || email.pristine" class="error-message">
         Please enter e-mail!
-    </div>
+    </div>-->
 
     <input type="text"
            id="nick"
            name="nick"
+           class="form-control"
            required
            [(ngModel)]="registrationUser.nick"
            #nick="ngModel"
            placeholder="Enter your nick"
     />
     <br>
-    <div [hidden]="nick.valid || nick.pristine" class="error-message">
+    <!--<div [hidden]="nick.valid || nick.pristine" class="error-message">
         Please enter your nick!
-    </div>
+    </div>-->
 
     <input type="password"
            required
            id="password"
+           class="form-control"
            name="password"
            [(ngModel)]="registrationUser.password"
            #password="ngModel"
            placeholder="Enter your password"/>
 
     <br>
-    <div [hidden]="password.valid || password.pristine" class="error-message">
+    <!--<div [hidden]="password.valid || password.pristine" class="error-message">
         Please enter password!
-    </div>
+    </div>-->
 
     <input type="password"
            required
            id="repeatPassword"
            name="repeatPassword"
+           class="form-control"
            [(ngModel)]="registrationUser.repeatPassword"
            #repeatPassword="ngModel"
            placeholder="Repeat your password"/>
 
     <br>
-    <div [hidden]="repeatPassword.valid || repeatPassword.pristine" class="error-message">
+    <!--<div [hidden]="repeatPassword.valid || repeatPassword.pristine" class="error-message">
         Please repeat password!
     </div>
     <div [hidden]="hidden">
         {{errorMessage}}
-    </div>
+    </div>-->
 
-    <button (click)="onSubmit()" [disabled]="!registrationForm.valid">Submit</button>
+    <button id="signup-button" (click)="onSubmit()" [disabled]="!registrationForm.valid">Submit</button>
 </form>
+<a class="additional-info" [routerLink]="['/login']">I already have an account</a>
