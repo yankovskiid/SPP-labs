@@ -7,12 +7,13 @@ import com.bsuir.petition.service.category.util.DtoExchangerCategory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Component
 public class DtoExchangerCategoryImpl implements DtoExchangerCategory {
     @Override
-    public CategoryListDTO getCategoryListDTO(List<Category> categories) {
+    public CategoryListDTO getCategoryListDTO(Collection<Category> categories) {
         CategoryListDTO categoryListDTO = new CategoryListDTO();
         ArrayList<CategoryDTO> categoryDTOs = categoryListDTO.getCategories();
 

@@ -18,6 +18,19 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>node_modules/**</exclude>
+                    <exclude>*.json</exclude>
+                    <exclude>*.js</exclude>
+                    <!--<exclude>app/**</exclude>-->
+                </excludes>
+            </resource>
+        </resources>
+
     </build>
 
     <properties>
