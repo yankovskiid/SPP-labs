@@ -1,28 +1,36 @@
 <h2>Login</h2>
-<form #loginForm="ngForm">
+<div id="error-block" [hidden]="hidden">
+    <p>{{errorMessage}}</p>
+</div>
+<form #loginForm="ngForm" class="login-form">
     <input type="email"
            id="email"
            name="email"
+           class="form-control"
+           placeholder="Email"
            required
            [(ngModel)]="loginUser.email"
            #email="ngModel">
     <br>
-    <div [hidden]="email.valid || email.pristine">
+    <!--<div [hidden]="email.valid || email.pristine">
         Please enter your email!
-    </div>
+    </div>-->
 
     <input type="password"
            id="password"
            name="password"
+           class="form-control"
+           placeholder="Password"
            required
            [(ngModel)]="loginUser.password"
            #password="ngModel">
     <br>
-    <div [hidden]="password.valid || password.pristine">
+    <!--<div [hidden]="password.valid || password.pristine">
         Please enter password!
-    </div>
-    <div [hidden]="hidden">
+    </div>-->
+    <!--<div [hidden]="hidden">
         {{errorMessage}}
-    </div>
-    <button (click)="onSubmit()" [disabled]="!loginForm.valid">Sign in</button>
+    </div>-->
+    <button (click)="onSubmit()" id="signup-button" [disabled]="!loginForm.valid">Sign in</button>
 </form>
+<a class="additional-info" [routerLink]="['/registration']">I do not have an account</a>
