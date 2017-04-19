@@ -1,30 +1,14 @@
 package com.bsuir.petition.bean.dto.vote;
 
+import com.bsuir.petition.bean.dto.user.UserDTO;
 import com.bsuir.petition.bean.entity.Petition;
 
 public class VoteDTO {
     private long id;
-    private long userId;
+    private UserDTO userDTO;
     private long petitionId;
-    private Petition petition;
     private String reason;
 
-    public Petition getPetition() {
-        return petition;
-    }
-
-    public void setPetition(Petition petition) {
-        this.petition = petition;
-    }
-
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
 
     public long getPetitionId() {
         return petitionId;
@@ -48,5 +32,13 @@ public class VoteDTO {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public UserDTO getUserDTO() {
+        return userDTO;
+    }
+
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface VoteDao {
     Vote getVote(long id);
-    List<Vote> getVotesByPetitionId(long petitionId);
+//    List<Vote> getVotesByPetitionId(long petitionId);
     List<Vote> getVotes();
     void addVote(Vote vote);
 }

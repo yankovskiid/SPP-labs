@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class VoteExceptionController {
     @ExceptionHandler(VoteNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public MessageDTO categoryNotFoundExceptionHandler(VoteNotFoundException exception) {
+    public MessageDTO voteNotFoundExceptionHandler(VoteNotFoundException exception) {
         return getErrorMessage(exception);
     }
 
     @ExceptionHandler(SuchVoteExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public MessageDTO suchCategoryExistsExceptionHandler(SuchVoteExistsException exception) {
+    public MessageDTO suchVoteExistsExceptionHandler(SuchVoteExistsException exception) {
         return getErrorMessage(exception);
     }
 

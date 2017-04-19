@@ -24,7 +24,7 @@ public class VoteControllerImpl implements VoteController {
     }
 
     @Override
-    public void addVote(@RequestBody  ShortVoteDTO shortVoteDTO, @PathVariable long petitionId) throws ServerException, ErrorInputException, SuchVoteExistsException {
+    public void addVote(@RequestBody  ShortVoteDTO shortVoteDTO, @PathVariable long id) throws ServerException, ErrorInputException, SuchVoteExistsException {
 
     }
 

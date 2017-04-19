@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public interface VoteController {
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = "/petition/{id}/vote", method = RequestMethod.POST)
-    void addVote(ShortVoteDTO shortVoteDTO, long petitionId) throws ServerException, ErrorInputException, SuchVoteExistsException;
+    void addVote(ShortVoteDTO shortVoteDTO, long id) throws ServerException, ErrorInputException, SuchVoteExistsException;
 
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/votes", method = RequestMethod.GET)

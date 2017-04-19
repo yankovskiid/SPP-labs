@@ -5,26 +5,26 @@ import com.bsuir.petition.bean.entity.User;
 
 public class ShortVoteDTO {
     private String reason;
-    private Petition petition;
-    private User user;
+//    private Petition petition;
+//    private User user;
     private long petitionId;
     private long userId;
 
-    public User getUser() {
-        return user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
-    public Petition getPetition() {
-        return petition;
-    }
+//    public Petition getPetition() {
+//        return petition;
+//    }
 
-    public void setPetition(Petition petition) {
-        this.petition = petition;
-    }
+//    public void setPetition(Petition petition) {
+//        this.petition = petition;
+//    }
 
     public String getReason() {
         return reason;

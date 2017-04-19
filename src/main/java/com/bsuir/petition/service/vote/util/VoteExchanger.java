@@ -5,5 +5,4 @@ import com.bsuir.petition.bean.entity.Vote;
 
 public interface VoteExchanger {
     Vote getVote(ShortVoteDTO shortVoteDTO, long id);
-    Vote getVote(ShortVoteDTO shortVoteDTO);
 }
