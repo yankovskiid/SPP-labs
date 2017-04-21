@@ -4,6 +4,7 @@
 </div>
 <form #registrationForm="ngForm" class="register-form">
     <input type="email"
+           email
            id="email"
            name="email"
            class="form-control"
@@ -64,4 +65,4 @@
 
     <button id="signup-button" (click)="onSubmit()" [disabled]="!registrationForm.valid">Submit</button>
 </form>
-<a class="additional-info" [routerLink]="['/login']">I already have an account</a>
+<a [routerLink]="['/user/login']" class="additional-info">I already have an account</a>

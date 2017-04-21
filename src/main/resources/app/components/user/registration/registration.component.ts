@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { RegistrationUser } from './RegistrationUser';
+import { RegistrationUser } from './../../../model/RegistrationUser';
 import { Router } from '@angular/router';
-import { HttpService } from "../../httpService/http.service.component";
+import { HttpService } from "./../../../services/httpServices/http.service";
 import 'rxjs/add/operator/catch';
 
 
 @Component  ({
-	templateUrl: 'app/user/registration/registration_form.html',
-	styleUrls: [ 'app/user/registration/registration_form.css'],
+	templateUrl: 'app/components/user/registration/registration.component.html',
+	styleUrls: [ 'app/components/user/registration/registration.component.css'],
 	providers: [
 		HttpService
 	]
