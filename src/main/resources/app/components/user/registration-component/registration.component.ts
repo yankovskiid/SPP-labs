@@ -6,8 +6,8 @@ import 'rxjs/add/operator/catch';
 
 
 @Component  ({
-	templateUrl: 'app/components/user/registration/registration.component.html',
-	styleUrls: [ 'app/components/user/registration/registration.component.css'],
+	templateUrl: 'app/components/user/registration-component/registration.component.html',
+	styleUrls: [ 'app/components/user/registration-component/registration.component.css'],
 	providers: [
 		HttpService
 	]

@@ -1,8 +1,8 @@
-import { UserComponent } from './../../../components/user/information/user.component';
+import { UserComponent } from './../information-component/user.component';
+import { RegistrationComponent } from './../registration-component/registration.component';
+import { LoginComponent } from './../login-component/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
-import { LoginComponent } from './../../../components/user/login/login.component';
-import { RegistrationComponent } from './../../../components/user/registration/registration.component';
 
 var userRoutes: Routes = [
 		{
