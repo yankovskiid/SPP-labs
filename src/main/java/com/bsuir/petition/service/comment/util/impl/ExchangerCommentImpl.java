@@ -1,6 +1,7 @@
 package com.bsuir.petition.service.comment.util.impl;
 
 import com.bsuir.petition.bean.dto.comment.CommentDTO;
+import com.bsuir.petition.bean.dto.comment.ShortCommentDTO;
 import com.bsuir.petition.bean.entity.Comment;
 import com.bsuir.petition.bean.entity.Petition;
 import com.bsuir.petition.bean.entity.User;
@@ -11,17 +12,13 @@ import com.bsuir.petition.security.TokenAuthentication;
 import com.bsuir.petition.service.comment.util.ExchangerComment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ExchangerCommentImpl implements ExchangerComment {
 
-    private CommentDao commentDao;
     private PetitionDao petitionDao;
     private UserDao userDao;
-
-    @Autowired
-    public void setCommentDao(CommentDao commentDao) {
-        this.commentDao = commentDao;
-    }
 
     @Autowired
     public void setPetitionDao(PetitionDao petitionDao) { this.petitionDao = petitionDao; }
@@ -30,9 +27,9 @@ public class ExchangerCommentImpl implements ExchangerComment {
     public void setUserDao(UserDao userDao) { this.userDao = userDao; }
 
     @Override
-    public Comment getComment(CommentDTO commentDTO, long id) {
+    public Comment getComment(ShortCommentDTO shortCommentDTO, long id) {
         Comment comment = new Comment();
-        comment.setText(commentDTO.getText());
+        comment.setText(shortCommentDTO.getText());
         Petition petition = petitionDao.getPetition(id);
         comment.setPetition(petition);
         TokenAuthentication tokenAuthentication;

@@ -2,6 +2,7 @@ package com.bsuir.petition.service.comment.impl;
 
 import com.bsuir.petition.bean.dto.comment.CommentDTO;
 import com.bsuir.petition.bean.dto.comment.CommentListDTO;
+import com.bsuir.petition.bean.dto.comment.ShortCommentDTO;
 import com.bsuir.petition.bean.entity.Comment;
 import com.bsuir.petition.bean.entity.Petition;
 import com.bsuir.petition.dao.CommentDao;
@@ -17,10 +18,14 @@ import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.petition.exception.PetitionNotFoundException;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public class CommentServiceImpl implements CommentService{
+@Service
+@Transactional
+public class CommentServiceImpl implements CommentService {
 
     private CommentDataValidator commentDataValidator;
     private CommentDao commentDao;
@@ -90,11 +95,11 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public void addComment(CommentDTO commentDTO, long id) throws ErrorInputException, ServerException, SuchCommentExistsException {
-        commentDataValidator.validate(commentDTO);
+    public void addComment(ShortCommentDTO shortCommentDTO, long id) throws ErrorInputException, ServerException, SuchCommentExistsException {
+        commentDataValidator.validate(shortCommentDTO);
 
         Comment comment;
-        comment = exchangerComment.getComment(commentDTO, id);
+        comment = exchangerComment.getComment(shortCommentDTO, id);
         try {
             commentDao.addComment(comment);
         } catch (HibernateException exception) {

@@ -1,20 +1,15 @@
 package com.bsuir.petition.bean.dto.comment;
 
-import com.bsuir.petition.bean.dto.user.UserDTO;
+import com.bsuir.petition.bean.dto.user.UserInformationDTO;
 
-public class CommentDTO {
-    private String text;
-    private UserDTO user;
+public class CommentDTO extends ShortCommentDTO {
+    private UserInformationDTO userInfo;
 
-    public UserDTO getUser() {
-        return user;
+    public UserInformationDTO getUser() {
+        return userInfo;
     }
 
-    public void setUser(UserDTO user) {
-        this.user = user;
+    public void setUser(UserInformationDTO userInfo) {
+        this.userInfo = userInfo;
     }
-
-    public String getText() { return text; }
-
-    public void setText(String text) { this.text = text; }
 }
