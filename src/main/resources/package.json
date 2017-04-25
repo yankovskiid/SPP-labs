@@ -2,7 +2,8 @@
   "name": "petition",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack"
+    "start": "webpack",
+    "lite": "lite-server"
   },
   "dependencies": {
     "@angular/common": "~4.0.0",
