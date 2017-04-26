@@ -20,6 +20,12 @@ public class VoteExchangerImpl implements VoteExchanger {
     private UserDao userDao;
 
     @Autowired
+    public void setUserDao(UserDao userDao) { this.userDao = userDao; }
+
+    @Autowired
+    public void setPetitionDao(PetitionDao petitionDao) { this.petitionDao = petitionDao; }
+
+    @Autowired
     public void setVoteDao(VoteDao voteDao) { this.voteDao = voteDao; }
 
     @Override

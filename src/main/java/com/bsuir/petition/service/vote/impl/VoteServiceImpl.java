@@ -15,10 +15,12 @@ import com.bsuir.petition.service.vote.util.VoteExchanger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class VoteServiceImpl implements VoteService {
 
     private VoteDataValidator voteDataValidator;
@@ -61,10 +63,10 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public void addVote(ShortVoteDTO shortVoteDTO, Petition petition) throws ErrorInputException, ServerException, SuchVoteExistsException {
+    public void addVote(ShortVoteDTO shortVoteDTO, long id) throws ErrorInputException, ServerException, SuchVoteExistsException {
         voteDataValidator.validate(shortVoteDTO);
         Vote vote;
-        vote = voteExchanger.getVote(shortVoteDTO);
+        vote = voteExchanger.getVote(shortVoteDTO, id);
         try {
             voteDao.addVote(vote);
         } catch (HibernateException e) {

@@ -35,7 +35,9 @@ public class VoteDtoExchangerImpl implements VoteDtoExchanger {
 
             UserDTO userDTO;
             userDTO = userDtoExchanger.getUserDTO(vote.getUser());
-            voteDTO.setUserDTO(userDTO);
+//            voteDTO.setUserDTO(userDTO);
+            voteDTO.setUser(vote.getUser());
+            voteDTO.setUserId(vote.getUser().getId());
             voteDTOs.add(voteDTO);
         }
 

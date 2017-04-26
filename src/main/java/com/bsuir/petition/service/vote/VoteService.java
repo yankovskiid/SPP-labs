@@ -12,5 +12,5 @@ import com.bsuir.petition.service.vote.exception.SuchVoteExistsException;
 
 public interface VoteService {
     VoteListDTO getVotes() throws ServerException;
-    void addVote(ShortVoteDTO shortVoteDTO, Petition petition) throws ErrorInputException, ServerException, SuchVoteExistsException;
+    void addVote(ShortVoteDTO shortVoteDTO, long id) throws ErrorInputException, ServerException, SuchVoteExistsException;
 }

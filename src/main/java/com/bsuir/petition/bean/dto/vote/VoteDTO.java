@@ -2,20 +2,30 @@ package com.bsuir.petition.bean.dto.vote;
 
 import com.bsuir.petition.bean.dto.user.UserDTO;
 import com.bsuir.petition.bean.entity.Petition;
+import com.bsuir.petition.bean.entity.User;
 
 public class VoteDTO {
-    private long id;
-    private UserDTO userDTO;
-    private long petitionId;
+//    private long id;
+//    private UserDTO userDTO;
+//    private long petitionId;
+    private long userId;
     private String reason;
+    private User user;
 
-
-    public long getPetitionId() {
-        return petitionId;
+    public User getUser() {
+        return user;
     }
 
-    public void setPetitionId(long petitionId) {
-        this.petitionId = petitionId;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getReason() {
@@ -26,19 +36,19 @@ public class VoteDTO {
         this.reason = reason;
     }
 
-    public long getId() {
-        return id;
-    }
+//    public long getId() {
+//        return id;
+//    }
+//
+//    public void setId(long id) {
+//        this.id = id;
+//    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public UserDTO getUserDTO() {
-        return userDTO;
-    }
-
-    public void setUserDTO(UserDTO userDTO) {
-        this.userDTO = userDTO;
-    }
+//    public UserDTO getUserDTO() {
+//        return userDTO;
+//    }
+//
+//    public void setUserDTO(UserDTO userDTO) {
+//        this.userDTO = userDTO;
+//    }
 }
