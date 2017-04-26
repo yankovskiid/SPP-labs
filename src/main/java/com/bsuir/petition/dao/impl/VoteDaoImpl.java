@@ -30,8 +30,7 @@ public class VoteDaoImpl implements VoteDao {
     @Override
     public List<Vote> getVotes() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Vote");
-        List<Vote> votes = (List<Vote>) query.getResultList();
+        List<Vote> votes = session.createQuery("from Vote").list();
         return votes;
     }
 

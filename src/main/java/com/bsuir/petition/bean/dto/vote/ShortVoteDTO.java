@@ -10,11 +10,11 @@ public class ShortVoteDTO {
     private long petitionId;
     private long userId;
 
-//    public User getUser() {
+//    public User getUserInformationDTO() {
 //        return user;
 //    }
 
-//    public void setUser(User user) {
+//    public void setUserInformationDTO(User user) {
 //        this.user = user;
 //    }
 
