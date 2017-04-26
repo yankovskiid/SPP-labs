@@ -65,6 +65,9 @@ public class PetitionServiceImpl implements PetitionService {
     public void deletePetition(long id) throws PetitionNotFoundException, ServerException {
         Petition petition;
         petition = petitionDao.getPetition(id);
+        if (petition == null) {
+            throw new PetitionNotFoundException("No such petition");
+        }
         petitionDao.deletePetition(petition);
     }
 
@@ -74,7 +77,6 @@ public class PetitionServiceImpl implements PetitionService {
 
         TokenAuthentication tokenAuthentication;
         tokenAuthentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
-
 
         User user;
         user = userDao.getUserById((Long) tokenAuthentication.getDetails());
@@ -88,6 +90,10 @@ public class PetitionServiceImpl implements PetitionService {
         PetitionDTO petitionDTO;
         Petition petition;
         petition = petitionDao.getPetition(id);
+        if (petition == null) {
+            throw new PetitionNotFoundException("No petition!");
+        }
+
         petitionDTO = petitionDtoExchanger.getPetitionDTO(petition);
         return petitionDTO;
     }
