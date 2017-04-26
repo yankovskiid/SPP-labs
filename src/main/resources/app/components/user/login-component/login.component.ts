@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
-import { HttpService } from "../../httpService/http.service.component";
-import { LoginUser } from './LoginUser';
+import { HttpService } from "./../../../services/httpServices/http.service";
+import { LoginUser } from './../../../model/LoginUser';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/catch';
 
 
 @Component ({
-	templateUrl: 'app/user/login/login_form.html',
+	templateUrl: 'app/components/user/login-component/login.component.html',
 	styleUrls: [
-		'app/user/registration/registration_form.css',
-		'app/user/login/login_form.css'
-	],
-	providers: [
-		HttpService
+		'app/components/user/registration-component/registration.component.css',
+		'app/components/user/login-component/login.component.css'
 	]
 })
 export class LoginComponent {

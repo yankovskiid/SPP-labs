@@ -1,12 +1,13 @@
 package com.bsuir.petition.bean.dto.petition;
 
 import com.bsuir.petition.bean.dto.user.UserDTO;
+import com.bsuir.petition.bean.dto.user.UserInformationDTO;
 
 import java.util.Date;
 
 public class PetitionDTO extends ShortPetitionDTO {
     private Date expiryDate;
-    private UserDTO user;
+    private UserInformationDTO userInformationDTO;
 
     public Date getExpiryDate() {
         return expiryDate;
@@ -16,11 +17,11 @@ public class PetitionDTO extends ShortPetitionDTO {
         this.expiryDate = expiryDate;
     }
 
-    public UserDTO getUser() {
-        return user;
+    public UserInformationDTO getUserInformationDTO() {
+        return userInformationDTO;
     }
 
-    public void setUser(UserDTO user) {
-        this.user = user;
+    public void setUserInformationDTO(UserInformationDTO userInformationDTO) {
+        this.userInformationDTO = userInformationDTO;
     }
 }

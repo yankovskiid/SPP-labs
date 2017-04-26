@@ -1,8 +1,8 @@
 module.exports = {
     entry: {
         app: "./app/boot.ts",
-        polyfill: "./app/polyfill.ts",
-        vendor: "./app/vendor.ts"
+        polyfill: "./app/webpack/polyfill.ts",
+        vendor: "./app/webpack/vendor.ts"
     },
     output: {
         filename: "./out/[name].js"

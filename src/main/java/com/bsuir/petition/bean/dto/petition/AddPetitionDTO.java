@@ -1,7 +1,9 @@
 package com.bsuir.petition.bean.dto.petition;
 
+import com.bsuir.petition.bean.dto.category.CategoryDTO;
 import com.bsuir.petition.bean.dto.category.CategoryListDTO;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class AddPetitionDTO {
@@ -10,7 +12,16 @@ public class AddPetitionDTO {
     private String description;
     private Date expiryDate;
     private int numberNecessaryVotes;
-    private CategoryListDTO categories;
+    private ArrayList<CategoryDTO> categories = new ArrayList<>(0);
+
+    public ArrayList<CategoryDTO> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(ArrayList<CategoryDTO> categories) {
+        this.categories = categories;
+    }
+
 
     public Date getExpiryDate() {
         return expiryDate;
@@ -44,11 +55,4 @@ public class AddPetitionDTO {
         this.numberNecessaryVotes = numberNecessaryVotes;
     }
 
-    public CategoryListDTO getCategories() {
-        return categories;
-    }
-
-    public void setCategories(CategoryListDTO categories) {
-        this.categories = categories;
-    }
 }
