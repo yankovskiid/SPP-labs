@@ -5,8 +5,10 @@ export class RegistrationUser {
 	public repeatPassword : String;
 	public nick : String;
 
-	constructor() {
-
+	constructor(email: String, password: String, repeatPassword: String, nick: String) {
+		this.email = email;
+		this.password = password;
+		this.repeatPassword = repeatPassword;
+		this.nick = nick;
 	}
-
 }
