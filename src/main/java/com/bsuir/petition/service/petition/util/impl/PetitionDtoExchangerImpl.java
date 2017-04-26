@@ -1,10 +1,14 @@
 package com.bsuir.petition.service.petition.util.impl;
 
+import com.bsuir.petition.bean.dto.category.CategoryDTO;
 import com.bsuir.petition.bean.dto.category.CategoryListDTO;
+import com.bsuir.petition.bean.dto.category.ShortCategoryDTO;
 import com.bsuir.petition.bean.dto.petition.PetitionDTO;
 import com.bsuir.petition.bean.dto.petition.PetitionListDTO;
 import com.bsuir.petition.bean.dto.petition.ShortPetitionDTO;
 import com.bsuir.petition.bean.dto.user.UserDTO;
+import com.bsuir.petition.bean.dto.user.UserInformationDTO;
+import com.bsuir.petition.bean.entity.Category;
 import com.bsuir.petition.bean.entity.Petition;
 import com.bsuir.petition.service.category.util.DtoExchangerCategory;
 import com.bsuir.petition.service.petition.util.PetitionDtoExchanger;
@@ -58,22 +62,27 @@ public class PetitionDtoExchangerImpl implements PetitionDtoExchanger {
         setShortPetitionDTO(petitionDTO, petition);
         petitionDTO.setExpiryDate(petition.getExpiryDate());
 
-        UserDTO userDTO;
-        userDTO = userDtoExchanger.getUserDTO(petition.getCreatedUser());
-        petitionDTO.setUser(userDTO);
+        UserInformationDTO userDTO;
+        userDTO = userDtoExchanger.getUserInformationDTO(petition.getCreatedUser().getUserInformation());
+        petitionDTO.setUserInformationDTO(userDTO);
 
         return petitionDTO;
     }
 
     private void setShortPetitionDTO(ShortPetitionDTO shortPetitionDTO, Petition petition) {
+
         shortPetitionDTO.setName(petition.getName());
         shortPetitionDTO.setDescription(petition.getDescription());
         shortPetitionDTO.setNumberNecessaryVotes(petition.getNumberNecessaryVotes());
         shortPetitionDTO.setNumberVotes(petition.getVoteSet().size());
 
-        CategoryListDTO categoryListDTO;
-        categoryListDTO = dtoExchangerCategory.getCategoryListDTO(petition.getCategories());
-        shortPetitionDTO.setCategories(categoryListDTO);
+        ArrayList<CategoryDTO> temp = shortPetitionDTO.getCategories();
+        for (Category category : petition.getCategories()) {
+            CategoryDTO categoryDTO = new CategoryDTO();
+            categoryDTO.setName(category.getName());
+            categoryDTO.setId(category.getId());
+        }
+        shortPetitionDTO.setCategories(temp);
 
         String status;
         status = statusExchanger.getStatusName(petition.getStatusId());

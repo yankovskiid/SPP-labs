@@ -1,6 +1,9 @@
 package com.bsuir.petition.bean.dto.petition;
 
+import com.bsuir.petition.bean.dto.category.CategoryDTO;
 import com.bsuir.petition.bean.dto.category.CategoryListDTO;
+
+import java.util.ArrayList;
 
 public class ShortPetitionDTO {
     protected String name;
@@ -8,7 +11,15 @@ public class ShortPetitionDTO {
     protected String status;
     protected int numberNecessaryVotes;
     protected int numberVotes;
-    protected CategoryListDTO categories;
+    private ArrayList<CategoryDTO> categories = new ArrayList<>(0);
+
+    public ArrayList<CategoryDTO> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(ArrayList<CategoryDTO> categories) {
+        this.categories = categories;
+    }
 
     public String getName() {
         return name;
@@ -50,11 +61,4 @@ public class ShortPetitionDTO {
         this.numberVotes = numberVotes;
     }
 
-    public CategoryListDTO getCategories() {
-        return categories;
-    }
-
-    public void setCategories(CategoryListDTO categories) {
-        this.categories = categories;
-    }
 }
