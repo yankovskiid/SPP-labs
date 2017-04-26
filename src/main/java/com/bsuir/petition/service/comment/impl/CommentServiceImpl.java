@@ -95,7 +95,12 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void addComment(ShortCommentDTO shortCommentDTO, long id) throws ErrorInputException, ServerException, SuchCommentExistsException {
+    public void addComment(ShortCommentDTO shortCommentDTO, long id) throws ErrorInputException, ServerException, SuchCommentExistsException, PetitionNotFoundException {
+        Petition petition = petitionDao.getPetition(id);
+        if(petition == null) {
+            throw new PetitionNotFoundException("Petition not found!");
+        }
+
         commentDataValidator.validate(shortCommentDTO);
 
         Comment comment;

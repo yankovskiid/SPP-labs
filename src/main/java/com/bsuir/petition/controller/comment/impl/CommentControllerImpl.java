@@ -26,7 +26,7 @@ public class CommentControllerImpl implements CommentController {
 
     @Override
     public void addComment(@RequestBody ShortCommentDTO shortCommentDTO,
-                           @PathVariable long id) throws ServerException, ErrorInputException, SuchCommentExistsException {
+                           @PathVariable long id) throws ServerException, ErrorInputException, SuchCommentExistsException, PetitionNotFoundException {
         commentService.addComment(shortCommentDTO, id);
     }
 

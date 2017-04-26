@@ -17,7 +17,7 @@ public interface CommentController {
 
     @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = "/petition/{id}/comment", method = RequestMethod.POST)
-    void addComment(ShortCommentDTO shortCommentDTO, long id) throws ServerException, ErrorInputException, SuchCommentExistsException;
+    void addComment(ShortCommentDTO shortCommentDTO, long id) throws ServerException, ErrorInputException, SuchCommentExistsException, PetitionNotFoundException;
 
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/petition/{id}/comments", method = RequestMethod.GET)

@@ -13,5 +13,5 @@ public interface CommentService {
 //    CommentListDTO getComments() throws ServerException;
     CommentListDTO getComments(long petitionId) throws ServerException, PetitionNotFoundException;
     void deleteComment(long id) throws CommentNotFoundException, ServerException;
-    void addComment(ShortCommentDTO shortCommentDTO, long id) throws ErrorInputException, ServerException, SuchCommentExistsException;
+    void addComment(ShortCommentDTO shortCommentDTO, long id) throws ErrorInputException, ServerException, SuchCommentExistsException, PetitionNotFoundException;
 }
