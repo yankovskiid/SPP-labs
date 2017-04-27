@@ -7,4 +7,11 @@ export class Category extends CategoryShort {
     constructor() {
         super();
     }
+
+    static deserialize(input: any): Category {
+        var res = new Category();
+        res.name = input.name;
+        res.id = input.id;
+        return res;
+    }
 }

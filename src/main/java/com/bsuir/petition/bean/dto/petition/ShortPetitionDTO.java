@@ -6,11 +6,21 @@ import com.bsuir.petition.bean.dto.category.CategoryListDTO;
 import java.util.ArrayList;
 
 public class ShortPetitionDTO {
+    private long id;
     protected String name;
     protected String description;
     protected String status;
     protected int numberNecessaryVotes;
     protected int numberVotes;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     private ArrayList<CategoryDTO> categories = new ArrayList<>(0);
 
     public ArrayList<CategoryDTO> getCategories() {

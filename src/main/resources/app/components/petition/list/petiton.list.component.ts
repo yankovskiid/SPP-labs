@@ -1,3 +1,5 @@
+import { HttpService } from './../../../services/httpServices/http.service';
+import { ShortPetition } from './../../../model/ShortPetition';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PetitionListComponent implements OnInit {
     
-    constructor() { }
+    private petitions: ShortPetition[] = [];
 
-    ngOnInit() { }
+    constructor(private http: HttpService) { }
+
+    ngOnInit() { 
+        this.http
+            .getData("/petitions")
+            .subscribe(data => {
+
+				var temp = data.petitions;
+	            for (var i = 0; i < temp.length; i++) {
+		            this.petitions.push(ShortPetition.deserialize(temp[i]));
+	            }
+            });
+    }
 }

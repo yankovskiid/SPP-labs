@@ -10,14 +10,14 @@ var petitionRoutes: Routes = [
 			component: PetitionListComponent
 		},
 		{
-			path: 'petition/:id',
-			component: PetitionMainComponent
+			path: "petition/add",
+			component: PetitionAddComponent
 		},
 		{
-			path: "petition/add",
-			component: PetitionAddComponent,
-			children: []
+			path: 'petition/:id',
+			component: PetitionMainComponent
 		}
+
 ];
 
 @NgModule({

@@ -27,11 +27,11 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
 
         token = request.getHeader(TOKEN);
 
-        if (token == null) {
+        if (token == null || token.isEmpty()) {
             token = request.getParameter(TOKEN);
         }
 
-        if (token == null) {
+        if (token == null || token.isEmpty()) {
             TokenAuthentication tokenAuthentication = new TokenAuthentication(null, null);
             tokenAuthentication.setAuthenticated(true);
             return tokenAuthentication;

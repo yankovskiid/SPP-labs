@@ -71,6 +71,7 @@ public class PetitionDtoExchangerImpl implements PetitionDtoExchanger {
 
     private void setShortPetitionDTO(ShortPetitionDTO shortPetitionDTO, Petition petition) {
 
+        shortPetitionDTO.setId(petition.getId());
         shortPetitionDTO.setName(petition.getName());
         shortPetitionDTO.setDescription(petition.getDescription());
         shortPetitionDTO.setNumberNecessaryVotes(petition.getNumberNecessaryVotes());
