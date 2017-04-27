@@ -22,8 +22,9 @@ export class ShortPetition {
         res.numberVotes = input.numberVotes;
         res.numberNecessaryVotes = input.numberNecessaryVotes;
 
-        for (let temp  in input.categories) {
-            res.categories.push(Category.deserialize(temp));
+        var temp = input.categories;
+        for (var i = 0; i < temp.length; i++) {
+            res.categories.push(Category.deserialize(temp[i]));
         }
         
         return res;

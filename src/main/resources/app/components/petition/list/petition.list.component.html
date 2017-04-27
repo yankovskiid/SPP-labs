@@ -1,7 +1,11 @@
 <h1>Here will be petition list</h1>
+
+<p><a routerLink="/petition/add">Create petition own petition</a></p>
+
 <div *ngFor="let petition of petitions">
 
-    <a [routerLink]="['/petition', petition.id]">{{petition.name}}</a>
-    {{petition.description}}
-    {{petition.numberVotes}}/{{petition.numberNecessaryVotes}}
+    <p><a [routerLink]="['/petition', petition.id]">{{petition.name}}</a></p>
+    <p>{{petition.description}}</p>
+    <p>Number votes = {{petition.numberVotes}}</p>
+    <p>Number necessary votes = {{petition.numberNecessaryVotes}}</p>
 </div>
