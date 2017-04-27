@@ -1,3 +1,4 @@
+import { PetitionModule } from './components/petition/petition.module';
 import { UserModule } from './components/user/user.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,7 @@ import { MainComponent } from './components/main/main.component';
         RouterModule,
 
         UserModule,
+        PetitionModule,
         AppRoutingModule
         
     ],

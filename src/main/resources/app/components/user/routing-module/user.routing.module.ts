@@ -6,11 +6,11 @@ import { RouterModule, Routes }  from '@angular/router';
 
 var userRoutes: Routes = [
 		{
-			path: 'user/login',
+			path: 'login',
 			component: LoginComponent
 		},
 		{
-			path: 'user/registration',
+			path: 'registration',
 			component: RegistrationComponent
 		},
 		{
