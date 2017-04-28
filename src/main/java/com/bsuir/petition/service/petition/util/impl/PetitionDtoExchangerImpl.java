@@ -59,7 +59,7 @@ public class PetitionDtoExchangerImpl implements PetitionDtoExchanger {
     @Override
     public PetitionDTO getPetitionDTO(Petition petition) {
         PetitionDTO petitionDTO = new PetitionDTO();
-        setShortPetitionDTO(petitionDTO, petition);
+        setPetitionDTO(petitionDTO, petition);
         petitionDTO.setExpiryDate(petition.getExpiryDate());
 
         UserInformationDTO userDTO;
@@ -72,6 +72,26 @@ public class PetitionDtoExchangerImpl implements PetitionDtoExchanger {
     private void setShortPetitionDTO(ShortPetitionDTO shortPetitionDTO, Petition petition) {
 
         shortPetitionDTO.setId(petition.getId());
+        shortPetitionDTO.setName(petition.getName());
+        shortPetitionDTO.setDescription(petition.getDescription());
+        shortPetitionDTO.setNumberNecessaryVotes(petition.getNumberNecessaryVotes());
+        shortPetitionDTO.setNumberVotes(petition.getVoteSet().size());
+
+        ArrayList<CategoryDTO> temp = shortPetitionDTO.getCategories();
+        for (Category category : petition.getCategories()) {
+            CategoryDTO categoryDTO = new CategoryDTO();
+            categoryDTO.setName(category.getName());
+            categoryDTO.setId(category.getId());
+        }
+        shortPetitionDTO.setCategories(temp);
+
+        String status;
+        status = statusExchanger.getStatusName(petition.getStatusId());
+        shortPetitionDTO.setStatus(status);
+    }
+
+    private void setPetitionDTO(PetitionDTO shortPetitionDTO, Petition petition) {
+
         shortPetitionDTO.setName(petition.getName());
         shortPetitionDTO.setDescription(petition.getDescription());
         shortPetitionDTO.setNumberNecessaryVotes(petition.getNumberNecessaryVotes());

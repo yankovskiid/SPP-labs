@@ -1,22 +1,28 @@
 import {UserInformation} from "./UserInformation";
 import {ShortPetition} from "./ShortPetition";
 import {Category} from "./Category";
-export class Petition extends ShortPetition {
-     expiryDate: number;
-     userInformationDTO: UserInformation;
+export class Petition {
+    name: string;
+    description: string;
+    status: string;
+    numberNecessaryVotes: number;
+    numberVotes: number;
+    categories: Array<Category> = [];
+
+	expiryDate: number;
+	userInformationDTO: UserInformation;
 
     constructor() {
-        super();
         this.userInformationDTO = new UserInformation();
     }
 
     static deserialize(input: any): Petition {
         var res = new Petition();
         res.expiryDate = input.expiryDate;
+	    console.log(input);
         res.userInformationDTO = UserInformation.deserialize(input.userInformationDTO);
 
         res.name = input.name;
-        res.id = input.id;
         res.description = input.id;
         res.status = input.status;
         res.numberVotes = input.numberVotes;

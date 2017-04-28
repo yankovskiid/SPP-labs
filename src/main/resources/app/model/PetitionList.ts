@@ -1,8 +1,8 @@
-import {ShortPetition} from "./ShortPetition";
+import {Petition} from "./Petition";
 export class PetitionList {
-    petitions: Array<ShortPetition> = [];
+    petitions: Array<Petition> = [];
 
-    constructor(petitions: Array<ShortPetition>) {
+    constructor(petitions: Array<Petition>) {
         
     }
 }

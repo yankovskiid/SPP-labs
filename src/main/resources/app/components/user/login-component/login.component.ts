@@ -43,11 +43,9 @@ export class LoginComponent {
 				return null;
 			})
 			.subscribe((response) => {
-				alert("i am here");
 				this.loginResponse = response;
-				console.log(response);
 				this.httpService.setToken(this.loginResponse.token);
-				this.router.navigate(['/user', 1]);
+				this.router.navigate(['/']);
 				return null;
 			});
 		return false;

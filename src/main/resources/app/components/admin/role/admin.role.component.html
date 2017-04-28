@@ -1,2 +1,21 @@
-<h1>Roles list</h1>
-<div role-edit></div>
+<table>
+    <thead>
+        <th>
+            Name
+        </th>
+        <th>Edit</th>
+    </thead>
+    <tbody>
+        <td>
+            <tr *ngFor="let role of roles">
+                <td>{{role.name}}</td>
+                <td>
+                    <span class="pointer-cursor" (click)="editRole(role)">Edit</span>
+                    <span class="pointer-cursor" (click)="deleteRole(role)">Delete</span>
+                </td>
+            </tr>
+        </td>
+    </tbody>
+</table>
+<span class="pointer-cursor" (click)="addRole()">Add</span>
+<div *ngIf="editingRole !== null" role-edit [role]="editingRole" (endEdit)="saveRole($event)"></div>

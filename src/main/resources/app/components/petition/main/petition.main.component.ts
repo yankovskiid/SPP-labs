@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from "./../../../services/httpServices/http.service";
 import { Petition } from "./../../../model/Petition";
 import { ActivatedRoute, Params } from "@angular/router";
+import {ShortPetition} from "../../../model/ShortPetition";
 
 @Component({
     templateUrl: 'app/components/petition/main/petition.main.component.html',

@@ -13,14 +13,6 @@ public class ShortPetitionDTO {
     protected int numberNecessaryVotes;
     protected int numberVotes;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     private ArrayList<CategoryDTO> categories = new ArrayList<>(0);
 
     public ArrayList<CategoryDTO> getCategories() {
@@ -29,6 +21,14 @@ public class ShortPetitionDTO {
 
     public void setCategories(ArrayList<CategoryDTO> categories) {
         this.categories = categories;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

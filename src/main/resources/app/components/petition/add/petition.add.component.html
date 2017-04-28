@@ -2,6 +2,7 @@
 <form #petitionForm="ngForm">
     <input type="text"
            placeholder="Name"
+           name="name"
            required
            [(ngModel)]="petition.name"
            #name="ngModel">
@@ -9,6 +10,7 @@
 
     <input type="text"
            placeholder="Description"
+           name="description"
            required
            [(ngModel)]="petition.description"
            #description="ngModel">
@@ -16,6 +18,7 @@
 
     <input type="number"
            placeholder="Number necessary votes"
+           name="numberNecessaryVotes"
            required
            [(ngModel)]="petition.numberNecessaryVotes"
            #numberNecessaryVotes="ngModel">

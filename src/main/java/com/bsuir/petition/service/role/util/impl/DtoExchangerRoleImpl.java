@@ -1,5 +1,6 @@
 package com.bsuir.petition.service.role.util.impl;
 
+import com.bsuir.petition.bean.dto.role.RoleDTO;
 import com.bsuir.petition.bean.dto.role.RoleListDTO;
 import com.bsuir.petition.bean.dto.role.ShortRoleDTO;
 import com.bsuir.petition.bean.entity.Role;
@@ -18,9 +19,18 @@ public class DtoExchangerRoleImpl implements DtoExchangerRole{
         for (Role role : roles) {
             ShortRoleDTO shortRoleDTO = new ShortRoleDTO();
             shortRoleDTO.setName(role.getRoleName());
+            shortRoleDTO.setId(role.getId());
             shortRoles.add(shortRoleDTO);
         }
 
         return roleListDTO;
+    }
+
+    @Override
+    public ShortRoleDTO getShortRoleDTO(Role role) {
+        ShortRoleDTO shortRoleDTO = new ShortRoleDTO();
+        shortRoleDTO.setName(role.getRoleName());
+        shortRoleDTO.setId(role.getId());
+        return shortRoleDTO;
     }
 }
