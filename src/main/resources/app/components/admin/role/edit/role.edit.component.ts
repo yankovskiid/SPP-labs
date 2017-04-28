@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {HttpService} from "../../../../services/httpServices/http.service";
+import {ShortRole} from "../../../../model/ShortRole";
+import {Role} from "../../../../model/Role";
 
 @Component({
 	selector: '[role-edit]',
@@ -8,11 +10,19 @@ import {HttpService} from "../../../../services/httpServices/http.service";
 })
 export class RoleEditComponent implements OnInit {
 
+	@Input() role : any;
+	@Output() endEdit = new EventEmitter<boolean>();
+
 	ngOnInit(): void {
+
 	}
 
-	constructor(private http: HttpService) {
+	constructor() {
 
+	}
+
+	save(temp : boolean) {
+		this.endEdit.emit(temp);
 	}
 
 }

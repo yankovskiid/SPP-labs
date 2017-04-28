@@ -21,20 +21,19 @@ export class HttpService {
 			.map((data) => data.json());
 	}
 
-	public getDataWithParametr(url: string,  tail: string) {
-		var headers = this.getHeaders();
-		return this
-				.http
-				.get(url + tail, { headers: headers })
-				.map((data) => data.json());
-	}
-
 	public sendData(url: string,  data: any) {
 		var headers = this.getSendHeaders();
 		return this
 				.http
 				.post(url, JSON.stringify(data), { headers: headers })
 				.map((response) => response.json());
+	}
+
+	public sendDataNoResponse(url : string,  data: any) {
+		var headers = this.getSendHeaders();
+		return this
+				.http
+				.post(url, JSON.stringify(data), { headers: headers });
 	}
 
 	private getSendHeaders() {
@@ -44,6 +43,21 @@ export class HttpService {
 			result.append('token', this.getToken());
 		}
 		return result;
+	}
+
+	public deleteData(url: string) {
+		var headers = this.getSendHeaders();
+		return this
+			.http
+			.delete(url, { headers: headers });
+	}
+
+	public updateData(url: string,  data: any) {
+		var headers = this.getSendHeaders();
+		return this
+			.http
+			.post(url, JSON.stringify(data), { headers: headers })
+			.map((response) => response.json());
 	}
 
 	private getHeaders() {
