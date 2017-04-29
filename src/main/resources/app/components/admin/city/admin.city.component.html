@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Country</th>
+    </tr>
+    <tr *ngFor="let city of cities">
+        <td>{{city.name}}</td>
+        <td>{{city.country}}</td>
+        <td>
+            <span class="pointer-cursor" (click)="editCity(city)">Edit</span>
+            <span class="pointer-cursor" (click)="deleteCity(city)">Delete</span>
+        </td>
+    </tr>
+</table>
+<span class="pointer-cursor" (click)="addCity()">Add</span>
+<div *ngIf="editingCity !== null" city-edit [city]="editingCity" (endEdit)="saveCity($event)"></div>

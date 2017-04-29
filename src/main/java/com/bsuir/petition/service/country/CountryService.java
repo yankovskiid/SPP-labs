@@ -1,5 +1,6 @@
 package com.bsuir.petition.service.country;
 
+import com.bsuir.petition.bean.dto.country.CountryDTO;
 import com.bsuir.petition.bean.dto.country.CountryListDTO;
 import com.bsuir.petition.bean.dto.country.ShortCountryDTO;
 import com.bsuir.petition.service.country.exception.CountryNotFoundException;
@@ -13,6 +14,6 @@ import com.bsuir.petition.service.exception.ServerException;
 public interface CountryService {
     CountryListDTO getCountries() throws ServerException;
     void deleteCountry(long id) throws CountryNotFoundException, ServerException;
-    void updateCountry(ShortCountryDTO shortCountryDTO, long id) throws CountryNotFoundException, ErrorInputException, ServerException;
-    void addCountry(ShortCountryDTO shortCountryDTO) throws ErrorInputException, ServerException, SuchCountryExistsException;
+    void updateCountry(CountryDTO countryDTO, long id) throws CountryNotFoundException, ErrorInputException, ServerException;
+    void addCountry(CountryDTO countryDTO) throws ErrorInputException, ServerException, SuchCountryExistsException;
 }

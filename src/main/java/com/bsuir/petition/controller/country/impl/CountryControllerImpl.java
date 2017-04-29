@@ -1,5 +1,6 @@
 package com.bsuir.petition.controller.country.impl;
 
+import com.bsuir.petition.bean.dto.country.CountryDTO;
 import com.bsuir.petition.bean.dto.country.CountryListDTO;
 import com.bsuir.petition.bean.dto.country.ShortCountryDTO;
 import com.bsuir.petition.controller.country.CountryController;
@@ -23,14 +24,13 @@ public class CountryControllerImpl implements CountryController {
         this.countryService = countryService;
     }
     @Override
-    public void addCountry(@RequestBody ShortCountryDTO shortCountryDTO) throws ServerException, ErrorInputException, SuchCountryExistsException {
-        countryService.addCountry(shortCountryDTO);
+    public void addCountry(@RequestBody CountryDTO countryDTO) throws ServerException, ErrorInputException, SuchCountryExistsException {
+        countryService.addCountry(countryDTO);
     }
 
     @Override
-    public void updateCountry(@RequestBody ShortCountryDTO shortCountryDTO,
-                              @PathVariable long id) throws ErrorInputException, ServerException, CountryNotFoundException {
-        countryService.updateCountry(shortCountryDTO, id);
+    public void updateCountry(@RequestBody CountryDTO countryDTO, @PathVariable long id) throws ErrorInputException, ServerException, CountryNotFoundException {
+        countryService.updateCountry(countryDTO, id);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.bsuir.petition.service.country.impl;
 
+import com.bsuir.petition.bean.dto.country.CountryDTO;
 import com.bsuir.petition.bean.dto.country.CountryListDTO;
 import com.bsuir.petition.bean.dto.country.ShortCountryDTO;
 import com.bsuir.petition.bean.entity.Country;
@@ -82,12 +83,12 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public void updateCountry(ShortCountryDTO shortCountryDTO, long id) throws CountryNotFoundException, ErrorInputException, ServerException {
+    public void updateCountry(CountryDTO countryDTO, long id) throws CountryNotFoundException, ErrorInputException, ServerException {
 
-        countryDataValidator.validate(shortCountryDTO);
+        countryDataValidator.validate(countryDTO);
 
         Country country;
-        country = exchangerCountry.getCountry(shortCountryDTO, id);
+        country = exchangerCountry.getCountry(countryDTO, id);
         try {
             countryDao.updateCountry(country);
         } catch (HibernateException exception) {
@@ -96,12 +97,12 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public void addCountry(ShortCountryDTO shortCountryDTO) throws ErrorInputException, ServerException, SuchCountryExistsException {
+    public void addCountry(CountryDTO countryDTO) throws ErrorInputException, ServerException, SuchCountryExistsException {
 
-        countryDataValidator.validate(shortCountryDTO);
+        countryDataValidator.validate(countryDTO);
 
         Country country;
-        country = exchangerCountry.getCountry(shortCountryDTO);
+        country = exchangerCountry.getCountry(countryDTO);
         try {
             countryDao.addCountry(country);
         } catch (HibernateException exception) {
