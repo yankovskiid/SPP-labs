@@ -11,6 +11,8 @@ import {CountryEditComponent} from "./country/edit/country.edit.component";
 import {AdminCountryComponent} from "./country/admin.country.component";
 import {AdminCityComponent} from "./city/admin.city.component";
 import {CityEditComponent} from "./city/edit/city.edit.component";
+import {AdminUserComponent} from "./user/admin.user.component";
+import {UserEditComponent} from "./user/edit/user.edit.component";
 
 @NgModule({
 	imports: [
@@ -28,7 +30,9 @@ import {CityEditComponent} from "./city/edit/city.edit.component";
 		AdminCountryComponent,
 		CountryEditComponent,
 		AdminCityComponent,
-		CityEditComponent
+		CityEditComponent,
+		AdminUserComponent,
+		UserEditComponent
 	],
 	exports: [
 		AdminMainComponent
