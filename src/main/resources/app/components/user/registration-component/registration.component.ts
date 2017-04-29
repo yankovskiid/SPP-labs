@@ -44,12 +44,14 @@ export class RegistrationComponent {
 					setTimeout(function () {
 						el.style.display = "none";
 					}, 3000);
+
 					return null;
 				})
 				.subscribe((response) => {
 					this.registrationResponse = response;
 					this.httpService.setToken(this.registrationResponse.token);
-					this.router.navigate(['/user', 1]);
+
+					this.router.navigate(['/']);
 					return null;
 				});
 		}

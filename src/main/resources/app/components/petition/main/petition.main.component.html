@@ -1,0 +1,10 @@
+<h1>Info about petition</h1>
+<h1>{{petition.name}}</h1>
+<p>Description - {{petition.description}}</p>
+<p>Status - {{petition.status}}</p>
+<ul>
+    <li *ngFor="let category of petition.categories">{{category.name}}</li>
+</ul>
+<p>Created username - {{petition.userInformationDTO.username}}</p>
+<p>surname - {{petition.userInformationDTO.surname}}</p>
+<p>city - {{petition.userInformationDTO.city}} </p>

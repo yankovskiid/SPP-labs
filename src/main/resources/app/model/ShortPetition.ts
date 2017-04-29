@@ -1,18 +1,32 @@
-import {Category} from "./Category";
-export class ShortPetition {
-    protected name: string;
-    protected description: string;
-    protected status: string;
-    protected numberNecessaryVotes: number;
-    protected numberVotes: number;
-    private categories: Array<Category> = [];
+import { Category } from "./Category";
 
-    constructor(name: string, description: string, status: string, numberNecessaryVotes: number, numberVotes: number, categories: Array<Category>) {
-        this.name = name;
-        this.description = description;
-        this.status = status;
-        this.numberNecessaryVotes = numberNecessaryVotes;
-        this.numberVotes = numberVotes;
-        this.categories = categories;
+export class ShortPetition {
+    id: number;
+
+    name: string;
+    description: string;
+    status: string;
+    numberNecessaryVotes: number;
+    numberVotes: number;
+    categories: Array<Category> = [];
+
+    constructor() {
+    }
+
+    static deserialize(input: any): ShortPetition {
+        var res = new ShortPetition();
+        res.name = input.name;
+        res.id = input.id;
+        res.description = input.id;
+        res.status = input.status;
+        res.numberVotes = input.numberVotes;
+        res.numberNecessaryVotes = input.numberNecessaryVotes;
+
+        var temp = input.categories;
+        for (var i = 0; i < temp.length; i++) {
+            res.categories.push(Category.deserialize(temp[i]));
+        }
+        
+        return res;
     }
 }

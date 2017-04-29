@@ -1,11 +1,17 @@
 import {CategoryShort} from "./CategoryShort";
 
 export class Category extends CategoryShort {
-    private id: number;
+    id: number;
 
 
-    constructor(name: string, id: number) {
-        super(name);
-        this.id = id;
+    constructor() {
+        super();
+    }
+
+    static deserialize(input: any): Category {
+        var res = new Category();
+        res.name = input.name;
+        res.id = input.id;
+        return res;
     }
 }

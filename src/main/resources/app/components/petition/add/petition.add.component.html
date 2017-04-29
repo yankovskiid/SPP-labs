@@ -1,0 +1,37 @@
+<h1>Add petition</h1>
+<form #petitionForm="ngForm">
+    <input type="text"
+           placeholder="Name"
+           name="name"
+           required
+           [(ngModel)]="petition.name"
+           #name="ngModel">
+    <br>
+
+    <input type="text"
+           placeholder="Description"
+           name="description"
+           required
+           [(ngModel)]="petition.description"
+           #description="ngModel">
+    <br>
+
+    <input type="number"
+           placeholder="Number necessary votes"
+           name="numberNecessaryVotes"
+           required
+           [(ngModel)]="petition.numberNecessaryVotes"
+           #numberNecessaryVotes="ngModel">
+    <br>
+
+    <ul>
+        <li *ngFor="let category of categories">
+            {{category.name}}
+            {{category.id}}
+        </li>
+    </ul>
+
+    <button (click)="createPetition()" [disabled]="!petitionForm.valid">Create</button>
+</form>
+
+{{petition | json}}

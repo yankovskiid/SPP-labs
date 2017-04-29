@@ -22,10 +22,10 @@
 
         <property name="checkoutTimeout" value="30000" />
         <property name="idleConnectionTestPeriod" value="30"/>
-        <property name="initialPoolSize" value="10" />
+        <property name="initialPoolSize" value="1" />
         <property name="maxIdleTime" value="30" />
-        <property name="maxPoolSize" value="100" />
-        <property name="minPoolSize" value="10" />
+        <property name="maxPoolSize" value="5" />
+        <property name="minPoolSize" value="1" />
         <property name="maxStatements" value="10" />
 
     </bean>

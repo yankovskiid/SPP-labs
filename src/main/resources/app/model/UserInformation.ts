@@ -1,11 +1,16 @@
 export class UserInformation {
-    private username: string;
-    private surname: string;
-    private city: string;
+     username: string;
+     surname: string;
+     city: string;
 
-    constructor(username: string, surname: string, city: string) {
-        this.username = username;
-        this.surname = surname;
-        this.city = city;
+    constructor() {
+    }
+
+    static deserialize(input: any): UserInformation {
+	    var res = new UserInformation();
+	    res.username = input.username;
+	    res.surname = input.surname;
+	    res.city = input.city;
+	    return res;
     }
 }

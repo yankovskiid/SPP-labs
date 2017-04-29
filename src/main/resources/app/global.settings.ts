@@ -1,3 +1,3 @@
 export class TokenService {
-    static token : string;
+    static token : string = "";
 }

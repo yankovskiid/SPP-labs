@@ -1,7 +1,7 @@
 package com.bsuir.petition.controller.role.impl;
 
+import com.bsuir.petition.bean.dto.role.RoleDTO;
 import com.bsuir.petition.bean.dto.role.RoleListDTO;
-import com.bsuir.petition.bean.dto.role.ShortRoleDTO;
 import com.bsuir.petition.controller.role.RoleController;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
@@ -24,13 +24,13 @@ public class RoleControllerImpl implements RoleController {
     }
 
     @Override
-    public void addRole(@RequestBody ShortRoleDTO shortRoleDTO) throws ServerException, ErrorInputException, SuchRoleExistsException {
-        roleService.addRole(shortRoleDTO);
+    public void addRole(@RequestBody RoleDTO roleDTO) throws ServerException, ErrorInputException, SuchRoleExistsException {
+        roleService.addRole(roleDTO);
     }
 
     @Override
-    public void updateRole(@RequestBody ShortRoleDTO shortRoleDTO, @PathVariable long id) throws ErrorInputException, ServerException, RoleNotFoundException {
-        roleService.updateRole(shortRoleDTO, id);
+    public void updateRole(@RequestBody RoleDTO roleDTO, @PathVariable long id) throws ErrorInputException, ServerException, RoleNotFoundException {
+        roleService.updateRole(roleDTO, id);
     }
 
     @Override

@@ -1,3 +1,4 @@
+import { PetitionModule } from './components/petition/petition.module';
 import { UserModule } from './components/user/user.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routing.module';
 import { HttpService } from './services/httpServices/http.service';
 import { MainComponent } from './components/main/main.component';
+import {AdminModule} from "./components/admin/admin.module";
 
 @NgModule({
     imports: [
@@ -17,6 +19,8 @@ import { MainComponent } from './components/main/main.component';
         RouterModule,
 
         UserModule,
+        AdminModule,
+        PetitionModule,
         AppRoutingModule
         
     ],

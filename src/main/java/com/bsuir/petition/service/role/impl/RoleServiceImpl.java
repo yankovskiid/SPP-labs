@@ -1,14 +1,9 @@
 package com.bsuir.petition.service.role.impl;
 
-import com.bsuir.petition.bean.dto.category.ShortCategoryDTO;
+import com.bsuir.petition.bean.dto.role.RoleDTO;
 import com.bsuir.petition.bean.dto.role.RoleListDTO;
-import com.bsuir.petition.bean.dto.role.ShortRoleDTO;
 import com.bsuir.petition.bean.entity.Role;
-import com.bsuir.petition.dao.CategoryDao;
 import com.bsuir.petition.dao.RoleDao;
-import com.bsuir.petition.service.category.util.CategoryDataValidator;
-import com.bsuir.petition.service.category.util.DtoExchangerCategory;
-import com.bsuir.petition.service.category.util.ExchangerCategory;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.role.RoleService;
@@ -22,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.rmi.ServerError;
 import java.util.List;
 
 @Service
@@ -79,11 +73,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void updateRole(ShortRoleDTO shortRoleDTO, long id) throws RoleNotFoundException, ErrorInputException, ServerException {
+    public void updateRole(RoleDTO roleDTO, long id) throws RoleNotFoundException, ErrorInputException, ServerException {
         try {
             Role role = roleDao.getRoleById(id);
             if (role != null) {
-                role.setRoleName(shortRoleDTO.getName());
+                role.setRoleName(roleDTO.getName());
                 roleDao.updateRole(role);
             } else {
                 throw new RoleNotFoundException("Role not found");
@@ -95,10 +89,10 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void addRole(ShortRoleDTO shortRoleDTO) throws ErrorInputException, ServerException, SuchRoleExistsException {
+    public void addRole(RoleDTO roleDTO) throws ErrorInputException, ServerException, SuchRoleExistsException {
+        Role role = new Role();
         try {
-            Role role = new Role();
-            role.setRoleName(shortRoleDTO.getName());
+            role.setRoleName(roleDTO.getName());
             roleDao.createRole(role);
         } catch (HibernateException e) {
             throw new ServerException("Server exception", e);
