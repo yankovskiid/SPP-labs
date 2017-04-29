@@ -5,10 +5,10 @@
     <tr *ngFor="let category of categories">
         <td>{{ category.name }}</td>
         <td>
-            <span (click)="editCategory(category)">Edit</span>
-            <span (click)="deleteCategory(category)">Delete</span>
+            <span class="pointer-cursor" (click)="editCategory(category)">Edit</span>
+            <span class="pointer-cursor" (click)="deleteCategory(category)">Delete</span>
         </td>
     </tr>
 </table>
-<span (click)="addCategory()">Add</span>
+<span class="pointer-cursor" (click)="addCategory()">Add</span>
 <div *ngIf="editingCategory !== null" category-edit [category]="editingCategory" (endEdit)="saveCategory($event)"></div>
