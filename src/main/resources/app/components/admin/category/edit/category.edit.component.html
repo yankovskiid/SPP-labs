@@ -1,13 +1,13 @@
 <h1>Categories edit</h1>
-<form #roleForm="ngForm">
+<form #categoryForm="ngForm">
     <input type="text"
         placeholder="Name"
         name="name"
         required
-        [(ngModel)]="role.name"
+        [(ngModel)]="category.name"
         #name=""ngModel>
     <br>
 
-    <button (click)="save(true)" [disabled]="!roleForm.valid">Save</button>
+    <button (click)="save(true)" [disabled]="!categoryForm.valid">Save</button>
     <button (click)="save(false)">Cancel</button>
 </form>

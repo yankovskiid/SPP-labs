@@ -1,13 +1,14 @@
-<h1>Categories edit</h1>
-<form #categoryForm="ngForm">
-    <input type="text"
-           placeholder="name"
-           name="name"
-           required
-           [(ngModel)]="role.name"
-           #name="ngModel">
-    <br>
-
-    <button (click)="save(true)" [disabled]="!roleForm.valid">Save</button>
-    <button (click)="save(false)">Cancel</button>
-</form>
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+    <tr *ngFor="let category of categories">
+        <td>{{ category.name }}</td>
+        <td>
+            <span (click)="editCategory(category)">Edit</span>
+            <span (click)="deleteCategory(category)">Delete</span>
+        </td>
+    </tr>
+</table>
+<span (click)="addCategory()">Add</span>
+<div *ngIf="editingCategory !== null" category-edit [category]="editingCategory" (endEdit)="saveCategory($event)"></div>

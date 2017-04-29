@@ -27,14 +27,17 @@ export class AdminCategoryComponent implements OnInit {
     }
 
     deleteCategory(category: CategoryShort): void {
-        if (this.editingCategory === null) {
-            this.http
-                .deleteData("/category/" + category.id)
-                .subscribe(() => {
-                    this.getCategories();
-                })
-        } else {
-            alert('End editing category!');
+        var isDelete = confirm("Are you sure to delete category?");
+        if (isDelete) {
+            if (this.editingCategory === null) {
+                this.http
+                    .deleteData("/category/" + category.id)
+                    .subscribe(() => {
+                        this.getCategories();
+                    })
+            } else {
+                alert('End editing category!');
+            }
         }
     }
 
