@@ -1,5 +1,6 @@
 package com.bsuir.petition.service.country.util.impl;
 
+import com.bsuir.petition.bean.dto.country.CountryDTO;
 import com.bsuir.petition.bean.dto.country.ShortCountryDTO;
 import com.bsuir.petition.bean.entity.Country;
 import com.bsuir.petition.dao.CountryDao;
@@ -18,14 +19,14 @@ public class ExchangerCountryImpl implements ExchangerCountry {
     }
 
     @Override
-    public Country getCountry(ShortCountryDTO shortCountryDTO, long id) {
+    public Country getCountry(CountryDTO countryDTO, long id) {
         Country country = countryDao.getCountry(id);
-        country.setName(shortCountryDTO.getName());
+        country.setName(countryDTO.getName());
         return country;
     }
 
     @Override
-    public Country getCountry(ShortCountryDTO countryDTO) {
+    public Country getCountry(CountryDTO countryDTO) {
         Country country = new Country();
         country.setName(countryDTO.getName());
         return country;
