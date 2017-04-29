@@ -1,0 +1,20 @@
+<h1>Cities edit</h1>
+<form #cityForm="ngForm">
+    <input type="text"
+           placeholder="Name"
+           name="name"
+           required
+           [(ngModel)]="city.name"
+           #name="ngModel">
+    <br>
+    <input type="text"
+           placeholder="Country"
+           name="country"
+           required
+           [(ngModel)]="city.country"
+           #name="ngModel">
+    <br>
+
+    <button (click)="save(true)" [disabled]="!cityForm.valid">Save</button>
+    <button (click)="save(false)">Cancel</button>
+</form>

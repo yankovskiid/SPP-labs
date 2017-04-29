@@ -1,0 +1,14 @@
+<table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let country of countries">
+            <td>{{country.name}}</td>
+            <td>
+                <span class="pointer-cursor" (click)="editCountry(country)">Edit</span>
+                <span class="pointer-cursor" (click)="deleteCountry(country)">Delete</span>
+            </td>
+        </tr>
+</table>
+<span class="pointer-cursor" (click)="addCountry()">Add</span>
+<div *ngIf="editingCountry !== null" country-edit [country]="editingCountry" (endEdit)="saveCountry($event)"></div>

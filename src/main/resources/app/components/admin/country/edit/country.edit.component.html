@@ -1,0 +1,13 @@
+<h1>Countries edit</h1>
+<form #countryForm="ngForm">
+    <input type="text"
+           placeholder="Name"
+           name="name"
+           required
+           [(ngModel)]="country.name"
+           #name="ngModel">
+    <br>
+
+    <button (click)="save(true)" [disabled]="!countryForm.valid">Save</button>
+    <button (click)="save(false)">Cancel</button>
+</form>

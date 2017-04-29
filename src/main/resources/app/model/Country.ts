@@ -7,4 +7,12 @@ export class Country extends ShortCountry {
 	constructor() {
 		super();
 	}
+
+	static deserialize(data: any): Country {
+		var res = new Country();
+		res.id = data.id;
+		res.name = data.name;
+
+		return res;
+	}
 }
