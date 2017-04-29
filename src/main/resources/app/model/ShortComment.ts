@@ -3,4 +3,10 @@ export class ShortComment {
 
     constructor() {
     }
+
+    static deserialize(input: any):ShortComment {
+        var res = new ShortComment();
+        res.text = input.text;
+        return res;
+    }
 }
