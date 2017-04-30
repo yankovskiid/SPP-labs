@@ -1,0 +1,3 @@
+<div>Votes: {{votesCount}}</div>
+<span (click)="addVote()">Vote</span>
+<div *ngIf="editingVote !== null" vote-edit [vote]="editingVote" (endEdit)="saveVote($event)"></div>

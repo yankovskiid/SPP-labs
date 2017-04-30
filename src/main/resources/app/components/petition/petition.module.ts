@@ -9,6 +9,8 @@ import { PetitionMainComponent } from "./main/petition.main.component";
 import { PetitionAddComponent } from "./add/petition.add.component";
 import {CommentListComponent} from "./list/comment/comment.list.component";
 import {CommentEditComponent} from "./list/comment/edit/comment.edit.component";
+import {VotesComponent} from "./list/votes/votes.component";
+import {VotesEditComponent} from "./list/votes/edit/votes.edit.component";
 // import {HttpService} from "./../../services/httpServices/http.service";
 
 @NgModule({
@@ -25,7 +27,9 @@ import {CommentEditComponent} from "./list/comment/edit/comment.edit.component";
         PetitionMainComponent,
         PetitionAddComponent,
         CommentListComponent,
-        CommentEditComponent
+        CommentEditComponent,
+        VotesComponent,
+        VotesEditComponent
     ],
     exports: [
         PetitionListComponent,
