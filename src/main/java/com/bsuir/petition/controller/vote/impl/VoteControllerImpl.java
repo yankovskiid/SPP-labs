@@ -7,6 +7,7 @@ import com.bsuir.petition.controller.vote.VoteController;
 import com.bsuir.petition.dao.PetitionDao;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
+import com.bsuir.petition.service.petition.exception.PetitionNotFoundException;
 import com.bsuir.petition.service.vote.VoteService;
 import com.bsuir.petition.service.vote.exception.SuchVoteExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,13 @@ public class VoteControllerImpl implements VoteController {
     @Override
     public void addVote(@RequestBody  ShortVoteDTO shortVoteDTO, @PathVariable long id) throws ServerException, ErrorInputException, SuchVoteExistsException {
         voteService.addVote(shortVoteDTO, id);
+    }
+
+    @Override
+    public long petitionVotesCount(@PathVariable long id) throws ServerException, PetitionNotFoundException {
+        long votesCount;
+        votesCount = voteService.petitionVotesCount(id);
+        return votesCount;
     }
 
     @Override

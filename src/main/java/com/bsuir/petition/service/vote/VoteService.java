@@ -8,9 +8,11 @@ import com.bsuir.petition.bean.entity.Vote;
 import com.bsuir.petition.service.category.exception.SuchCategoryExistsException;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
+import com.bsuir.petition.service.petition.exception.PetitionNotFoundException;
 import com.bsuir.petition.service.vote.exception.SuchVoteExistsException;
 
 public interface VoteService {
     VoteListDTO getVotes() throws ServerException;
+    long petitionVotesCount(long id) throws ServerException, PetitionNotFoundException;
     void addVote(ShortVoteDTO shortVoteDTO, long id) throws ErrorInputException, ServerException, SuchVoteExistsException;
 }

@@ -4,9 +4,11 @@ import com.bsuir.petition.bean.dto.vote.ShortVoteDTO;
 import com.bsuir.petition.bean.dto.vote.VoteListDTO;
 import com.bsuir.petition.bean.entity.Petition;
 import com.bsuir.petition.bean.entity.Vote;
+import com.bsuir.petition.dao.PetitionDao;
 import com.bsuir.petition.dao.VoteDao;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
+import com.bsuir.petition.service.petition.exception.PetitionNotFoundException;
 import com.bsuir.petition.service.vote.VoteService;
 import com.bsuir.petition.service.vote.exception.SuchVoteExistsException;
 import com.bsuir.petition.service.vote.util.VoteDataValidator;
@@ -27,6 +29,7 @@ public class VoteServiceImpl implements VoteService {
     private VoteDao voteDao;
     private VoteDtoExchanger voteDtoExchanger;
     private VoteExchanger voteExchanger;
+    private PetitionDao petitionDao;
 
     @Autowired
     public void setVoteDataValidator(VoteDataValidator voteDataValidator) {
@@ -48,6 +51,11 @@ public class VoteServiceImpl implements VoteService {
         this.voteExchanger = voteExchanger;
     }
 
+    @Autowired
+    public void setPetitionDao(PetitionDao petitionDao) {
+        this.petitionDao = petitionDao;
+    }
+
     @Override
     public VoteListDTO getVotes() throws ServerException {
         VoteListDTO voteListDTO;
@@ -60,6 +68,23 @@ public class VoteServiceImpl implements VoteService {
         }
 
         return voteListDTO;
+    }
+
+    @Override
+    public long petitionVotesCount(long id) throws ServerException, PetitionNotFoundException {
+        Petition petition = petitionDao.getPetition(id);
+        if (petition == null) {
+            throw new PetitionNotFoundException("Petition not found!");
+        }
+
+        long votesCount = 0;
+
+        try {
+            votesCount = voteDao.petitionVotesCount(id);
+        } catch (HibernateException exception) {
+            throw new ServerException("Server exception!", exception);
+        }
+        return votesCount;
     }
 
     @Override
