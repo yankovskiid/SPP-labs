@@ -8,5 +8,6 @@ import java.util.List;
 public interface VoteDao {
     Vote getVote(long id);
     List<Vote> getVotes();
+    long petitionVotesCount(long id);
     void addVote(Vote vote);
 }
