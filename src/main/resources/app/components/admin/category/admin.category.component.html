@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+    <tr *ngFor="let category of categories">
+        <td>{{ category.name }}</td>
+        <td>
+            <span class="pointer-cursor" (click)="editCategory(category)">Edit</span>
+            <span class="pointer-cursor" (click)="deleteCategory(category)">Delete</span>
+        </td>
+    </tr>
+</table>
+<span class="pointer-cursor" (click)="addCategory()">Add</span>
+<div *ngIf="editingCategory !== null" category-edit [category]="editingCategory" (endEdit)="saveCategory($event)"></div>

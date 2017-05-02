@@ -1,8 +1,5 @@
-export class Vote {
-	 reason: string;
-	 userId: number;
-	 name: string;
-	
-	constructor() {
-	}
+import {ShortVote} from "./ShortVote";
+export class Vote extends ShortVote{
+
+	constructor() { super(); }
 }

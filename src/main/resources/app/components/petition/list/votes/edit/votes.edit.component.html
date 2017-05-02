@@ -1,0 +1,13 @@
+<h1>Add new vote</h1>
+<form #voteForm="ngForm">
+    <input type="text"
+           placeholder="Reason"
+           name="reason"
+           required
+           [(ngModel)]="vote.reason"
+           #name="ngModel">
+    <br>
+
+    <button (click)="save(true)" [disabled]="!voteForm.valid">Save</button>
+    <button (click)="save(false)">Cancel</button>
+</form>

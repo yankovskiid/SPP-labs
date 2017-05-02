@@ -7,6 +7,10 @@ import { PetitionListComponent } from "./list/petiton.list.component";
 import { PetitionRoutingModule } from "./routing/petition.routing.module";
 import { PetitionMainComponent } from "./main/petition.main.component";
 import { PetitionAddComponent } from "./add/petition.add.component";
+import {CommentListComponent} from "./list/comment/comment.list.component";
+import {CommentEditComponent} from "./list/comment/edit/comment.edit.component";
+import {VotesComponent} from "./list/votes/votes.component";
+import {VotesEditComponent} from "./list/votes/edit/votes.edit.component";
 // import {HttpService} from "./../../services/httpServices/http.service";
 
 @NgModule({
@@ -21,7 +25,11 @@ import { PetitionAddComponent } from "./add/petition.add.component";
     declarations: [
         PetitionListComponent,
         PetitionMainComponent,
-        PetitionAddComponent
+        PetitionAddComponent,
+        CommentListComponent,
+        CommentEditComponent,
+        VotesComponent,
+        VotesEditComponent
     ],
     exports: [
         PetitionListComponent,
