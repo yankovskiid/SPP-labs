@@ -56,8 +56,7 @@ export class HttpService {
 		var headers = this.getSendHeaders();
 		return this
 			.http
-			.post(url, JSON.stringify(data), { headers: headers })
-			.map((response) => response.json());
+			.put(url, JSON.stringify(data), { headers: headers });
 	}
 
 	private getHeaders() {

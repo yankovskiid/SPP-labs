@@ -60,6 +60,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void addUserInformation(UserInformation userInformation) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(userInformation);
+    }
+
+    @Override
     public void addUser(User user) {
         Session session = sessionFactory.getCurrentSession();
         Role role = session.load(Role.class, USER_ROLE);

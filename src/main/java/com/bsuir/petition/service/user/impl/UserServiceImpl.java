@@ -188,4 +188,18 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public void addUserInformation(long id, UserInformationDTO userInformationDTO) throws ErrorInputException, ServerException {
+        userDataValidator.validate(userInformationDTO);
+
+        UserInformation userInformation = new UserInformation();
+
+        try {
+            userExchanger.setUserInformation(userInformation, userInformationDTO);
+            userDao.addUserInformation(userInformation);
+        } catch (HibernateException exception) {
+            throw new ServerException("Server exception!", exception);
+        }
+    }
+
 }

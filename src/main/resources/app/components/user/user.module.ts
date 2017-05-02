@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import {EditUserComponent} from "./edit/edit.user.component";
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     declarations: [
         LoginComponent,
         RegistrationComponent,
-        UserComponent
+        UserComponent,
+        EditUserComponent
     ],
     exports: [
         LoginComponent,

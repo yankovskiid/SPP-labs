@@ -79,6 +79,13 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
+    public void addUserInformation(UserInformationDTO userInformationDTO) throws UserInformationNotFoundException, ErrorInputException, ServerException {
+        TokenAuthentication tokenAuthentication;
+        tokenAuthentication = (TokenAuthentication)SecurityContextHolder.getContext().getAuthentication();
+        userService.updateUserInformation((Long)tokenAuthentication.getDetails(), userInformationDTO);
+    }
+
+    @Override
     public UserInformationDTO getUserInformation(@PathVariable long id)
             throws UserInformationNotFoundException, ServerException {
         UserInformationDTO userInformationDTO;
