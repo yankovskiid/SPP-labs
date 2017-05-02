@@ -1,0 +1,15 @@
+<h1>Users edit</h1>
+<form #userForm="ngForm">
+    <label>
+        <input type="checkbox" name="blocked" [(ngModel)]="user.blocked">
+        Is Blocked
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="roles" [(ngModel)]="user.blocked">
+        Is Blocked
+    </label>
+
+    <button (click)="save(true)" [disabled]="!userForm.valid">Save</button>
+    <button (click)="save(false)">Cancel</button>
+</form>

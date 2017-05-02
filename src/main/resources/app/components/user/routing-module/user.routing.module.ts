@@ -3,6 +3,7 @@ import { RegistrationComponent } from './../registration-component/registration.
 import { LoginComponent } from './../login-component/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
+import {EditUserComponent} from "../edit/edit.user.component";
 
 var userRoutes: Routes = [
 		{
@@ -17,6 +18,10 @@ var userRoutes: Routes = [
 			path: "user",
 			component: UserComponent,
 			children: []
+		},
+		{
+			path: 'user/information',
+			component: EditUserComponent
 		}
 ];
 

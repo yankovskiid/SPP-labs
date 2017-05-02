@@ -1,0 +1,17 @@
+<table>
+    <tr>
+        <th>Email</th>
+        <th>isBlocked</th>
+        <th>Roles</th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>{{user.email}}</td>
+        <td>{{user.blocked}}</td>
+        <td>{{user.roles}}</td>
+        <td>
+            <span class="pointer-cursor" (click)="editUser(user)">Edit</span>
+            <span class="pointer-cursor" (click)="deleteUser(user)">Delete</span>
+        </td>
+    </tr>
+</table>
+<div *ngIf="editingUser !== null" user-edit [user]="editingUser" (endEdit)="saveUser($event)"></div>

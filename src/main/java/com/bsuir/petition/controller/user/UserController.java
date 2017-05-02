@@ -33,8 +33,13 @@ public interface UserController {
             throws UserInformationNotFoundException, ServerException;
 
     @PreAuthorize("hasAnyAuthority('USER')")
-    @RequestMapping(value = "/user/information", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/information", method = RequestMethod.PUT)
     void updateUserInformation(UserInformationDTO userInformationDTO)
+            throws UserInformationNotFoundException, ErrorInputException, ServerException;
+
+    @PreAuthorize("hasAnyAuthority('USER')")
+    @RequestMapping(value = "/user/information/add", method = RequestMethod.POST)
+    void addUserInformation(UserInformationDTO userInformationDTO)
             throws UserInformationNotFoundException, ErrorInputException, ServerException;
 
     @PreAuthorize("hasAnyAuthority('USER')")

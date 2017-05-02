@@ -55,6 +55,15 @@ public class UserDtoExchangerImpl implements UserDtoExchanger {
             shortUserInformationDTO.setEmail(user.getEmail());
             shortUserInformationDTO.setId(user.getId());
             shortUserInformationDTO.setNick(user.getNick());
+            shortUserInformationDTO.setBlocked(user.isBlocked());
+
+            ArrayList<String> temp = new ArrayList<>(0);
+            Set<Role> roles = user.getRoles();
+
+            for (Role role : roles) {
+                temp.add(role.getRoleName());
+            }
+            shortUserInformationDTO.setRoles(temp);
 
             userListDTO.getUsers().add(shortUserInformationDTO);
         }

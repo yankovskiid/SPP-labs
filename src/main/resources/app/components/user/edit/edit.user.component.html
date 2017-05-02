@@ -1,0 +1,28 @@
+<h1>User info edit</h1>
+<p *ngIf="userInfo === null" (click)="addUserInfo()">Add info</p>
+<form #userInfoForm="ngForm" *ngIf="userInfo !== null">
+    <input type="text"
+           placeholder="Username"
+           name="username"
+           required
+           [(ngModel)]="userInfo.username"
+           #name="ngModel">
+    <br>
+    <input type="text"
+           placeholder="Surname"
+           name="surname"
+           required
+           [(ngModel)]="userInfo.surname"
+           #name="ngModel">
+    <br>
+    <input type="text"
+           placeholder="City"
+           name="city"
+           required
+           [(ngModel)]="userInfo.city"
+           #name="ngModel">
+    <br>
+
+    <button (click)="editUserInfo(true)" [disabled]="!userInfoForm.valid">Save</button>
+    <button (click)="editUserInfo(false)">Cancel</button>
+</form>

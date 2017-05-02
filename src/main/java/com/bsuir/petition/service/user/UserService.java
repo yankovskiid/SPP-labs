@@ -18,4 +18,7 @@ public interface UserService {
 
     void updateUserInformation(long id, UserInformationDTO userInformationDTO)
             throws ErrorInputException, ServerException;
+
+    void addUserInformation(long id, UserInformationDTO userInformationDTO)
+            throws ErrorInputException, ServerException;
 }
