@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpService} from "../../../services/httpServices/http.service";
 import {UpdateUser} from "../../../model/UpdateUser";
+import {NewUpdateUser} from "../../../model/NewUpdateUser";
 
 @Component({
     templateUrl: "app/components/admin/user/admin.user.component.html",
@@ -8,8 +9,8 @@ import {UpdateUser} from "../../../model/UpdateUser";
 })
 export class AdminUserComponent implements OnInit {
 
-    private users: UpdateUser[] = [];
-    private editingUser: UpdateUser = null;
+    private users: NewUpdateUser[] = [];
+    private editingUser: NewUpdateUser = null;
 
     constructor(private http: HttpService) {}
 
@@ -17,7 +18,7 @@ export class AdminUserComponent implements OnInit {
         this.getUsers();
     }
 
-    editUser(user: UpdateUser) {
+    editUser(user: NewUpdateUser) {
         if(this.editingUser == null) {
             this.editingUser = UpdateUser.deserialize(user);
         } else {
@@ -41,9 +42,10 @@ export class AdminUserComponent implements OnInit {
     }
 
     saveUser(temp : boolean) {
+        console.log(this.editingUser.isAdmin);
         if (temp) {
             this.http
-                .sendDataNoResponse("/user/" + this.editingUser.id, UpdateUser.deserialize(this.editingUser))
+                .sendDataNoResponse("/user/" + this.editingUser.id, NewUpdateUser.deserializeForUpdate(this.editingUser))
                 .subscribe(() => {
                     this.getUsers();
                     this.editingUser = null;
@@ -58,7 +60,7 @@ export class AdminUserComponent implements OnInit {
             .getData("users")
             .subscribe(data => {
                 var temp = data.users;
-                var users: UpdateUser[] = [];
+                var users: NewUpdateUser[] = [];
                 for (var i = 0; i < temp.length; i += 1) {
                     users.push(UpdateUser.deserialize(temp[i]));
                 }

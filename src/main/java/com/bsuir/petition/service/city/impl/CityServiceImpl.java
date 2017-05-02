@@ -66,7 +66,7 @@ public class CityServiceImpl implements CityService{
         try {
             cities = cityDao.getCities();
             cityListDTO = dtoExchangerCity.getCityListDTO(cities);
-        } catch (HibernateException exception) {
+        } catch (Exception exception) {
             throw new ServerException("Server exception!", exception);
         }
         return cityListDTO;

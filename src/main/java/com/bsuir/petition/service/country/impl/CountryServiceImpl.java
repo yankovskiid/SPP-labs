@@ -59,7 +59,7 @@ public class CountryServiceImpl implements CountryService {
         try {
             countries = countryDao.getCountries();
             countryListDTO = dtoExchangerCountry.getCountryListDTO(countries);
-        } catch (HibernateException exception) {
+        } catch (Exception exception) {
             throw new ServerException("Server exception!", exception);
         }
         return countryListDTO;

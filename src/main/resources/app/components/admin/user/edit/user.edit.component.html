@@ -6,8 +6,8 @@
     </label>
     <br>
     <label>
-        <input type="checkbox" name="roles" [(ngModel)]="user.blocked">
-        Is Blocked
+        <input type="checkbox" name="roles" [(ngModel)]="user.isAdmin">
+        Is Admin
     </label>
 
     <button (click)="save(true)" [disabled]="!userForm.valid">Save</button>

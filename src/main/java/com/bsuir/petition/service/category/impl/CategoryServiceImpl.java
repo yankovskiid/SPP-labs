@@ -58,7 +58,7 @@ public class CategoryServiceImpl implements CategoryService {
         try {
             categories = categoryDao.getCategories();
             categoryListDTO = dtoExchangerCategory.getCategoryListDTO(categories);
-        } catch (HibernateException exception) {
+        } catch (Exception exception) {
             throw new ServerException("Server exception!", exception);
         }
         return categoryListDTO;
