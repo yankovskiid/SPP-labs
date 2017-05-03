@@ -20,6 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @Service
@@ -156,10 +159,23 @@ public class UserServiceImpl implements UserService {
         if (userRegistrationDTO.getRepeatPassword().equals(userRegistrationDTO.getPassword())) {
 
             try {
+                String generatedPassword;
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                md.update("salt".getBytes("UTF-8"));
+                byte[] bytes = md.digest(userRegistrationDTO.getPassword().getBytes("UTF-8"));
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < bytes.length; i++) {
+                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+                }
+                generatedPassword = sb.toString();
+                userRegistrationDTO.setPassword(generatedPassword);
                 user = userExchanger.getUser(userRegistrationDTO);
                 userDao.addUser(user);
             } catch (HibernateException exception) {
                 throw new SuchUserExistsException("User with such name exists!", exception);
+            } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+                e.printStackTrace();
+                return null;
             }
         } else {
             throw new DifferentPasswordsException("Password and repeat password, must be equals!");
