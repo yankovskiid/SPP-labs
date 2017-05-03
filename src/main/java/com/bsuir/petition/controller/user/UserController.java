@@ -54,4 +54,7 @@ public interface UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     TokenDTO login(UserLoginDTO userLoginDTO)
             throws AuthenticationException, ServerException;
+
+    @RequestMapping(value = "/isAdmin", method = RequestMethod.GET)
+    Boolean isAdmin() throws ServerException, UserNotFoundException;
 }

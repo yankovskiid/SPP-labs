@@ -1,6 +1,6 @@
 <h1>Here will be petition list</h1>
 
-<p><a routerLink="/petition/add">Create petition own petition</a></p>
+<p><a routerLink="/petition/add" *ngIf="authService.isAuth()">Create petition own petition</a></p>
 
 <div *ngFor="let petition of petitions">
 

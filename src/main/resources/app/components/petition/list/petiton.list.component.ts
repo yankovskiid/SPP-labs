@@ -1,6 +1,7 @@
 import { HttpService } from './../../../services/httpServices/http.service';
 import { ShortPetition } from './../../../model/ShortPetition';
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from "../../../services/httpServices/authenticationServices/authentication.service";
 
 @Component({
     templateUrl: 'app/components/petition/list/petition.list.component.html',
@@ -10,7 +11,8 @@ export class PetitionListComponent implements OnInit {
     
     private petitions: ShortPetition[] = [];
 
-    constructor(private http: HttpService) { }
+    constructor(private http: HttpService,
+                private authService: AuthenticationService ) { }
 
     ngOnInit() { 
         this.http

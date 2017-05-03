@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 
 @RestController
@@ -125,5 +126,24 @@ public class UserControllerImpl implements UserController {
         }
         token = getTokenService.getToken(userLoginDTO.getEmail(), generatedPassword);
         return new TokenDTO(token);
+    }
+
+    @Override
+    public Boolean isAdmin() throws ServerException, UserNotFoundException {
+        TokenAuthentication tokenAuthentication;
+        tokenAuthentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
+
+        UserDTO userDTO;
+        userDTO = userService.getUser((Long)tokenAuthentication.getDetails());
+        ArrayList<String> roles;
+        roles = userDTO.getRoles();
+
+        for(int i = 0; i < roles.size(); i++) {
+            if(roles.get(i).equals("ADMIN")) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

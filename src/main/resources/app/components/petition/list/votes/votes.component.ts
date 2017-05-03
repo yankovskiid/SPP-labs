@@ -3,6 +3,7 @@ import {ShortVote} from "../../../../model/ShortVote";
 import {HttpService} from "../../../../services/httpServices/http.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Vote} from "../../../../model/Vote";
+import {AuthenticationService} from "../../../../services/httpServices/authenticationServices/authentication.service";
 @Component({
     selector: '[votes]',
     templateUrl: 'app/components/petition/list/votes/votes.component.html'
@@ -13,7 +14,7 @@ export class VotesComponent implements OnInit {
     private votesCount: number = 0;
     private editingVote: ShortVote = null;
 
-    constructor(private http: HttpService, private activatedRoute: ActivatedRoute) {}
+    constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private authService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.getVotesCount();

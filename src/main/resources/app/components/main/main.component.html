@@ -4,6 +4,7 @@
 <a routerLink="/userInformationDTO/login">Login</a>
 <a routerLink="/userInformationDTO/registration">Registration</a>-->
 
-<a routerLink="/user/information">User info</a>
-<a routerLink="/login">Login</a>
-<a routerLink="/registration">Registration</a>
+<a routerLink="/user/information" *ngIf="authService.isAuth()">User info</a>
+<a (click)="http.deleteToken()" *ngIf="authService.isAuth()">Logout</a>
+<a routerLink="/login" *ngIf="!authService.isAuth()">Login</a>
+<a routerLink="/registration" *ngIf="!authService.isAuth()">Registration</a>

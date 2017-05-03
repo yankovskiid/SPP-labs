@@ -1,4 +1,4 @@
-<span (click)="addComment()">Add</span>
+<span (click)="addComment()" *ngIf="authService.isAuth()">Add</span>
 <div *ngIf="editingComment !== null" comment-edit [comment]="editingComment" (endEdit)="saveComment($event)"></div>
 <div *ngFor="let comment of comments">
     <p><b>User: </b>{{comment.user.username}}</p>
