@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from "../../services/httpServices/authenticationServices/authentication.service";
+import {HttpService} from "../../services/httpServices/http.service";
 
 @Component({
     selector : 'my-app',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 
 export class MyApp {
+
+    constructor(private authService: AuthenticationService,
+                private http: HttpService) {
+    }
+
 }

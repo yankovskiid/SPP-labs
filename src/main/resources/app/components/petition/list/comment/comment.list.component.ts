@@ -3,6 +3,7 @@ import {ShortComment} from "../../../../model/ShortComment";
 import {HttpService} from "../../../../services/httpServices/http.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Comment} from "../../../../model/Comment";
+import {AuthenticationService} from "../../../../services/httpServices/authenticationServices/authentication.service";
 @Component({
     selector: '[comments]',
     templateUrl: 'app/components/petition/list/comment/comment.list.component.html'
@@ -12,7 +13,7 @@ export class CommentListComponent implements OnInit {
     private editingComment: ShortComment = null;
     private comments: ShortComment[] = [];
 
-    constructor(private http: HttpService, private activatedRoute: ActivatedRoute){}
+    constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private authService: AuthenticationService){}
 
     ngOnInit(): void {
         this.getComments();

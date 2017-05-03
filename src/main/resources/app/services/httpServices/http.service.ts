@@ -71,6 +71,7 @@ export class HttpService {
 		if (TokenService.token !== "") {
 			return TokenService.token;
 		} else {
+			return "";
 			//TODO : get from cookie
 		}
 
