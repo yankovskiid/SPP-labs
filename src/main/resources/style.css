@@ -1,7 +1,32 @@
 body {
-    background: #2ecc71;
+    background: linear-gradient(to right, #232526, #414345);
+    color: white;
+}
+
+h2, h1 {
+    color: white !important;
 }
 
 .pointer-cursor:hover {
     cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    background: #e67e22;
+    padding: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-bottom: 2px solid #d35400;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -ms-transition: all .1s linear;
+    -o-transition: all .1s linear;
+    transition: all .1s linear;
+    margin: 0 15px 10px 0;
+}
+a:hover {
+    background: #d35400;
 }
