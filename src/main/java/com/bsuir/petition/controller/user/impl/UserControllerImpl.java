@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 
@@ -108,7 +111,20 @@ public class UserControllerImpl implements UserController {
     @Override
     public TokenDTO login(@RequestBody UserLoginDTO userLoginDTO) throws AuthenticationException, ServerException {
         String token;
-        token = getTokenService.getToken(userLoginDTO.getEmail(), userLoginDTO.getPassword());
+        String generatedPassword = userLoginDTO.getPassword();
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update("salt".getBytes("UTF-8"));
+            byte[] bytes = md.digest(userLoginDTO.getPassword().getBytes("UTF-8"));
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bytes.length; i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            generatedPassword = sb.toString();
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        token = getTokenService.getToken(userLoginDTO.getEmail(), generatedPassword);
         return new TokenDTO(token);
     }
 

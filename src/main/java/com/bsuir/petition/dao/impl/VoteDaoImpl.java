@@ -48,6 +48,11 @@ public class VoteDaoImpl implements VoteDao {
     @Override
     public void addVote(Vote vote) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(vote);
+        org.hibernate.query.Query query = session.createQuery("select count(*) from Vote WHERE petition = :idPetition AND user = :idUser");
+        query.setParameter("idPetition", vote.getPetition().getId());
+        query.setParameter("idUser", vote.getUser().getId());
+        long votesCount = (long)query.uniqueResult();
+        if (votesCount == 0)
+            session.save(vote);
     }
 }
