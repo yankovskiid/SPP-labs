@@ -24,12 +24,10 @@
            #numberNecessaryVotes="ngModel">
     <br>
 
-    <ul>
-        <li *ngFor="let category of categories">
-            {{category.name}}
-            {{category.id}}
-        </li>
-    </ul>
+    <label *ngFor="let category of categories">
+        <input type="checkbox" name="awesome" [(ngModel)]="category.isActive">
+        {{category.name}}
+    </label>
 
     <button (click)="createPetition()" [disabled]="!petitionForm.valid">Create</button>
 </form>

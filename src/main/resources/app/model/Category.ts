@@ -1,5 +1,5 @@
 export class Category {
-    private name: String;
+    public name: String;
 
     static deserialize(input: any): Category {
         var res = new Category();
