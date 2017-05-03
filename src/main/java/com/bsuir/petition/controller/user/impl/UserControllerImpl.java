@@ -14,6 +14,7 @@ import com.bsuir.petition.service.user.exception.DifferentPasswordsException;
 import com.bsuir.petition.service.user.exception.SuchUserExistsException;
 import com.bsuir.petition.service.user.exception.UserInformationNotFoundException;
 import com.bsuir.petition.service.user.exception.UserNotFoundException;
+import com.sun.security.ntlm.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,10 +22,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 
 @RestController
@@ -102,8 +107,8 @@ public class UserControllerImpl implements UserController {
     public TokenDTO registration(@RequestBody UserRegistrationDTO userRegistrationDTO)
             throws AuthenticationException, DifferentPasswordsException, ErrorInputException, SuchUserExistsException, ServerException {
 
-        User user = userService.registration(userRegistrationDTO);
         String token;
+        User user = userService.registration(userRegistrationDTO);
         token = getTokenService.getToken(user.getEmail(), user.getPassword());
         return new TokenDTO(token);
     }

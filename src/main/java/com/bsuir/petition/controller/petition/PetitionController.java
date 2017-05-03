@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public interface PetitionController {
 
-    @PreAuthorize("permitAll()")
     @RequestMapping(value = "/petition/{id}", method = RequestMethod.GET)
     PetitionDTO getPetition(long id) throws ServerException, PetitionNotFoundException;
 
@@ -24,7 +23,7 @@ public interface PetitionController {
     @RequestMapping(value = "/petitions", method = RequestMethod.GET)
     PetitionListDTO getPetitions() throws ServerException;
 
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/petition/{id}", method = RequestMethod.DELETE)
     void deletePetition(long id) throws ServerException, PetitionNotFoundException;
 

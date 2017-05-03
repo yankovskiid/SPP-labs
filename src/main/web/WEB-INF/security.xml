@@ -17,6 +17,7 @@
     <security:http pattern="/app/**" security="none" />
     <security:http pattern="/registration" security="none" />
 
+
     <security:http auto-config="false" disable-url-rewriting="true"
                    create-session="stateless" entry-point-ref="restAuthenticationEntryPoint">
         <security:custom-filter ref="restAuthenticationFilter" position="FORM_LOGIN_FILTER"/>

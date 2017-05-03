@@ -30,10 +30,10 @@ public class Petition extends BaseTable{
     @ColumnDefault("0")
     private int statusId;
 
-    @OneToMany(mappedBy = "petition", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "petition", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Vote> voteSet = new HashSet<Vote>();
 
-    @OneToMany(mappedBy = "petition", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "petition", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Comment> comments = new HashSet<Comment>();
 
     @ManyToOne(fetch = FetchType.LAZY)
