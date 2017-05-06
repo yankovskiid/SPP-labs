@@ -1,9 +1,13 @@
 <h1>User info edit</h1>
 <p *ngIf="userInfo === null" (click)="addUserInfo()">Add info</p>
+<div id="error-block" [hidden]="hidden">
+    <p>{{errorMessage}}</p>
+</div>
 <form #userInfoForm="ngForm" *ngIf="userInfo !== null">
     <input type="text"
            placeholder="Username"
            name="username"
+           class="form-control"
            required
            [(ngModel)]="userInfo.username"
            #name="ngModel">
@@ -11,6 +15,7 @@
     <input type="text"
            placeholder="Surname"
            name="surname"
+           class="form-control"
            required
            [(ngModel)]="userInfo.surname"
            #name="ngModel">
@@ -18,11 +23,12 @@
     <input type="text"
            placeholder="City"
            name="city"
+           class="form-control"
            required
            [(ngModel)]="userInfo.city"
            #name="ngModel">
     <br>
 
-    <button (click)="editUserInfo(true)" [disabled]="!userInfoForm.valid">Save</button>
-    <button (click)="editUserInfo(false)">Cancel</button>
+    <button (click)="editUserInfo(true)" [disabled]="!userInfoForm.valid" class="button-save">Save</button>
+    <button (click)="editUserInfo(false)" class="button-cancel">Cancel</button>
 </form>

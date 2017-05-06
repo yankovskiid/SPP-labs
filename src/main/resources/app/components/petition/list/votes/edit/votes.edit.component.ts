@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 @Component({
     selector: '[vote-edit]',
-    templateUrl: 'app/components/petition/list/votes/edit/votes.edit.component.html'
+    templateUrl: 'app/components/petition/list/votes/edit/votes.edit.component.html',
+    styleUrls: ['app/components/petition/list/votes/edit/votes.edit.component.css']
 })
 export class VotesEditComponent implements OnInit {
     @Input() vote: any;

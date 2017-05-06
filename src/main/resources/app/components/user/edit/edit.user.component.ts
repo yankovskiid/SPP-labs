@@ -4,7 +4,7 @@ import {UserInformation} from "../../../model/UserInformation";
 
 @Component({
     templateUrl: "app/components/user/edit/edit.user.component.html",
-    styleUrls: []
+    styleUrls: ['app/components/user/edit/edit.user.component.css']
 })
 export class EditUserComponent implements OnInit {
 
