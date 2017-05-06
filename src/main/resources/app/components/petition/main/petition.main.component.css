@@ -71,18 +71,30 @@ div.petition-info p.petition-title {
     margin: 10px 0 0;
 }
 
-div.petition-text-block {
+div.petition-text-block, div.petition-title-block {
     display: flex;
     justify-content: space-between;
     width: 95%;
     margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin-top: 10px;
+    padding: 15px 15px;
+    padding-top: 0px;
+}
+div.petition-title-block {
+    flex-direction: column;
+}
+div.petition-text-block {
+    flex-direction: column;
+    padding-top: 15px;
 }
 div.petition-text {
     /*display: inline-block;
     vertical-align: top;
     */
     width: 75%;
-    margin-top: 25px;
+    /*margin-top: 25px;*/
     margin-right: 15px;
 }
 div.petition-text p {
@@ -91,7 +103,7 @@ div.petition-text p {
     color: black;
 }
 div.petition-ttl {
-    margin-top: 36px;
+    /*margin-top: 36px;*/
     display: flex;
     justify-content: flex-end;
     /*float: right;
@@ -126,7 +138,7 @@ div.petition-ttl p.number-days {
     flex-wrap: wrap;
 }
 .categories .category-block {
-    min-height: 35px;
+    min-height: 25px;
     padding: 5px 10px;
     border-radius: 5px;
     background-color: #35c0e3;
@@ -142,7 +154,7 @@ div.petition-ttl p.number-days {
     background-color: #05aed8;
 }
 .categories .category-block p {
-    line-height: 35px;
+    line-height: 25px;
     margin: 0;
 }
 
@@ -150,7 +162,38 @@ div.petition-ttl p.number-days {
     width: 95%;
     margin: 0 auto;
     margin-top: 10px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 15px;
 }
+
+.description-title {
+    width: 95%;
+    margin-bottom: 5px;
+    color: black;
+    font-size: 24px;
+    margin-top: 0;
+    font-weight: bold;
+}
+.description-block {
+    display: flex;
+    flex-direction: row;
+}
+
+.button-petition-delete {
+    position: absolute;
+    right: 3%;
+    margin-top: 5px;
+    color: black;
+    font-weight: 300;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+}
+.button-petition-delete:hover {
+    color: #7c7a7a;
+}
+
 
 @media only screen and (max-width: 747px) {
     div.petition-image {
@@ -175,8 +218,16 @@ div.petition-ttl p.number-days {
         margin-top: 15px;
         margin-bottom: 0px;
         align-self: flex-end;
-        order: 1;
+        /*order: 1;*/
         margin-bottom: 0;
+    }
+    .description-block {
+        display: flex;
+        flex-direction: column;
+    }
+    .description-title {
+        order: 1;
+        margin-bottom: 0px;
     }
     div.petition-info p.petition-date {
         font-style: italic;
@@ -185,20 +236,26 @@ div.petition-ttl p.number-days {
         margin-bottom: 0;
         align-self: flex-end;
         margin-top: 5px;
-        order: 2;
+        /*order: 2;*/
     }
-
+    .button-petition-delete {
+        right: 5%;
+    }
     div.petition-text-block {
         flex-direction: column-reverse;
     }
     div.petition-text {
         width: 100%;
         align-self: center;
-        margin-top: 5px;
+        order: 1;
+        /*margin-top: 5px;*/
     }
     div.petition-ttl {
         align-self: flex-end;
-        margin-top: 15px;
+        /*margin-top: 15px;*/
+    }
+    div.petition-text-block, div.petition-title-block, .comments-block {
+        width: 90%;
     }
 }
 

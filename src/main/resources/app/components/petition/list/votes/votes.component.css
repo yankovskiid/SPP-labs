@@ -25,6 +25,7 @@ div.petition-progress {
     margin: 0 auto;
     height: 40px;
     margin-top: 12px;
+    margin-bottom: 10px;
     position: relative;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
@@ -59,6 +60,12 @@ div.petition-progress div.progress-value{
     color: black;
     font-size: 16px;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+div.petition-progress div.progress-value p {
+    line-height: 0.7;
 }
 div.petition-progress div.progress-value p.all-signatures {
     float: left;
@@ -73,4 +80,19 @@ div.petition-progress div.progress-value p.need-signatures {
     margin-right: 15px;
     line-height: 100%;
     padding-top: 12px;
+}
+
+@media only screen and (max-width: 350px){
+    div.petition-progress div.progress-value p {
+        line-height: 1.6;
+        font-size: 12px;
+    }
+    div.petition-progress div.progress-value p.all-signatures {
+        line-height: 100%;
+        font-size: 16px;
+    }
+    div.petition-progress div.progress-value p.need-signatures {
+        line-height: 100%;
+        font-size: 16px;
+    }
 }

@@ -10,6 +10,8 @@
     margin-bottom: 15px;
     color: black;
     font-size: 24px;
+    margin-top: 0;
+    font-weight: bold;
 }
 .comments .comment-block {
     width: 90%;
