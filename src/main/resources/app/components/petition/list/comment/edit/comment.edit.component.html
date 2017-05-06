@@ -1,13 +1,27 @@
-<h1>Add new comment</h1>
+<!--<h1>Add new comment</h1>-->
+<!--<form #commentForm="ngForm">-->
+    <!--<input type="text"-->
+           <!--placeholder="Text"-->
+           <!--name="text"-->
+           <!--required-->
+           <!--[(ngModel)]="comment.text"-->
+           <!--#name="ngModel">-->
+    <!--<br>-->
+
+    <!--<button (click)="save(true)" [disabled]="!commentForm.valid">Save</button>-->
+    <!--<button (click)="save(false)">Cancel</button>-->
+<!--</form>-->
+
 <form #commentForm="ngForm">
-    <input type="text"
-           placeholder="Text"
-           name="text"
-           required
-           [(ngModel)]="comment.text"
-           #name="ngModel">
+    <textarea
+    placeholder="Text"
+    name="text"
+    required
+    [(ngModel)]="comment.text"
+    #name="ngModel" class="comment-input">
+    </textarea>
     <br>
 
-    <button (click)="save(true)" [disabled]="!commentForm.valid">Save</button>
-    <button (click)="save(false)">Cancel</button>
+    <button (click)="save(true)" [disabled]="!commentForm.valid" class="button-save">Save</button>
+    <button (click)="save(false)" class="button-cancel">Cancel</button>
 </form>

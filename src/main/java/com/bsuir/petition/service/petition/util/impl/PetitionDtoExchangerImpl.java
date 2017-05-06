@@ -102,6 +102,7 @@ public class PetitionDtoExchangerImpl implements PetitionDtoExchanger {
             CategoryDTO categoryDTO = new CategoryDTO();
             categoryDTO.setName(category.getName());
             categoryDTO.setId(category.getId());
+            temp.add(categoryDTO);
         }
         shortPetitionDTO.setCategories(temp);
 

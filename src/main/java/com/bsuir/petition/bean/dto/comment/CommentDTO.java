@@ -3,13 +3,13 @@ package com.bsuir.petition.bean.dto.comment;
 import com.bsuir.petition.bean.dto.user.UserInformationDTO;
 
 public class CommentDTO extends ShortCommentDTO {
-    private UserInformationDTO userInfo;
+    private String userNick;
 
-    public UserInformationDTO getUser() {
-        return userInfo;
+    public String getUserNick() {
+        return userNick;
     }
 
-    public void setUser(UserInformationDTO userInfo) {
-        this.userInfo = userInfo;
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
     }
 }

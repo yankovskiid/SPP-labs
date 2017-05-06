@@ -29,9 +29,7 @@ public class DtoExchangerCommentImpl implements DtoExchangerComment {
         CommentDTO commentDTO = new CommentDTO();
 
         commentDTO.setText(comment.getText());
-        UserInformationDTO userInformationDTO;
-        userInformationDTO = userDtoExchanger.getUserInformationDTO(comment.getUser().getUserInformation());
-        commentDTO.setUser(userInformationDTO);
+        commentDTO.setUserNick(comment.getUser().getNick());
 
         return commentDTO;
     }
@@ -40,13 +38,11 @@ public class DtoExchangerCommentImpl implements DtoExchangerComment {
     public CommentListDTO getCommentListDTO(List<Comment> comments) {
         CommentListDTO commentListDTO = new CommentListDTO();
         ArrayList<CommentDTO> commentDTOs = commentListDTO.getComments();
-        UserInformationDTO userDTO;
 
         for (Comment comment : comments) {
             CommentDTO commentDTO = new CommentDTO();
-            userDTO = userDtoExchanger.getUserInformationDTO(comment.getUser().getUserInformation());
             commentDTO.setText(comment.getText());
-            commentDTO.setUser(userDTO);
+            commentDTO.setUserNick(comment.getUser().getNick());
             commentDTOs.add(commentDTO);
         }
 

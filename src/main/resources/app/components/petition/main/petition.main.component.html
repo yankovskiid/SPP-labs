@@ -1,15 +1,42 @@
-<h1>Info about petition</h1>
-<h1>{{petition.name}}</h1>
+<!--<h1>Info about petition</h1>-->
+<!--<h1>{{petition.name}}</h1>-->
+<!--<a (click)="delete()">Delete petition</a>-->
+<!--<p>Description - {{petition.description}}</p>-->
+<!--<p>Status - {{petition.status}}</p>-->
+<!--<ul>-->
+    <!--<li *ngFor="let category of petition.categories">{{category.name}}</li>-->
+<!--</ul>-->
+<!--<p>Created username - {{petition.userInformationDTO.username}}</p>-->
+<!--<p>surname - {{petition.userInformationDTO.surname}}</p>-->
+<!--<p>city - {{petition.userInformationDTO.city}} </p>-->
+<!--<h2>Votes</h2>-->
+<!--<div votes></div>-->
+<!--<h2>Comments</h2>-->
+<!--<div comments></div>-->
+
 <a (click)="delete()">Delete petition</a>
-<p>Description - {{petition.description}}</p>
-<p>Status - {{petition.status}}</p>
-<ul>
-    <li *ngFor="let category of petition.categories">{{category.name}}</li>
-</ul>
-<p>Created username - {{petition.userInformationDTO.username}}</p>
-<p>surname - {{petition.userInformationDTO.surname}}</p>
-<p>city - {{petition.userInformationDTO.city}} </p>
-<h2>Votes</h2>
-<div votes></div>
-<h2>Comments</h2>
-<div comments></div>
+<div class="categories">
+    <div class="category-block" *ngFor="let category of petition.categories">
+        <p>{{category.name}}</p>
+    </div>
+</div>
+<div class="petition">
+    <div class="petition-header">
+        <div class="petition-info">
+            <p class="petition-title">{{petition.name}}</p>
+            <p class="petition-author">{{petition.userInformationDTO.username}} {{petition.userInformationDTO.surname}}, {{petition.userInformationDTO.city}}</p>
+            <p class="petition-date">09 September 2015</p>
+        </div>
+    </div>
+    <div votes></div>
+    <div class="petition-text-block">
+        <div class="petition-text">
+            <p>{{petition.description}}</p>
+        </div>
+        <div class="petition-ttl">
+            <p class="number-days">{{petition.expiryDate}}</p>
+            <p>Days before the end of the collection of signatures</p>
+        </div>
+    </div>
+</div>
+<div comments class="comments-block"></div>

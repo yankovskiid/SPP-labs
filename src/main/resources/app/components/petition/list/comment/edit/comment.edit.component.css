@@ -1,0 +1,46 @@
+.button-save {
+    width: 70px;
+    height: 35px;
+    font-size: 14px;
+    line-height: 35px;
+    color: #fff;
+    background-color: #5cb85c;
+    border: 1px solid #4cae4c;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.button-save:hover {
+    background-color: #4cae4c;
+}
+.button-save:disabled {
+    background-color: #a3d0a3;
+    cursor: default;
+}
+.button-cancel {
+    width: 70px;
+    height: 35px;
+    font-size: 14px;
+    line-height: 35px;
+    color: #fff;
+    background-color: #d9534f;
+    border: 1px solid #d43f3a;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.button-cancel:hover {
+    background-color: #d43f3a;
+}
+form {
+    text-align: center;
+}
+.comment-input {
+    width: 75%;
+    height: 150px;
+    padding: 7px;
+    font-size: 14px;
+    resize: none;
+    border-radius: 7px;
+}
+.comment-input::selection {
+    border: none;
+}

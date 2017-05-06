@@ -6,7 +6,8 @@ import {Comment} from "../../../../model/Comment";
 import {AuthenticationService} from "../../../../services/httpServices/authenticationServices/authentication.service";
 @Component({
     selector: '[comments]',
-    templateUrl: 'app/components/petition/list/comment/comment.list.component.html'
+    templateUrl: 'app/components/petition/list/comment/comment.list.component.html',
+    styleUrls: ['app/components/petition/list/comment/comment.list.component.css']
 })
 export class CommentListComponent implements OnInit {
 
