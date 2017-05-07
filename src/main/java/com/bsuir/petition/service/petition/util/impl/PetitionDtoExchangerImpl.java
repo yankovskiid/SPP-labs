@@ -53,6 +53,8 @@ public class PetitionDtoExchangerImpl implements PetitionDtoExchanger {
             setShortPetitionDTO(shortPetitionDTO, petition);
             temp.add(shortPetitionDTO);
         }
+        petitionListDTO.setPetitions(temp);
+
         return petitionListDTO;
     }
 
@@ -82,6 +84,7 @@ public class PetitionDtoExchangerImpl implements PetitionDtoExchanger {
             CategoryDTO categoryDTO = new CategoryDTO();
             categoryDTO.setName(category.getName());
             categoryDTO.setId(category.getId());
+            temp.add(categoryDTO);
         }
         shortPetitionDTO.setCategories(temp);
 
