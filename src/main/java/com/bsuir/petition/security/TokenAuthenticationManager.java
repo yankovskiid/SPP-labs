@@ -62,6 +62,7 @@ public class TokenAuthenticationManager implements AuthenticationManager {
         }
 
         Long date = claims.get(EXPIRATION_DATE, Long.class);
+        System.out.println(claims.getSubject());
 
         if (date == null) {
             throw new AuthenticationServiceException("Invalid token");
