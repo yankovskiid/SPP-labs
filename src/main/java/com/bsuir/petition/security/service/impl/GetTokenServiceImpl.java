@@ -7,6 +7,7 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -57,7 +58,8 @@ public class GetTokenServiceImpl implements GetTokenService {
             tokenData.put(USER_ID, user.getId());
             tokenData.put(EMAIL, user.getUsername());
 
-            boolean check = user.getAuthorities().contains("ADMIN");
+            boolean check = user.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"));
+
             tokenData.put(IS_ADMIN, check);
 
             Calendar calendar = Calendar.getInstance();
