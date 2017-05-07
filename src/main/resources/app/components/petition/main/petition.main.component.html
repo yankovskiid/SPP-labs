@@ -14,34 +14,38 @@
 <!--<h2>Comments</h2>-->
 <!--<div comments></div>-->
 
-<div class="petition">
-    <div class="petition-title-block">
-        <div class="button-petition-delete" (click)="delete()">X</div>
-        <div class="categories">
-            <div class="category-block" *ngFor="let category of petition.categories">
-                <p>{{category.name}}</p>
+<div class="container">
+    <div class="button-petition-delete" (click)="delete()">X</div>
+    <div class="petition">
+        <div class="petition-title-block">
+            <div class="categories">
+                <div class="category-block" *ngFor="let category of petition.categories">
+                    <p>{{category.name}}</p>
+                </div>
             </div>
+            <div class="petition-header">
+                <div class="petition-info">
+                    <p class="petition-author">{{petition.userInformationDTO.username}} {{petition.userInformationDTO.surname}}, {{petition.userInformationDTO.city}}, 09 September 2015</p>
+                    <!--<p class="petition-date">09 September 2015</p>-->
+                    <p class="petition-title">{{petition.name}}</p>
+                </div>
+            </div>
+            <div votes></div>
         </div>
-        <div class="petition-header">
-            <div class="petition-info">
-                <p class="petition-author">{{petition.userInformationDTO.username}} {{petition.userInformationDTO.surname}}, {{petition.userInformationDTO.city}}, 09 September 2015</p>
-                <!--<p class="petition-date">09 September 2015</p>-->
-                <p class="petition-title">{{petition.name}}</p>
-            </div>
-        </div>
-        <div votes></div>
-    </div>
-    <div class="petition-text-block">
-        <p class="description-title">Description</p>
-        <div class="description-block">
-            <div class="petition-text">
-                <p>{{petition.description}}</p>
-            </div>
-            <div class="petition-ttl">
-                <p class="number-days">{{petition.expiryDate}}</p>
-                <p>Days before the end of the collection of signatures</p>
+        <div class="petition-text-block">
+            <p class="description-title">Description</p>
+            <div class="description-block">
+                <div class="petition-text">
+                    <p>{{petition.description}}</p>
+                </div>
+                <div class="petition-ttl">
+                    <p class="number-days">{{petition.expiryDate}}</p>
+                    <p>Days before the end of the collection of signatures</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div comments class="comments-block"></div>
+<div class="container">
+    <div comments class="comments-block"></div>
+</div>

@@ -1,0 +1,150 @@
+.container {
+    width: 980px;
+    margin: 0 auto;
+    margin-top: 15px;
+    background-color: white;
+    color: black;
+    padding: 15px 0px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+h2 {
+    text-align: center;
+    color: black;
+}
+
+form {
+    width: 40%;
+    text-align: center;
+    margin: 0 auto;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .5rem .0rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: black;
+    background: transparent;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: none;
+    border-bottom: 1px solid rgba(75, 75, 75, 0.7);
+    border-radius: 0;
+    margin-bottom: 10px;
+}
+.form-control::-webkit-input-placeholder {color: black;}
+.form-control::-moz-placeholder          {color: black;}/* Firefox 19+ */
+.form-control:-moz-placeholder           {color: black;}/* Firefox 18- */
+.form-control:-ms-input-placeholder      {color: black;}
+.form-control:focus {
+    outline: none;
+}
+
+.button-save {
+    width: 70px;
+    height: 35px;
+    font-size: 14px;
+    line-height: 35px;
+    color: #fff;
+    background-color: #5cb85c;
+    border: 1px solid #4cae4c;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.button-save:hover {
+    background-color: #4cae4c;
+}
+.button-save:disabled {
+    background-color: #a3d0a3;
+    cursor: default;
+}
+
+div#error-block, div#success-block {
+    display: none;
+    width: 45%;
+    min-height: 30px;
+    background-color: #f9362f;
+    padding: 5px;
+    margin: 15px auto;
+    border-radius: 15px;
+    line-height: 30px;
+}
+div#success-block {
+    background-color: #2fbc6b;
+}
+div#error-block p, div#success-block p {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    margin: 0;
+}
+.description-input {
+    width: 100%;
+    height: 120px;
+    padding: 7px;
+    font-size: 14px;
+    resize: none;
+    border-radius: 7px;
+    border: 1px solid rgba(75, 75, 75, 0.7);
+}
+.categories > label {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+}
+.categories {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 5px;
+    flex-wrap: wrap;
+}
+.categories .category-label {
+    min-height: 25px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    line-height: 25px;
+    background-color: #35c0e3;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+.categories .category-label:hover {
+    background-color: #0597c2;
+}
+input[type="checkbox"] {
+    display: none;
+}
+input[type=checkbox]:checked ~ .category-label {
+    background-color: #2fbc6b;
+}
+
+@media only screen and (max-width: 720px) {
+    form {
+        width: 78%;
+    }
+    div#error-block {
+        width: 78%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    form {
+        width: 87%;
+    }
+    div#error-block {
+        width: 87%;
+    }
+}
+
+@media only screen and (max-width: 968px) {
+    div.container {
+        width: 100%;
+    }
+}

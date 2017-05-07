@@ -10,25 +10,27 @@
     <!--<p>Number necessary votes = {{petition.numberNecessaryVotes}}</p>-->
 <!--</div>-->
 
-<div routerLink="/petition/add" *ngIf="authService.isAuth()" class="button-petition-create">
-    <p>Create petition</p>
-</div>
-<div class="petition-list-block">
-    <div [routerLink]="['/petition', petition.id]" class="petition-block" *ngFor="let petition of petitions">
-        <div class="categories">
-            <div class="category-block" *ngFor="let category of petition.categories">
-                <p>{{category.name}}</p>
+<div class="container">
+    <div routerLink="/petition/add" *ngIf="authService.isAuth()" class="button-petition-create">
+        <p>Create petition</p>
+    </div>
+    <div class="petition-list-block">
+        <div [routerLink]="['/petition', petition.id]" class="petition-block" *ngFor="let petition of petitions">
+            <div class="categories">
+                <div class="category-block" *ngFor="let category of petition.categories">
+                    <p>{{category.name}}</p>
+                </div>
             </div>
-        </div>
-        <p class="petition-name">{{petition.name}}</p>
-        <div class="petition-progress">
-            <div class="progress-bg"></div>
-            <div class="progress-line-block">
-                <div class="progress-line" id="vote-progress" [ngStyle]="{ 'width': petition.numberVotes / petition.numberNecessaryVotes * 100 + '%' }"></div>
-            </div>
-            <div class="progress-value">
-                <p class="all-signatures">{{petition.numberVotes}}</p>
-                <p class="need-signatures">{{petition.numberNecessaryVotes}}</p>
+            <p class="petition-name">{{petition.name}}</p>
+            <div class="petition-progress">
+                <div class="progress-bg"></div>
+                <div class="progress-line-block">
+                    <div class="progress-line" id="vote-progress" [ngStyle]="{ 'width': petition.numberVotes / petition.numberNecessaryVotes * 100 + '%' }"></div>
+                </div>
+                <div class="progress-value">
+                    <p class="all-signatures">{{petition.numberVotes}}</p>
+                    <p class="need-signatures">{{petition.numberNecessaryVotes}}</p>
+                </div>
             </div>
         </div>
     </div>
