@@ -1,13 +1,10 @@
-<h1>Roles edit</h1>
-<form #roleForm="ngForm">
-    <input type="text"
-           placeholder="Name"
-           name="name"
-           required
-           [(ngModel)]="role.name"
-           #name="ngModel">
-    <br>
-
-    <button (click)="save(true)" [disabled]="!roleForm.valid">Save</button>
-    <button (click)="save(false)">Cancel</button>
+<form #roleForm="ngForm" class="container card">
+    <div class="card-content">
+        <div class="card-title">Roles edit</div>
+        <input type="text" placeholder="Name" name="name" [(ngModel)]="role.name" #name="ngModel" required>
+    </div>
+    <div class="card-action">
+        <button (click)="save(true)" [disabled]="!roleForm.valid">Save</button>
+        <button (click)="save(false)">Cancel</button>
+    </div>
 </form>

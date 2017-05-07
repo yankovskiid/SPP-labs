@@ -1,13 +1,15 @@
-<h1>Categories edit</h1>
-<form #categoryForm="ngForm">
-    <input type="text"
-        placeholder="Name"
-        name="name"
-        required
-        [(ngModel)]="category.name"
-        #name="ngModel">
-    <br>
-
-    <button (click)="save(true)" [disabled]="!categoryForm.valid">Save</button>
-    <button (click)="save(false)">Cancel</button>
+<form #categoryForm="ngForm" class="container card">
+    <div class="card-content">
+        <span class="card-title">Categories edit</span>
+        <input type="text"
+               placeholder="Name"
+               name="name"
+               required
+               [(ngModel)]="category.name"
+               #name="ngModel">
+    </div>
+    <div class="card-action">
+        <button (click)="save(true)" [disabled]="!categoryForm.valid">Save</button>
+        <button (click)="save(false)">Cancel</button>
+    </div>
 </form>

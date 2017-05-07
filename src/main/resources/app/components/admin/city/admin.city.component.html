@@ -1,16 +1,16 @@
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Country</th>
+<table class="container table">
+    <tr class="table-title">
+        <th colspan="1">Name</th>
+        <th colspan="1">Country</th>
     </tr>
     <tr *ngFor="let city of cities">
         <td>{{city.name}}</td>
         <td>{{city.country}}</td>
-        <td>
-            <span class="pointer-cursor" (click)="editCity(city)">Edit</span>
-            <span class="pointer-cursor" (click)="deleteCity(city)">Delete</span>
+        <td class="table-align-right">
+            <span class="material-icons t-link" (click)="editCity(city)">mode_edit</span>
+            <span class="material-icons t-link" (click)="deleteCity(city)">delete</span>
         </td>
     </tr>
 </table>
-<span class="pointer-cursor" (click)="addCity()">Add</span>
+<span class="button button-add" (click)="addCity()">Add</span>
 <div *ngIf="editingCity !== null" city-edit [city]="editingCity" (endEdit)="saveCity($event)"></div>

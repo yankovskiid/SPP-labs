@@ -1,15 +1,18 @@
-<h1>Users edit</h1>
-<form #userForm="ngForm">
-    <label>
-        <input type="checkbox" name="blocked" [(ngModel)]="user.blocked">
-        Is Blocked
-    </label>
-    <br>
-    <label>
-        <input type="checkbox" name="roles" [(ngModel)]="user.isAdmin">
-        Is Admin
-    </label>
-
-    <button (click)="save(true)" [disabled]="!userForm.valid">Save</button>
-    <button (click)="save(false)">Cancel</button>
+<form #userForm="ngForm" class="container card">
+    <div class="card-content">
+        <span class="card-title">Users edit</span>
+        <label>
+            <input type="checkbox" name="blocked" [(ngModel)]="user.blocked">
+            Is Blocked
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="roles" [(ngModel)]="user.isAdmin">
+            Is Admin
+        </label>
+    </div>
+    <div class="card-action">
+        <button (click)="save(true)" [disabled]="!userForm.valid">Save</button>
+        <button (click)="save(false)">Cancel</button>
+    </div>
 </form>

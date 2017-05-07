@@ -1,6 +1,48 @@
-<h1>Petition</h1>
-<a routerLink="/petitions">Petitions</a>
-<a routerLink="/">Main page</a>
-<a routerLink="/admin" *ngIf="authService.isAuth()">Admin</a>
+<header>
+    <div class="fill-container header">
+        <div class="container">
+            <ul class="inline no-margin-padding">
+                <li class="logo">
+                    Petitions
+                </li>
+                <li class="info">
+                    Платформа для Ваших кампаний
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="container">
+            <div class="nav burger">
+                <div class="burger-title float-left">
+                    Меню
+                </div>
+                <div class="burger-btn float-right" target="#navbar-menu">
+                    <span class="fa fa-bars"></span>
+                </div>
+                <ul class="inline no-margin-padding" id="navbar-menu">
+                    <li routerLink="/petitions">Petitions</li>
+                    <li routerLink="/">Main page</li>
+                    <li routerLink="/admin" *ngIf="authService.isAuth()">Admin</li>
+
+                    <li class="float-right" (click)="http.deleteToken()" *ngIf="authService.isAuth()"><span class="material-icons material-flex">exit_to_app</span> Logout</li>
+                    <li class="float-right" routerLink="/user/information" *ngIf="authService.isAuth()"><span class="material-icons material-flex">account_circle</span> User info</li>
+                    <li class="float-right" routerLink="/login" *ngIf="!authService.isAuth()">Login</li>
+                    <li class="float-right" routerLink="/registration" *ngIf="!authService.isAuth()">Registration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 <router-outlet>
 </router-outlet>
+<footer class="footer">
+    <div class="container">
+        <div class="float-left">
+            Yurgel, Chuyko, Simonchik (c) 2017
+        </div>
+        <div class="float-right">
+            Kek, Lol, Ogurek
+        </div>
+    </div>
+</footer>
