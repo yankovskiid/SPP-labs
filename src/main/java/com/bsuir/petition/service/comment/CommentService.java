@@ -12,6 +12,7 @@ import com.bsuir.petition.service.petition.exception.PetitionNotFoundException;
 public interface CommentService {
 //    CommentListDTO getComments() throws ServerException;
     CommentListDTO getComments(long petitionId) throws ServerException, PetitionNotFoundException;
+    CommentListDTO getAllComments();
     void deleteComment(long id) throws CommentNotFoundException, ServerException;
     void addComment(ShortCommentDTO shortCommentDTO, long id) throws ErrorInputException, ServerException, SuchCommentExistsException, PetitionNotFoundException;
 }

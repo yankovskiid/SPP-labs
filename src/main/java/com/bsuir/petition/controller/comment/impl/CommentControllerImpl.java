@@ -10,6 +10,7 @@ import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.petition.exception.PetitionNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,5 +41,18 @@ public class CommentControllerImpl implements CommentController {
     @Override
     public void deleteComment(@PathVariable long id) throws ServerException, CommentNotFoundException {
         commentService.deleteComment(id);
+    }
+
+    @Override
+    public CommentListDTO getAllComments() {
+        CommentListDTO commentListDTO;
+        commentListDTO = commentService.getAllComments();
+        return commentListDTO;
+    }
+
+    @Override
+    public String download(Model model) {
+        model.addAttribute("comments", commentService.getAllComments());
+        return "";
     }
 }

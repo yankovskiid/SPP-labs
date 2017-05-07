@@ -11,4 +11,5 @@ public interface CommentDao {
     void deleteComment(Comment comment);
 //    List<Comment> getComments();
     List<Comment> getComments(long petitionId);
+    List<Comment> getAllComments();
 }

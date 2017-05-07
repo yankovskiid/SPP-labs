@@ -9,6 +9,7 @@ import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.petition.exception.PetitionNotFoundException;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,4 +27,12 @@ public interface CommentController {
     @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.DELETE)
     void deleteComment(long id) throws ServerException, CommentNotFoundException;
+
+    @PreAuthorize("permitAll()")
+    @RequestMapping(value = "/comments/all", method = RequestMethod.GET)
+    CommentListDTO getAllComments();
+
+    @PreAuthorize("permitAll()")
+    @RequestMapping(value = "/comments/download", method = RequestMethod.GET)
+    String download(Model model);
 }
