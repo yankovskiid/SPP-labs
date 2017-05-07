@@ -1,6 +1,10 @@
-<a routerLink="/admin/roles">Roles</a>
-<a routerLink="/admin/countries">Countries</a>
-<a routerLink="/admin/cities">Cities</a>
-<a routerLink="/admin/users">Users</a>
-<a routerLink="/admin/categories">Categories</a>
-<router-outlet></router-outlet>
+<div class="container">
+    <ul class="inline list-buttons no-margin">
+        <li routerLink="/admin/roles" class="button button-success">Roles</li>
+        <li routerLink="/admin/countries" class="button button-success">Countries</li>
+        <li routerLink="/admin/cities" class="button button-success">Cities</li>
+        <li routerLink="/admin/users" class="button button-success">Users</li>
+        <li routerLink="/admin/categories" class="button button-success">Categories</li>
+    </ul>
+    <router-outlet></router-outlet>
+</div>

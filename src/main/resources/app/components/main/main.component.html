@@ -1,10 +1,36 @@
-<h2>Main Page</h2>
 <!--userInformationDTO [routerLink]="['/user', 1]">User with id = 1</a>-->
 <!--<a routerLink="/userInformationDTO">User</a>
 <a routerLink="/userInformationDTO/login">Login</a>
 <a routerLink="/userInformationDTO/registration">Registration</a>-->
 
-<a routerLink="/user/information" *ngIf="authService.isAuth()">User info</a>
-<a (click)="http.deleteToken()" *ngIf="authService.isAuth()">Logout</a>
-<a routerLink="/login" *ngIf="!authService.isAuth()">Login</a>
-<a routerLink="/registration" *ngIf="!authService.isAuth()">Registration</a>
+<!--<a routerLink="/user/information" *ngIf="authService.isAuth()">User info</a>-->
+<!--<a (click)="http.deleteToken()" *ngIf="authService.isAuth()">Logout</a>-->
+<!--<a routerLink="/login" *ngIf="!authService.isAuth()">Login</a>-->
+<!--<a routerLink="/registration" *ngIf="!authService.isAuth()">Registration</a>-->
+
+<div class="main-photo fill-container">
+    <div class="main-photo-image"></div>
+    <div class="main-photo-info container">
+        <h4 class="title no-margin-padding">What do you want change?</h4>
+        <h5 class="subtitle no-margin-padding">Create a petition and describe what do you want change in world</h5>
+        <button class="create-petition-btn">Create a petition</button>
+    </div>
+</div>
+<div class="petitions container">
+    <p class="block-title">Description</p>
+    <!--<div class="petition-block xl-4 md-3 sm-2 xs-1">-->
+        <!--<div class="petition-image">-->
+            <!--<p class="petition-desc">Описание Описание Описание Описание Описание Описание Описание</p>-->
+            <!--<img src="/images/peition_1.JPG" alt="">-->
+        <!--</div>-->
+        <!--<div class="petition-info">-->
+            <!--<div class="petition-author">-->
+                <!--<div class="petition-author-image">-->
+                    <!--<img src="/images/peition_1.JPG" alt="">-->
+                <!--</div>-->
+                <!--<p class="petition-author-name">Vladislav</p>-->
+                <!--<p class="petition-subscribes">2,600 / 3,000 подписей</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
