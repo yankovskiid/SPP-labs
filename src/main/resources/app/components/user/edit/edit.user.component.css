@@ -1,0 +1,125 @@
+h2 {
+    text-align: center;
+    color: white;
+}
+
+form {
+    width: 40%;
+    text-align: center;
+    margin: 0 auto;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .5rem .0rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: white;
+    background: transparent;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,.7);
+    border-radius: 0;
+    margin-bottom: 10px;
+}
+.form-control::-webkit-input-placeholder {color: white;}
+.form-control::-moz-placeholder          {color: white;}/* Firefox 19+ */
+.form-control:-moz-placeholder           {color: white;}/* Firefox 18- */
+.form-control:-ms-input-placeholder      {color: white;}
+.form-control:focus {
+    outline: none;
+}
+
+.button-save {
+    width: 70px;
+    height: 35px;
+    font-size: 14px;
+    line-height: 35px;
+    color: #fff;
+    background-color: #5cb85c;
+    border: 1px solid #4cae4c;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.button-save:hover {
+    background-color: #4cae4c;
+}
+.button-save:disabled {
+    background-color: #a3d0a3;
+    cursor: default;
+}
+.button-cancel {
+    width: 70px;
+    height: 35px;
+    font-size: 14px;
+    line-height: 35px;
+    color: #fff;
+    background-color: #d9534f;
+    border: 1px solid #d43f3a;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.button-cancel:hover {
+    background-color: #d43f3a;
+}
+
+div#error-block {
+    display: none;
+    width: 45%;
+    min-height: 30px;
+    background-color: #f9362f;
+    padding: 5px;
+    margin: 15px auto;
+    border-radius: 15px;
+    line-height: 30px;
+}
+div#error-block p {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    margin: 0;
+}
+/*div#error-block[hidden] {
+    display: none;
+}*/
+
+@media only screen and (max-width: 980px) {
+    div.content {
+        width: 720px;
+    }
+    form.login-form,
+    form.register-form {
+        width: 55%;
+    }
+    div#error-block {
+        width: 55%;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    div.content {
+        width: 480px;
+    }
+    form.login-form,
+    form.register-form {
+        width: 78%;
+    }
+    div#error-block {
+        width: 78%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    div.content {
+        width: 100%;
+    }
+    form.login-form,
+    form.register-form {
+        width: 87%;
+    }
+    div#error-block {
+        width: 87%;
+    }
+}

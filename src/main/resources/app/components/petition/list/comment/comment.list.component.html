@@ -1,6 +1,22 @@
-<span (click)="addComment()" *ngIf="authService.isAuth()">Add</span>
-<div *ngIf="editingComment !== null" comment-edit [comment]="editingComment" (endEdit)="saveComment($event)"></div>
-<div *ngFor="let comment of comments">
-    <p><b>User: </b>{{comment.user.username}}</p>
-    <p><b>Text: </b>{{comment.text}}</p>
+<!--<span (click)="addComment()" *ngIf="authService.isAuth()">Add</span>-->
+<!--<div *ngIf="editingComment !== null" comment-edit [comment]="editingComment" (endEdit)="saveComment($event)"></div>-->
+<!--<div *ngFor="let comment of comments">-->
+    <!--<p><b>User: </b>{{comment.userNick}}</p>-->
+    <!--<p><b>Text: </b>{{comment.text}}</p>-->
+<!--</div>-->
+
+<p class="comments-title">Comments</p>
+<div (click)="addComment()" *ngIf="authService.isAuth()" class="sign-petition-button-block">
+    <div class="sign-petition-button">
+        <p>Add comment</p>
+    </div>
+</div>
+<div *ngIf="editingComment !== null" comment-edit [comment]="editingComment" (endEdit)="saveComment($event)" class="form-block"></div>
+<div class="comments">
+    <div *ngFor="let comment of comments" class="comment-block">
+        <div class="comment-title">
+            <p class="comment-author-name">{{comment.userNick}}</p>
+        </div>
+        <p class="comment-text">{{comment.text}}</p>
+    </div>
 </div>

@@ -1,0 +1,98 @@
+div.sign-petition-button-block {
+    width: 60%;
+    margin: 0 auto;
+}
+div.sign-petition-button-block div.sign-petition-button {
+    height: 45px;
+    background-color: #2ecc71;
+    border-radius: 30px;
+    cursor: pointer;
+}
+div.sign-petition-button-block div.sign-petition-button:hover {
+    background-color: #2fbc6b;
+}
+div.sign-petition-button-block div.sign-petition-button p {
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    line-height: 45px;
+    text-align: center;
+    margin: 0;
+}
+
+div.petition-progress {
+    width: 95%;
+    margin: 0 auto;
+    height: 40px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+div.petition-progress div.progress-bg {
+    width: 100%;
+    height: 100%;
+    background-color: #e9e9e9;
+    left: 0;
+    bottom: 0;
+}
+div.petition-progress div.progress-line-block {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+div.petition-progress div.progress-line-block div.progress-line {
+    background-color: #2ecc71;
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 0%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+div.petition-progress div.progress-value{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+div.petition-progress div.progress-value p {
+    line-height: 0.7;
+}
+div.petition-progress div.progress-value p.all-signatures {
+    float: left;
+    margin: 0;
+    margin-left: 15px;
+    line-height: 100%;
+    padding-top: 12px;
+}
+div.petition-progress div.progress-value p.need-signatures {
+    float: right;
+    margin: 0;
+    margin-right: 15px;
+    line-height: 100%;
+    padding-top: 12px;
+}
+
+@media only screen and (max-width: 350px){
+    div.petition-progress div.progress-value p {
+        line-height: 1.6;
+        font-size: 12px;
+    }
+    div.petition-progress div.progress-value p.all-signatures {
+        line-height: 100%;
+        font-size: 16px;
+    }
+    div.petition-progress div.progress-value p.need-signatures {
+        line-height: 100%;
+        font-size: 16px;
+    }
+}

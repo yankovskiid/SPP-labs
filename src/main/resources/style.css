@@ -22,6 +22,7 @@
     --nav-active: #218142;
 }
 body {
+    background: #f6f6f6;
     /*background: linear-gradient(to right, #232526, #414345);*/
     margin: 0;
     font-family: Lato-Medium, sans-serif;

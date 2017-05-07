@@ -17,7 +17,7 @@ export class ShortPetition {
         var res = new ShortPetition();
         res.name = input.name;
         res.id = input.id;
-        res.description = input.id;
+        res.description = input.description;
         res.status = input.status;
         res.numberVotes = input.numberVotes;
         res.numberNecessaryVotes = input.numberNecessaryVotes;

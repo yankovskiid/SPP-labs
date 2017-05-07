@@ -21,6 +21,7 @@ export class PetitionMainComponent implements OnInit {
 				.getData("/petition/" + petitionId)
 				.subscribe(data => {
 					this.petition = Petition.deserialize(data);
+					this.petition.expiryDate = new Date(this.petition.expiryDate - new Date().getMilliseconds()).getHours();
 				});
 		});
 	}

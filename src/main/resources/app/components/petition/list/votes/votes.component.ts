@@ -4,15 +4,18 @@ import {HttpService} from "../../../../services/httpServices/http.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Vote} from "../../../../model/Vote";
 import {AuthenticationService} from "../../../../services/httpServices/authenticationServices/authentication.service";
+import {Petition} from "../../../../model/Petition";
 @Component({
     selector: '[votes]',
-    templateUrl: 'app/components/petition/list/votes/votes.component.html'
+    templateUrl: 'app/components/petition/list/votes/votes.component.html',
+    styleUrls: ['app/components/petition/list/votes/votes.component.css']
 })
 export class VotesComponent implements OnInit {
 
     private votes: ShortVote[] = [];
     private votesCount: number = 0;
     private editingVote: ShortVote = null;
+    private numberNecessaryVotes: number;
 
     constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private authService: AuthenticationService) {}
 
@@ -37,6 +40,9 @@ export class VotesComponent implements OnInit {
                     .subscribe(() => {
                         this.getVotesCount();
                         this.editingVote = null;
+                        var el = document.getElementById("vote-progress");
+                        var progress = (this.votesCount + 1) / this.numberNecessaryVotes;
+                        el.style.width = isNaN(progress) || !isFinite(progress) ? "100%" : (progress * 100) + "%";
                     })
             });
         } else {
@@ -51,6 +57,17 @@ export class VotesComponent implements OnInit {
                 .getData("/petition/" + petitionId + "/votesCount")
                 .subscribe(data => {
                     this.votesCount = data;
+                    this.http
+                        .getData("/petition/" + petitionId)
+                        .subscribe(data => {
+                            var petition = Petition.deserialize(data);
+                            this.numberNecessaryVotes = petition.numberNecessaryVotes;
+                            var el = document.getElementById("vote-progress");
+                            var progress = this.votesCount / this.numberNecessaryVotes;
+                            el.style.width = isNaN(progress) ? "100%" : (progress * 100) + "%";
+                            console.log(this.votesCount);
+                            console.log(this.numberNecessaryVotes);
+                        });
                 });
         })
     }

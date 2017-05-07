@@ -1,13 +1,31 @@
-<h1>Add new vote</h1>
-<form #voteForm="ngForm">
-    <input type="text"
-           placeholder="Reason"
-           name="reason"
-           required
-           [(ngModel)]="vote.reason"
-           #name="ngModel">
-    <br>
+<!--<h1>Add new vote</h1>-->
+<!--<form #voteForm="ngForm">-->
+    <!--<input type="text"-->
+           <!--placeholder="Reason"-->
+           <!--name="reason"-->
+           <!--required-->
+           <!--[(ngModel)]="vote.reason"-->
+           <!--#name="ngModel">-->
+    <!--<br>-->
 
-    <button (click)="save(true)" [disabled]="!voteForm.valid">Save</button>
-    <button (click)="save(false)">Cancel</button>
-</form>
+    <!--<button (click)="save(true)" [disabled]="!voteForm.valid">Save</button>-->
+    <!--<button (click)="save(false)">Cancel</button>-->
+<!--</form>-->
+
+<div id="popup-bg" (click)="save(false)"></div>
+<div class="popup-block">
+    <h3>Sign the petition</h3>
+    <form #voteForm="ngForm">
+        <textarea type="text"
+               placeholder="Reason"
+               name="reason"
+               required
+               [(ngModel)]="vote.reason"
+               #name="ngModel"
+               class="resolve-input"></textarea>
+        <br>
+
+        <button (click)="save(true)" [disabled]="!voteForm.valid" class="button-save">Save</button>
+        <button (click)="save(false)" class="button-cancel">Cancel</button>
+    </form>
+</div>

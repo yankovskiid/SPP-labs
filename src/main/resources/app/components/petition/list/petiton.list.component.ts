@@ -8,7 +8,7 @@ import {AuthenticationService} from "../../../services/httpServices/authenticati
     styleUrls: [ 'app/components/petition/list/petition.list.component.css' ]
 })
 export class PetitionListComponent implements OnInit {
-    
+
     private petitions: ShortPetition[] = [];
 
     constructor(private http: HttpService,

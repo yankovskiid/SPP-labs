@@ -23,7 +23,7 @@ export class Petition {
         res.userInformationDTO = UserInformation.deserialize(input.userInformationDTO);
 
         res.name = input.name;
-        res.description = input.id;
+        res.description = input.description;
         res.status = input.status;
         res.numberVotes = input.numberVotes;
         res.numberNecessaryVotes = input.numberNecessaryVotes;

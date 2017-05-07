@@ -1,3 +1,21 @@
-<div>Votes: {{votesCount}}</div>
-<span (click)="addVote()" *ngIf="authService.isAuth()">Vote</span>
+<!--<div>Votes: {{votesCount}}</div>-->
+<!--<span (click)="addVote()" *ngIf="authService.isAuth()">Vote</span>-->
+<!--<div *ngIf="editingVote !== null" vote-edit [vote]="editingVote" (endEdit)="saveVote($event)"></div>-->
+
 <div *ngIf="editingVote !== null" vote-edit [vote]="editingVote" (endEdit)="saveVote($event)"></div>
+<div class="petition-progress">
+    <div class="progress-bg"></div>
+    <div class="progress-line-block">
+        <div class="progress-line" id="vote-progress"></div>
+    </div>
+    <div class="progress-value">
+        <p class="all-signatures">{{votesCount}}</p>
+        <p>VOTES COUNT</p>
+        <p class="need-signatures">{{numberNecessaryVotes}}</p>
+    </div>
+</div>
+<div (click)="addVote()" *ngIf="authService.isAuth()" class="sign-petition-button-block">
+    <div class="sign-petition-button">
+        <p>Sign the petition</p>
+    </div>
+</div>
