@@ -9,6 +9,7 @@ import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.dao.CityDao;
 import com.bsuir.petition.dao.RoleDao;
+import com.bsuir.petition.service.city.exception.CityNotFoundException;
 import com.bsuir.petition.service.user.util.UserExchanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -58,10 +59,14 @@ public class UserExchangerImpl implements UserExchanger {
     }
 
     @Override
-    public void setUserInformation(UserInformation userInformation, UserInformationDTO userInformationDTO) {
+    public void setUserInformation(UserInformation userInformation, UserInformationDTO userInformationDTO) throws CityNotFoundException {
         userInformation.setName(userInformationDTO.getUsername());
         userInformation.setSurname(userInformationDTO.getSurname());
-        City city = cityDao.getCityByName(userInformationDTO.getCity());
+        City city;
+        city = cityDao.getCityByName(userInformationDTO.getCity());
+        if(city == null) {
+            throw new CityNotFoundException("City not found!");
+        }
         userInformation.setCity(city);
     }
 }

@@ -7,6 +7,7 @@ import com.bsuir.petition.controller.user.UserController;
 import com.bsuir.petition.security.TokenAuthentication;
 import com.bsuir.petition.security.service.GetTokenService;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
+import com.bsuir.petition.service.city.exception.CityNotFoundException;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.UserService;
@@ -82,14 +83,14 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public void updateUserInformation(@RequestBody UserInformationDTO userInformationDTO)
-            throws UserInformationNotFoundException, ErrorInputException, ServerException {
+            throws UserInformationNotFoundException, ErrorInputException, ServerException, CityNotFoundException {
         TokenAuthentication tokenAuthentication;
         tokenAuthentication = (TokenAuthentication)SecurityContextHolder.getContext().getAuthentication();
         userService.updateUserInformation((Long)tokenAuthentication.getDetails(), userInformationDTO);
     }
 
     @Override
-    public void addUserInformation(UserInformationDTO userInformationDTO) throws UserInformationNotFoundException, ErrorInputException, ServerException {
+    public void addUserInformation(UserInformationDTO userInformationDTO) throws UserInformationNotFoundException, ErrorInputException, ServerException, CityNotFoundException {
         TokenAuthentication tokenAuthentication;
         tokenAuthentication = (TokenAuthentication)SecurityContextHolder.getContext().getAuthentication();
         userService.updateUserInformation((Long)tokenAuthentication.getDetails(), userInformationDTO);

@@ -4,6 +4,7 @@ package com.bsuir.petition.controller.user;
 import com.bsuir.petition.bean.dto.user.*;
 import com.bsuir.petition.bean.dto.message.TokenDTO;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
+import com.bsuir.petition.service.city.exception.CityNotFoundException;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.exception.*;
@@ -35,12 +36,12 @@ public interface UserController {
     @PreAuthorize("hasAnyAuthority('USER')")
     @RequestMapping(value = "/user/information", method = RequestMethod.PUT)
     void updateUserInformation(UserInformationDTO userInformationDTO)
-            throws UserInformationNotFoundException, ErrorInputException, ServerException;
+            throws UserInformationNotFoundException, ErrorInputException, ServerException, CityNotFoundException;
 
     @PreAuthorize("hasAnyAuthority('USER')")
     @RequestMapping(value = "/user/information/add", method = RequestMethod.POST)
     void addUserInformation(UserInformationDTO userInformationDTO)
-            throws UserInformationNotFoundException, ErrorInputException, ServerException;
+            throws UserInformationNotFoundException, ErrorInputException, ServerException, CityNotFoundException;
 
     @PreAuthorize("hasAnyAuthority('USER')")
     @RequestMapping(value = "/user/information/{id}", method = RequestMethod.GET)

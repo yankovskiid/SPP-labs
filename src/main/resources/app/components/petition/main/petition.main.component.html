@@ -15,10 +15,10 @@
 <!--<div comments></div>-->
 
 <div class="container">
-    <div class="button-petition-delete" (click)="delete()">X</div>
     <div class="petition">
         <div class="petition-title-block">
             <div class="categories">
+                <div class="button-petition-delete" (click)="delete()">X</div>
                 <div class="category-block" *ngFor="let category of petition.categories">
                     <p>{{category.name}}</p>
                 </div>
