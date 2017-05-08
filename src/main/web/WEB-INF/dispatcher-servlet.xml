@@ -32,7 +32,7 @@
 
     <bean id="viewPdfResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
         <property name="order" value="1"/>
-        <property name="basename" value="views"/>
+        <property name="basename" value=""/>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>

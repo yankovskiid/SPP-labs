@@ -12,6 +12,7 @@ import com.bsuir.petition.service.petition.exception.PetitionNotFoundException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -32,5 +33,5 @@ public interface CommentController {
 
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/comments/all", method = RequestMethod.GET)
-    List<Comment> getAllComments();
+    ModelAndView downloadComments();
 }

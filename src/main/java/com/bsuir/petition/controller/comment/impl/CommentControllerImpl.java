@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -44,6 +45,11 @@ public class CommentControllerImpl implements CommentController {
         List<Comment> comments;
         comments = commentService.getAllComments();
         return comments;
+    }
+
+    @Override
+    public ModelAndView downloadComments() {
+        return new ModelAndView("pdfView");
     }
 
     @Override
