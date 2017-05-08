@@ -49,7 +49,8 @@ public class CommentControllerImpl implements CommentController {
 
     @Override
     public ModelAndView downloadComments() {
-        return new ModelAndView("pdfView");
+        List<Comment> comments = getAllComments();
+        return new ModelAndView("pdfBuilder", "comments", comments);
     }
 
     @Override

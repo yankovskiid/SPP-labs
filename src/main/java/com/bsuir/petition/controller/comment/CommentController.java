@@ -32,6 +32,6 @@ public interface CommentController {
     void deleteComment(long id) throws ServerException, CommentNotFoundException;
 
     @PreAuthorize("permitAll()")
-    @RequestMapping(value = "/comments/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/comments/document", method = RequestMethod.GET)
     ModelAndView downloadComments();
 }
