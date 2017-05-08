@@ -28,7 +28,6 @@ html {
     box-sizing: border-box;
 }
 body {
-    background: #f6f6f6;
     font-family: Lato-Medium, sans-serif;
     position: relative;
     padding-bottom: 6rem;
@@ -36,7 +35,6 @@ body {
 }
 body, html {
     margin: 0;
-    padding: 0;
     background: #f6f6f6;
 }
 .fill-container {
