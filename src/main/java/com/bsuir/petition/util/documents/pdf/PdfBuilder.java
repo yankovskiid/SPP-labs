@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,12 +20,10 @@ public class PdfBuilder extends AbstractPdfView {
                                     HttpServletRequest request,
                                     HttpServletResponse response) throws Exception {
 
-        List<Comment> comments = (List<Comment>) model.get("comments");
 
-        for (Comment comment : comments) {
-            doc.add(new Paragraph(comment.getText()));
-            doc.add(new Paragraph(comment.getUser().getNick()));
-        }
-
+        HashMap<String, Object> modelDoc = (HashMap<String, Object>) model.get("model");
+        com.bsuir.petition.util.documents.Document document = (com.bsuir.petition.util.documents.Document) modelDoc.get("object");
+        document.setObjectList((List<?>) modelDoc.get("model"));
+        document.buildPdf(doc);
     }
 }
