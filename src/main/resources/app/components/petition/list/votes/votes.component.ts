@@ -17,11 +17,21 @@ export class VotesComponent implements OnInit {
     private editingVote: ShortVote = null;
     private numberNecessaryVotes: number;
     private isVoted: boolean;
+    private petitionExpiry: number = 0;
 
     constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private authService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.getVotesCount();
+        this.activatedRoute.params.subscribe((params: Params) => {
+            let petitionId = params['id'];
+            this.http
+                .getData("/petition/" + petitionId)
+                .subscribe(data => {
+                    var petition = Petition.deserialize(data);
+                    this.petitionExpiry = Math.round((new Date(petition.expiryDate).getTime() - new Date().getTime()) / 1000 / 3600 / 24);
+                });
+        });
     }
 
     addVote() {

@@ -39,7 +39,7 @@
                     <p>{{petition.description}}</p>
                 </div>
                 <div class="petition-ttl">
-                    <p class="number-days">{{petition.expiryDate}}</p>
+                    <p class="number-days">{{(petition.expiryDate > 0) ? petition.expiryDate : 0}}</p>
                     <p>Days before the end of the collection of signatures</p>
                 </div>
             </div>
