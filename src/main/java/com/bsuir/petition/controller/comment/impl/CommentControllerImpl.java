@@ -2,6 +2,7 @@ package com.bsuir.petition.controller.comment.impl;
 
 import com.bsuir.petition.bean.dto.comment.CommentListDTO;
 import com.bsuir.petition.bean.dto.comment.ShortCommentDTO;
+import com.bsuir.petition.bean.entity.Comment;
 import com.bsuir.petition.controller.comment.CommentController;
 import com.bsuir.petition.service.comment.CommentService;
 import com.bsuir.petition.service.comment.exception.CommentNotFoundException;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class CommentControllerImpl implements CommentController {
@@ -35,6 +38,12 @@ public class CommentControllerImpl implements CommentController {
         CommentListDTO commentListDTO;
         commentListDTO = commentService.getComments(id);
         return commentListDTO;
+    }
+
+    public List<Comment> getAllComments() {
+        List<Comment> comments;
+        comments = commentService.getAllComments();
+        return comments;
     }
 
     @Override

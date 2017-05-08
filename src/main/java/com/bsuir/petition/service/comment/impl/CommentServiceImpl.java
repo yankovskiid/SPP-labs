@@ -79,6 +79,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public List<Comment> getAllComments() {
+        List<Comment> comments;
+        comments = commentDao.getAllComments();
+        return comments;
+    }
+
+    @Override
     public void deleteComment(long id) throws CommentNotFoundException, ServerException {
         try {
             Comment comment;
