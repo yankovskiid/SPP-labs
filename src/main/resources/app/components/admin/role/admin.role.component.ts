@@ -11,6 +11,8 @@ export class AdminRoleComponent implements OnInit {
 
 	private editingRole: ShortRole = null;
 	private roles: ShortRole[] = [];
+	private errorHidden: boolean = true;
+	private errorMessage: string;
 
 	ngOnInit(): void {
 		this.getRoles();
@@ -49,10 +51,24 @@ export class AdminRoleComponent implements OnInit {
 	}
 
 	saveRole(temp : boolean) {
+		this.errorHidden = true;
+		var el = document.getElementById('error-block');
 		if (temp) {
 			if (this.editingRole.id) {
 				this.http
 					.sendDataNoResponse("/role/" + this.editingRole.id, Role.deserialize(this.editingRole))
+					.catch((response) => {
+						this.errorHidden = false;
+						this.errorMessage = response.json().message;
+						setTimeout(function(){
+							el.style.display = "block";
+						}, 50);
+						setTimeout(function () {
+							el.style.display = "none";
+						}, 3000);
+
+						return null;
+					})
 					.subscribe(() => {
 						this.getRoles();
 						this.editingRole = null;
@@ -60,6 +76,19 @@ export class AdminRoleComponent implements OnInit {
 			} else {
 				this.http
 					.sendDataNoResponse("/role", Role.deserialize(this.editingRole))
+					.catch((response) => {
+						console.log(response);
+						this.errorHidden = false;
+						this.errorMessage = response.json().message;
+						setTimeout(function(){
+							el.style.display = "block";
+						}, 50);
+						setTimeout(function () {
+							el.style.display = "none";
+						}, 3000);
+
+						return null;
+					})
 					.subscribe(() => {
 						this.getRoles();
 						this.editingRole = null;

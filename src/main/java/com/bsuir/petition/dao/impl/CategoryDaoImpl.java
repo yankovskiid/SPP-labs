@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
+@Transactional
 public class CategoryDaoImpl implements CategoryDao {
 
     private SessionFactory sessionFactory;

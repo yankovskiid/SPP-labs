@@ -15,11 +15,11 @@ public interface CityController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/city", method = RequestMethod.POST)
-    void addCity(CityDTO cityDTO) throws ServerException, ErrorInputException, SuchCityExistsException;
+    void addCity(CityDTO cityDTO) throws ServerException, ErrorInputException, SuchCityExistsException, CountryNotFoundException;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/city/{id}", method = RequestMethod.POST)
-    void updateCity(CityDTO cityDTO, long id) throws ErrorInputException, ServerException, CityNotFoundException;
+    void updateCity(CityDTO cityDTO, long id) throws ErrorInputException, ServerException, CityNotFoundException, CountryNotFoundException;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/city/{id}", method = RequestMethod.DELETE)

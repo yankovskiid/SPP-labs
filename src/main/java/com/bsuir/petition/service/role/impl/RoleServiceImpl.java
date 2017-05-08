@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class RoleServiceImpl implements RoleService {
     private RoleDataValidator roleDataValidator;
 
@@ -51,6 +50,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public RoleListDTO getRoles() throws ServerException {
         List<Role> roles;
         roles = roleDao.getRoles();
@@ -95,7 +95,7 @@ public class RoleServiceImpl implements RoleService {
             role.setRoleName(roleDTO.getName());
             roleDao.createRole(role);
         } catch (HibernateException e) {
-            throw new ServerException("Server exception", e);
+            throw new SuchRoleExistsException("Such role exists!");
         }
     }
 }

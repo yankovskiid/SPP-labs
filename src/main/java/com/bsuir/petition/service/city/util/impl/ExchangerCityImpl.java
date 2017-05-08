@@ -6,8 +6,11 @@ import com.bsuir.petition.bean.entity.Country;
 import com.bsuir.petition.dao.CityDao;
 import com.bsuir.petition.dao.CountryDao;
 import com.bsuir.petition.service.city.util.ExchangerCity;
+import com.bsuir.petition.service.country.exception.CountryNotFoundException;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class ExchangerCityImpl implements ExchangerCity{
@@ -24,20 +27,28 @@ public class ExchangerCityImpl implements ExchangerCity{
     public void setCountryDao(CountryDao countryDao) { this.countryDao = countryDao; }
 
     @Override
-    public City getCity(CityDTO cityDTO, long id) {
+    public City getCity(CityDTO cityDTO, long id) throws CountryNotFoundException {
         City city = cityDao.getCityById(id);
         city.setName(cityDTO.getName());
-        Country country = countryDao.getCountry(cityDTO.getCountry());
-        city.setCountry(country);
+        try {
+            Country country = countryDao.getCountry(cityDTO.getCountry());
+            city.setCountry(country);
+        } catch (Exception e) {
+            throw new CountryNotFoundException("Country not found!");
+        }
         return city;
     }
 
     @Override
-    public City getCity(CityDTO cityDTO) {
+    public City getCity(CityDTO cityDTO) throws CountryNotFoundException {
         City city = new City();
         city.setName(cityDTO.getName());
-        Country country = countryDao.getCountry(cityDTO.getCountry());
-        city.setCountry(country);
+        try {
+            Country country = countryDao.getCountry(cityDTO.getCountry());
+            city.setCountry(country);
+        } catch (Exception e) {
+            throw new CountryNotFoundException("Country not found!");
+        }
         return city;
     }
 }

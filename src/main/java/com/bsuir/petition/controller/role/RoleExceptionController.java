@@ -23,6 +23,7 @@ public class RoleExceptionController {
 
     @ExceptionHandler(SuchRoleExistsException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ResponseBody
     public MessageDTO suchRoleExistsException(SuchRoleExistsException e) {
         MessageDTO messageDTO = new MessageDTO();
         messageDTO.setMessage(e.getMessage());
