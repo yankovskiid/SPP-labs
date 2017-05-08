@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CategoryExceptionController {
 
     @ExceptionHandler(CategoryNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ResponseBody
     public MessageDTO categoryNotFoundExceptionHandler(CategoryNotFoundException exception) {
         return getErrorMessage(exception);
     }
 
     @ExceptionHandler(SuchCategoryExistsException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public MessageDTO suchCategoryExistsExceptionHandler(SuchCategoryExistsException exception) {
         return getErrorMessage(exception);

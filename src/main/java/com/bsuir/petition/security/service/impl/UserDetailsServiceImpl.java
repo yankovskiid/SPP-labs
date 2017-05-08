@@ -51,7 +51,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> authorities = getUserRoles(user);
 
         return new SecurityUser(user.getEmail(), user.getPassword(), user.getId(),
-                !user.isBlocked(), true, true, true, authorities);
+                !user.isBlocked(), true, true, true, authorities, user.getNick());
 
     }
 

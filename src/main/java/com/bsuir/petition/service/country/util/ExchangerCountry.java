@@ -6,5 +6,5 @@ import com.bsuir.petition.bean.entity.Country;
 
 public interface ExchangerCountry {
     Country getCountry(CountryDTO countryDTO, long id);
-    Country getCountry(CountryDTO countryDTO);
+    Country getCountry(ShortCountryDTO countryDTO);
 }

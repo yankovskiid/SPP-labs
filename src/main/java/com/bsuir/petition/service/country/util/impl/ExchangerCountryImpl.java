@@ -26,7 +26,7 @@ public class ExchangerCountryImpl implements ExchangerCountry {
     }
 
     @Override
-    public Country getCountry(CountryDTO countryDTO) {
+    public Country getCountry(ShortCountryDTO countryDTO) {
         Country country = new Country();
         country.setName(countryDTO.getName());
         return country;

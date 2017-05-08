@@ -10,6 +10,8 @@ export class AdminCountryComponent implements OnInit {
 
     private editingCountry: Country = null;
     private countries: Country[] = [];
+    private errorHidden: boolean = true;
+    private errorMessage: string;
 
     constructor(private http: HttpService) {
 
@@ -65,10 +67,24 @@ export class AdminCountryComponent implements OnInit {
     }
 
     saveCountry(temp : boolean) {
+        this.errorHidden = true;
+        var el = document.getElementById('error-block');
         if (temp) {
             if (this.editingCountry.id) {
                 this.http
                     .sendDataNoResponse("/country/" + this.editingCountry.id, Country.deserialize(this.editingCountry))
+                    .catch((response) => {
+                        this.errorHidden = false;
+                        this.errorMessage = response.json().message;
+                        setTimeout(function(){
+                            el.style.display = "block";
+                        }, 50);
+                        setTimeout(function () {
+                            el.style.display = "none";
+                        }, 3000);
+
+                        return null;
+                    })
                     .subscribe(() => {
                         this.getCountries();
                         this.editingCountry = null;
@@ -76,6 +92,18 @@ export class AdminCountryComponent implements OnInit {
             } else {
                 this.http
                     .sendDataNoResponse("/country", Country.deserialize(this.editingCountry))
+                    .catch((response) => {
+                        this.errorHidden = false;
+                        this.errorMessage = response.json().message;
+                        setTimeout(function(){
+                            el.style.display = "block";
+                        }, 50);
+                        setTimeout(function () {
+                            el.style.display = "none";
+                        }, 3000);
+
+                        return null;
+                    })
                     .subscribe(() => {
                         this.getCountries();
                         this.editingCountry = null;

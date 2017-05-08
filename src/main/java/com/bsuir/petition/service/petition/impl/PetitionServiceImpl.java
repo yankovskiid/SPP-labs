@@ -12,6 +12,7 @@ import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.petition.PetitionService;
 import com.bsuir.petition.service.petition.exception.PetitionNotFoundException;
+import com.bsuir.petition.service.petition.util.PetitionDataValidator;
 import com.bsuir.petition.service.petition.util.PetitionDtoExchanger;
 import com.bsuir.petition.service.petition.util.PetitionExchanger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class PetitionServiceImpl implements PetitionService {
 
     private UserDao userDao;
@@ -32,6 +33,12 @@ public class PetitionServiceImpl implements PetitionService {
     private PetitionDtoExchanger petitionDtoExchanger;
 
     private PetitionExchanger petitionExchanger;
+    private PetitionDataValidator petitionDataValidator;
+
+    @Autowired
+    public void setPetitionDataValidator(PetitionDataValidator petitionDataValidator) {
+        this.petitionDataValidator = petitionDataValidator;
+    }
 
     @Autowired
     public void setUserDao(UserDao userDao) {
@@ -73,6 +80,8 @@ public class PetitionServiceImpl implements PetitionService {
 
     @Override
     public void addPetition(AddPetitionDTO addPetitionDTO) throws ServerException, ErrorInputException {
+        petitionDataValidator.validate(addPetitionDTO);
+
         Petition petition;
 
         TokenAuthentication tokenAuthentication;

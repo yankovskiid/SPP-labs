@@ -7,6 +7,7 @@ import com.bsuir.petition.controller.user.UserController;
 import com.bsuir.petition.security.TokenAuthentication;
 import com.bsuir.petition.security.service.GetTokenService;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
+import com.bsuir.petition.service.city.exception.CityNotFoundException;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.UserService;
@@ -85,14 +86,20 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public void updateUserInformation(@RequestBody UserInformationDTO userInformationDTO)
-            throws UserInformationNotFoundException, ErrorInputException, ServerException {
+            throws UserInformationNotFoundException, ErrorInputException, ServerException, CityNotFoundException {
         TokenAuthentication tokenAuthentication;
         tokenAuthentication = (TokenAuthentication)SecurityContextHolder.getContext().getAuthentication();
-        userService.updateUserInformation((Long)tokenAuthentication.getDetails(), userInformationDTO);
+        try {
+            userService.updateUserInformation((Long) tokenAuthentication.getDetails(), userInformationDTO);
+        } catch (ErrorInputException e) {
+            throw new ErrorInputException(e.getMessage());
+        } catch (Exception e) {
+            throw new CityNotFoundException("City not found!");
+        }
     }
 
     @Override
-    public void addUserInformation(UserInformationDTO userInformationDTO) throws UserInformationNotFoundException, ErrorInputException, ServerException {
+    public void addUserInformation(UserInformationDTO userInformationDTO) throws UserInformationNotFoundException, ErrorInputException, ServerException, CityNotFoundException {
         TokenAuthentication tokenAuthentication;
         tokenAuthentication = (TokenAuthentication)SecurityContextHolder.getContext().getAuthentication();
         userService.updateUserInformation((Long)tokenAuthentication.getDetails(), userInformationDTO);
@@ -111,8 +118,12 @@ public class UserControllerImpl implements UserController {
             throws AuthenticationException, DifferentPasswordsException, ErrorInputException, SuchUserExistsException, ServerException {
 
         String token;
-        User user = userService.registration(userRegistrationDTO);
-        token = getTokenService.getToken(user.getEmail(), user.getPassword());
+        try {
+            User user = userService.registration(userRegistrationDTO);
+            token = getTokenService.getToken(user.getEmail(), user.getPassword());
+        } catch (Exception e) {
+            throw new SuchUserExistsException("User with such email exists!");
+        }
         return new TokenDTO(token);
     }
 

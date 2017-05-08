@@ -11,6 +11,8 @@ export class AdminCategoryComponent implements OnInit {
 
     private editingCategory: CategoryShort = null;
     private categories: CategoryShort[] = [];
+    private errorHidden: boolean = true;
+    private errorMessage: string;
 
     ngOnInit(): void {
         this.getCategories();
@@ -50,10 +52,24 @@ export class AdminCategoryComponent implements OnInit {
     }
 
     saveCategory(temp: boolean) {
+        this.errorHidden = true;
+        var el = document.getElementById('error-block');
         if (temp) {
             if (this.editingCategory.id) {
                 this.http
                     .sendDataNoResponse("/category/" + this.editingCategory.id, Category.deserialize(this.editingCategory))
+                    .catch((response) => {
+                        this.errorHidden = false;
+                        this.errorMessage = response.json().message;
+                        setTimeout(function(){
+                            el.style.display = "block";
+                        }, 50);
+                        setTimeout(function () {
+                            el.style.display = "none";
+                        }, 3000);
+
+                        return null;
+                    })
                     .subscribe(() => {
                         this.getCategories();
                         this.editingCategory = null;
@@ -61,6 +77,18 @@ export class AdminCategoryComponent implements OnInit {
             } else {
                 this.http
                     .sendDataNoResponse("/category", Category.deserialize(this.editingCategory))
+                    .catch((response) => {
+                        this.errorHidden = false;
+                        this.errorMessage = response.json().message;
+                        setTimeout(function(){
+                            el.style.display = "block";
+                        }, 50);
+                        setTimeout(function () {
+                            el.style.display = "none";
+                        }, 3000);
+
+                        return null;
+                    })
                     .subscribe(() => {
                         this.getCategories();
                         this.editingCategory = null;

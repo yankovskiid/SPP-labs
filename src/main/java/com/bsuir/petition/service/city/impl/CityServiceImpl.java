@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CityServiceImpl implements CityService{
 
     private CityDataValidator cityDataValidator;
@@ -60,6 +60,7 @@ public class CityServiceImpl implements CityService{
     }
 
     @Override
+    @Transactional
     public CityListDTO getCities() throws ServerException {
         CityListDTO cityListDTO;
         List<City> cities;
@@ -73,6 +74,7 @@ public class CityServiceImpl implements CityService{
     }
 
     @Override
+    @Transactional
     public CityListDTO getCities(long countryId) throws ServerException, CountryNotFoundException {
         Country country = countryDao.getCountry(countryId);
         if (country == null) {
@@ -107,7 +109,7 @@ public class CityServiceImpl implements CityService{
     }
 
     @Override
-    public void updateCity(CityDTO cityDTO, long id) throws CityNotFoundException, ErrorInputException, ServerException {
+    public void updateCity(CityDTO cityDTO, long id) throws CityNotFoundException, ErrorInputException, ServerException, CountryNotFoundException {
         cityDataValidator.validate(cityDTO);
 
         City city;
@@ -120,7 +122,7 @@ public class CityServiceImpl implements CityService{
     }
 
     @Override
-    public void addCity(CityDTO cityDTO) throws ErrorInputException, ServerException, SuchCityExistsException {
+    public void addCity(CityDTO cityDTO) throws ErrorInputException, ServerException, SuchCityExistsException, CountryNotFoundException {
         cityDataValidator.validate(cityDTO);
 
         City city;
