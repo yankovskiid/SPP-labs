@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -125,7 +128,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public TokenDTO login(@RequestBody UserLoginDTO userLoginDTO) throws AuthenticationException, ServerException {
+    public TokenDTO login(@RequestBody UserLoginDTO userLoginDTO, HttpServletResponse response) throws AuthenticationException, ServerException {
         String token;
         String generatedPassword = userLoginDTO.getPassword();
         try {
@@ -141,6 +144,8 @@ public class UserControllerImpl implements UserController {
             e.printStackTrace();
         }
         token = getTokenService.getToken(userLoginDTO.getEmail(), generatedPassword);
+        Cookie cookie = new Cookie("token", token);
+        response.addCookie(cookie);
         return new TokenDTO(token);
     }
 

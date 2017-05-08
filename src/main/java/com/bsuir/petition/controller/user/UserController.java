@@ -12,6 +12,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public interface UserController {
 
     @PreAuthorize("hasAnyAuthority('ADMIN')")
@@ -53,7 +56,7 @@ public interface UserController {
             throws AuthenticationException, DifferentPasswordsException, ErrorInputException, SuchUserExistsException, ServerException;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    TokenDTO login(UserLoginDTO userLoginDTO)
+    TokenDTO login(UserLoginDTO userLoginDTO, HttpServletResponse request)
             throws AuthenticationException, ServerException;
 
     @RequestMapping(value = "/isAdmin", method = RequestMethod.GET)
