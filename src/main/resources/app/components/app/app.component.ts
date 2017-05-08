@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/httpServices/authenticationServices/authentication.service";
 import {HttpService} from "../../services/httpServices/http.service";
+import {Cookies} from "../../cookies";
 
 @Component({
     selector : 'my-app',
@@ -14,4 +15,9 @@ export class MyApp {
                 private http: HttpService) {
     }
 
+    public logout() {
+        this.http.deleteToken();
+        let cookies: Cookies = new Cookies();
+        cookies.deleteCookie("token");
+    }
 }

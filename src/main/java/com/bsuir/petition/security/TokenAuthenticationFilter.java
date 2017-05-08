@@ -6,6 +6,7 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -29,6 +30,15 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
 
         if (token == null || token.isEmpty()) {
             token = request.getParameter(TOKEN);
+        }
+
+        if (token == null || token.isEmpty()) {
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("token")) {
+                    token = cookie.getValue();
+                }
+            }
         }
 
         if (token == null || token.isEmpty()) {
