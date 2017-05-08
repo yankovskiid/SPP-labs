@@ -1,5 +1,7 @@
 package com.bsuir.petition.util.DocumentView;
 
+import com.bsuir.petition.bean.dto.comment.CommentDTO;
+import com.bsuir.petition.bean.dto.comment.CommentListDTO;
 import com.bsuir.petition.bean.entity.Comment;
 import com.bsuir.petition.util.DocumentView.Abstract.AbstractPdfView;
 import com.itextpdf.text.*;

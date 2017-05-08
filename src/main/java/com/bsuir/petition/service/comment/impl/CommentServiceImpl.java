@@ -79,14 +79,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentListDTO getAllComments() {
-        CommentListDTO commentListDTO;
+    public List<Comment> getAllComments() {
         List<Comment> comments;
-
         comments = commentDao.getAllComments();
-        commentListDTO = dtoExchangerComment.getCommentListDTO(comments);
 
-        return commentListDTO;
+        return comments;
     }
 
     @Override

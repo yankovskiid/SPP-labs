@@ -43,4 +43,9 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
+    <bean class="org.springframework.web.servlet.view.XmlViewResolver">
+        <property name="order" value="0"/>
+        <property name="location" value="/WEB-INF/configuration/excel-pdf-config.xml"/>
+    </bean>
+
 </beans>
