@@ -63,8 +63,9 @@ public class UserExchangerImpl implements UserExchanger {
         userInformation.setName(userInformationDTO.getUsername());
         userInformation.setSurname(userInformationDTO.getSurname());
         City city;
-        city = cityDao.getCityByName(userInformationDTO.getCity());
-        if(city == null) {
+        try {
+            city = cityDao.getCityByName(userInformationDTO.getCity());
+        } catch (Exception e) {
             throw new CityNotFoundException("City not found!");
         }
         userInformation.setCity(city);

@@ -208,10 +208,10 @@ public class UserServiceImpl implements UserService {
             }
             userExchanger.setUserInformation(userInformation, userInformationDTO);
             userDao.updateUserInformation(userInformation);
-        } catch (HibernateException exception) {
-            throw new ServerException("Server exception!", exception);
         } catch (CityNotFoundException e) {
             throw new CityNotFoundException("City not found!");
+        } catch (HibernateException exception) {
+            throw new ServerException("Server exception!", exception);
         }
     }
 

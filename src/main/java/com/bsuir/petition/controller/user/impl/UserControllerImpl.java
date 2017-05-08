@@ -86,7 +86,11 @@ public class UserControllerImpl implements UserController {
             throws UserInformationNotFoundException, ErrorInputException, ServerException, CityNotFoundException {
         TokenAuthentication tokenAuthentication;
         tokenAuthentication = (TokenAuthentication)SecurityContextHolder.getContext().getAuthentication();
-        userService.updateUserInformation((Long)tokenAuthentication.getDetails(), userInformationDTO);
+        try {
+            userService.updateUserInformation((Long) tokenAuthentication.getDetails(), userInformationDTO);
+        } catch (CityNotFoundException e) {
+            throw new CityNotFoundException("City not found!");
+        }
     }
 
     @Override
@@ -109,8 +113,12 @@ public class UserControllerImpl implements UserController {
             throws AuthenticationException, DifferentPasswordsException, ErrorInputException, SuchUserExistsException, ServerException {
 
         String token;
-        User user = userService.registration(userRegistrationDTO);
-        token = getTokenService.getToken(user.getEmail(), user.getPassword());
+        try {
+            User user = userService.registration(userRegistrationDTO);
+            token = getTokenService.getToken(user.getEmail(), user.getPassword());
+        } catch (Exception e) {
+            throw new SuchUserExistsException("User with such email exists!");
+        }
         return new TokenDTO(token);
     }
 

@@ -25,7 +25,7 @@
             <div class="petition-progress">
                 <div class="progress-bg"></div>
                 <div class="progress-line-block">
-                    <div class="progress-line" id="vote-progress" [ngStyle]="{ 'width': petition.numberVotes / petition.numberNecessaryVotes * 100 + '%' }"></div>
+                    <div class="progress-line" id="vote-progress" [ngStyle]="{ 'width': (petition.numberVotes >= petition.numberNecessaryVotes) ? '100%' : (petition.numberVotes / petition.numberNecessaryVotes * 100 + '%') }"></div>
                 </div>
                 <div class="progress-value">
                     <p class="all-signatures">{{petition.numberVotes}}</p>

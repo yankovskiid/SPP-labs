@@ -25,6 +25,7 @@ public class GetTokenServiceImpl implements GetTokenService {
     private final static String EMAIL = "EMAIL";
     private final static String USER_ID = "USER_ID";
     private final static String IS_ADMIN = "IS_ADMIN";
+    private final static String NICK = "NICK";
     private final static String EXPIRATION_DATE = "TOKEN_EXPIRATION_DATE";
 
     private UserDetailsService userDetailsService;
@@ -57,6 +58,7 @@ public class GetTokenServiceImpl implements GetTokenService {
         if (password.equals(user.getPassword())) {
             tokenData.put(USER_ID, user.getId());
             tokenData.put(EMAIL, user.getUsername());
+            tokenData.put(NICK, user.getNick());
 
             boolean check = user.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"));
 

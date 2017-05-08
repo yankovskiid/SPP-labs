@@ -16,6 +16,7 @@ export class VotesComponent implements OnInit {
     private votesCount: number = 0;
     private editingVote: ShortVote = null;
     private numberNecessaryVotes: number;
+    private isVoted: boolean;
 
     constructor(private http: HttpService, private activatedRoute: ActivatedRoute, private authService: AuthenticationService) {}
 
@@ -56,7 +57,8 @@ export class VotesComponent implements OnInit {
             this.http
                 .getData("/petition/" + petitionId + "/votesCount")
                 .subscribe(data => {
-                    this.votesCount = data;
+                    this.isVoted = data < 0 ? true : false;
+                    this.votesCount = Math.abs(data);
                     this.http
                         .getData("/petition/" + petitionId)
                         .subscribe(data => {

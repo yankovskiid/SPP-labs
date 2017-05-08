@@ -37,19 +37,15 @@ export class EditUserComponent implements OnInit {
             this.http
                 .updateData("user/information", this.userInfo)
                 .catch((response) => {
-                    console.log(response);
+                    var error = JSON.parse(response["_body"]);
                     this.errorHidden = false;
-                    this.errorMessage = response.json.message;
+                    this.errorMessage = error.message;
                     setTimeout(function(){
                         elError.style.display = "block";
                     }, 50);
                     setTimeout(function () {
                         elError.style.display = "none";
                     }, 3000);
-                    // setTimeout(function () { }, 5000);
-                    // setTimeout(function(){
-                    // 	el.style.display = "none";
-                    // }, 100);
                     return null;
                 })
                 .subscribe(() => {

@@ -4,9 +4,11 @@ import com.bsuir.petition.bean.entity.Comment;
 import com.bsuir.petition.bean.entity.Petition;
 import com.bsuir.petition.bean.entity.Vote;
 import com.bsuir.petition.dao.VoteDao;
+import com.bsuir.petition.security.TokenAuthentication;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +44,15 @@ public class VoteDaoImpl implements VoteDao {
         org.hibernate.query.Query query = session.createQuery("select count(*) from Vote where petition_id = :idPetition");
         query.setParameter("idPetition", id);
         votesCount = (long)query.uniqueResult();
+        query = session.createQuery("select count(*) from Vote where petition_id = :idPetition and user_id = :idUser");
+        query.setParameter("idPetition", id);
+        TokenAuthentication tokenAuthentication;
+        tokenAuthentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
+        query.setParameter("idUser", (Long)tokenAuthentication.getDetails());
+        long vote = (long)query.uniqueResult();
+        if(vote > 0) {
+            return votesCount * (-1);
+        }
         return votesCount;
     }
 
@@ -50,7 +61,10 @@ public class VoteDaoImpl implements VoteDao {
         Session session = sessionFactory.getCurrentSession();
         org.hibernate.query.Query query = session.createQuery("select count(*) from Vote WHERE petition_id = :idPetition AND user_id = :idUser");
         query.setParameter("idPetition", vote.getPetition().getId());
-        query.setParameter("idUser", vote.getUser().getId());
+        TokenAuthentication tokenAuthentication;
+        tokenAuthentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
+//        long id = vote.getUser().getId();
+        query.setParameter("idUser", (Long)tokenAuthentication.getDetails());
         long votesCount = (long)query.uniqueResult();
         if (votesCount == 0)
             session.save(vote);

@@ -2,6 +2,8 @@ package com.bsuir.petition.controller.user;
 
 import com.bsuir.petition.bean.dto.message.MessageDTO;
 import com.bsuir.petition.security.service.exception.AuthenticationException;
+import com.bsuir.petition.service.city.exception.CityNotFoundException;
+import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.user.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,8 +29,6 @@ public class UserExceptionController {
         return getErrorMessage(exception);
     }
 
-
-
     @ExceptionHandler(WrongPasswordException.class)
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
     @ResponseBody
@@ -45,6 +45,14 @@ public class UserExceptionController {
 
     }
 
+    @ExceptionHandler(CityNotFoundException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public MessageDTO cityNotFoundExceptionHandler(CityNotFoundException exception) {
+        return getErrorMessage(exception);
+
+    }
+
     @ExceptionHandler(AuthenticationException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
@@ -56,6 +64,13 @@ public class UserExceptionController {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public MessageDTO differentPasswordExceptionHandler(DifferentPasswordsException exception) {
+        return getErrorMessage(exception);
+    }
+
+    @ExceptionHandler(ErrorInputException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public MessageDTO errorInputExceptionHandler(ErrorInputException exception) {
         return getErrorMessage(exception);
     }
 
