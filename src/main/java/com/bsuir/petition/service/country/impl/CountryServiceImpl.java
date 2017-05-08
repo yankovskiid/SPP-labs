@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class CountryServiceImpl implements CountryService {
 
     private CountryDataValidator countryDataValidator;

@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class CityServiceImpl implements CityService{
 
     private CityDataValidator cityDataValidator;

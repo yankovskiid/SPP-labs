@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService {
 
     private UserCreator userCreator;

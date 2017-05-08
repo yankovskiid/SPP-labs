@@ -17,7 +17,7 @@ public interface CountryController {
     void addCountry(ShortCountryDTO countryDTO) throws ServerException, ErrorInputException, SuchCountryExistsException;
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @RequestMapping(value = "/country/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/country/{id}", method = RequestMethod.PUT)
     void updateCountry(CountryDTO countryDTO, long id) throws ErrorInputException, ServerException, CountryNotFoundException;
 
     @PreAuthorize("hasAuthority('ADMIN')")
