@@ -21,12 +21,6 @@
     --nav: #27ae60;
     --nav-active: #218142;
 }
-body {
-    background: #f6f6f6;
-    /*background: linear-gradient(to right, #232526, #414345);*/
-    margin: 0;
-    font-family: Lato-Medium, sans-serif;
-}
 html {
     height: 100%;
     -webkit-box-sizing: border-box;
@@ -34,6 +28,8 @@ html {
     box-sizing: border-box;
 }
 body {
+    background: #f6f6f6;
+    font-family: Lato-Medium, sans-serif;
     position: relative;
     padding-bottom: 6rem;
     min-height: 100%;
