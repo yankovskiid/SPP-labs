@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice(basePackages = "com.bsuir.petition.controller.city")
 public class CityExceptionController {
     @ExceptionHandler(CityNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ResponseBody
     public MessageDTO categoryNotFoundExceptionHandler(CityNotFoundException exception) {
         return getErrorMessage(exception);
     }
 
     @ExceptionHandler(CountryNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ResponseBody
     public MessageDTO countryNotFoundExceptionHandler(CountryNotFoundException exception) {
         return getErrorMessage(exception);
@@ -28,7 +28,7 @@ public class CityExceptionController {
 
 
     @ExceptionHandler(SuchCityExistsException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public MessageDTO suchCategoryExistsExceptionHandler(SuchCityExistsException exception) {
         return getErrorMessage(exception);
     }

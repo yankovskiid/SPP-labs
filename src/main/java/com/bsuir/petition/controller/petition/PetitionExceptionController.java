@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class PetitionExceptionController {
 
     @ExceptionHandler(PetitionNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ResponseBody
     public MessageDTO petitionNotFoundExceptionHandler(PetitionNotFoundException exception) {
         MessageDTO messageDTO = new MessageDTO();

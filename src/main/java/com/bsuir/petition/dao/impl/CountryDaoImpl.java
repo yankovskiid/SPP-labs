@@ -45,18 +45,21 @@ public class CountryDaoImpl implements CountryDao {
     }
 
     @Override
+    @Transactional
     public void updateCountry(Country country) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(country);
     }
 
     @Override
+    @Transactional
     public void deleteCountry(Country country) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(country);
     }
 
     @Override
+    @Transactional
     public void addCountry(Country country) {
         Session session = sessionFactory.getCurrentSession();
         session.save(country);
