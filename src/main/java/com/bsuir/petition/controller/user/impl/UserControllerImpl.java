@@ -88,7 +88,9 @@ public class UserControllerImpl implements UserController {
         tokenAuthentication = (TokenAuthentication)SecurityContextHolder.getContext().getAuthentication();
         try {
             userService.updateUserInformation((Long) tokenAuthentication.getDetails(), userInformationDTO);
-        } catch (CityNotFoundException e) {
+        } catch (ErrorInputException e) {
+            throw new ErrorInputException(e.getMessage());
+        } catch (Exception e) {
             throw new CityNotFoundException("City not found!");
         }
     }
