@@ -18,5 +18,6 @@ public class DocumentTypes {
 
     private static void initTypes() {
         types.put("pdf", "pdfBuilder");
+        types.put("csv", "csvBuilder");
     }
 }
