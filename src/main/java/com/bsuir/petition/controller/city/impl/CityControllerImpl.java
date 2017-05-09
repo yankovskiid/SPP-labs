@@ -25,13 +25,13 @@ public class CityControllerImpl implements CityController{
     }
 
     @Override
-    public void addCity(@RequestBody CityDTO cityDTO) throws ServerException, ErrorInputException, SuchCityExistsException {
+    public void addCity(@RequestBody CityDTO cityDTO) throws ServerException, ErrorInputException, SuchCityExistsException, CountryNotFoundException {
         cityService.addCity(cityDTO);
     }
 
     @Override
     public void updateCity(@RequestBody CityDTO cityDTO,
-                           @PathVariable long id) throws CityNotFoundException, ErrorInputException, ServerException {
+                           @PathVariable long id) throws CityNotFoundException, ErrorInputException, ServerException, CountryNotFoundException {
         cityService.updateCity(cityDTO, id);
     }
 

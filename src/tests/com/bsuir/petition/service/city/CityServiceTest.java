@@ -235,7 +235,7 @@ public class CityServiceTest {
 
 
     /*CityService.updateCity(cityDto, cityId)*/
-    private void givenExchangerCityByCityDtoAndCityIdReturnsCity() {
+    private void givenExchangerCityByCityDtoAndCityIdReturnsCity() throws CountryNotFoundException {
         when(exchangerCity.getCity(any(), anyLong())).thenReturn(new City());
     }
 
@@ -243,7 +243,7 @@ public class CityServiceTest {
         verify(cityDataValidator, times(1)).validate(any());
     }
 
-    private void verifyThatExchangerCityWasCalledByCityDto() {
+    private void verifyThatExchangerCityWasCalledByCityDto() throws CountryNotFoundException {
         verify(exchangerCity, times(1)).getCity(any());
     }
 
@@ -251,7 +251,7 @@ public class CityServiceTest {
         verify(cityDao, times(1)).updateCity(any());
     }
 
-    private void verifyThatExchangerCityWasCalledByCityDtoAndCityId() {
+    private void verifyThatExchangerCityWasCalledByCityDtoAndCityId() throws CountryNotFoundException {
         verify(exchangerCity, times(1)).getCity(any(), anyLong());
     }
 

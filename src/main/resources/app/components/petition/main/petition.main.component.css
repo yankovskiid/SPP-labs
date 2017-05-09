@@ -136,6 +136,7 @@ div.petition-ttl p.number-days {
     justify-content: flex-start;
     margin-top: 20px;
     flex-wrap: wrap;
+    position: relative;
 }
 .categories .category-block {
     min-height: 25px;
@@ -182,8 +183,8 @@ div.petition-ttl p.number-days {
 
 .button-petition-delete {
     position: absolute;
-    right: 3%;
-    margin-top: 5px;
+    top: -10px;
+    right: -25px;
     color: black;
     font-weight: 300;
     font-size: 18px;
@@ -194,6 +195,10 @@ div.petition-ttl p.number-days {
     color: #7c7a7a;
 }
 
+.container {
+    width: 980px;
+    margin: 0 auto;
+}
 
 @media only screen and (max-width: 747px) {
     div.petition-image {
@@ -239,7 +244,7 @@ div.petition-ttl p.number-days {
         /*order: 2;*/
     }
     .button-petition-delete {
-        right: 5%;
+        right: -2%;
     }
     div.petition-text-block {
         flex-direction: column-reverse;
@@ -256,6 +261,12 @@ div.petition-ttl p.number-days {
     }
     div.petition-text-block, div.petition-title-block, .comments-block {
         width: 90%;
+    }
+}
+
+@media only screen and (max-width: 968px) {
+    div.container {
+        width: 100%;
     }
 }
 

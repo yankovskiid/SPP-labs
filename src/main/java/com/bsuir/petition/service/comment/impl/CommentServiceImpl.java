@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CommentServiceImpl implements CommentService {
 
     private CommentDataValidator commentDataValidator;
@@ -76,6 +76,13 @@ public class CommentServiceImpl implements CommentService {
             throw new ServerException("Server exception!", exception);
         }
         return commentListDTO;
+    }
+
+    @Override
+    public List<Comment> getAllComments() {
+        List<Comment> comments;
+        comments = commentDao.getAllComments();
+        return comments;
     }
 
     @Override

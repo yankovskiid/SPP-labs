@@ -14,20 +14,20 @@ form {
     padding: .5rem .0rem;
     font-size: 1rem;
     line-height: 1.25;
-    color: white;
+    color: black;
     background: transparent;
     background-image: none;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: none;
-    border-bottom: 1px solid rgba(255,255,255,.7);
+    border-bottom: 1px solid rgba(75, 75, 75, 0.7);
     border-radius: 0;
     margin-bottom: 10px;
 }
-.form-control::-webkit-input-placeholder {color: white;}
-.form-control::-moz-placeholder          {color: white;}/* Firefox 19+ */
-.form-control:-moz-placeholder           {color: white;}/* Firefox 18- */
-.form-control:-ms-input-placeholder      {color: white;}
+.form-control::-webkit-input-placeholder {color: black;}
+.form-control::-moz-placeholder          {color: black;}/* Firefox 19+ */
+.form-control:-moz-placeholder           {color: black;}/* Firefox 18- */
+.form-control:-ms-input-placeholder      {color: black;}
 .form-control:focus {
     outline: none;
 }
@@ -65,7 +65,7 @@ form {
     background-color: #d43f3a;
 }
 
-div#error-block {
+div#error-block, div#success-block {
     display: none;
     width: 45%;
     min-height: 30px;
@@ -75,7 +75,10 @@ div#error-block {
     border-radius: 15px;
     line-height: 30px;
 }
-div#error-block p {
+div#success-block {
+    background-color: #2fbc6b;
+}
+div#error-block p, div#success-block p {
     text-align: center;
     color: white;
     font-size: 16px;
@@ -84,11 +87,40 @@ div#error-block p {
 /*div#error-block[hidden] {
     display: none;
 }*/
+.container {
+    width: 980px;
+    margin: 0 auto;
+    margin-top: 15px;
+    background-color: white;
+    color: black;
+    padding: 15px 0px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+div.button-add-userInfo {
+    width: 65%;
+    margin: 0 auto;
+    height: 45px;
+    background-color: #2ecc71;
+    border-radius: 30px;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    line-height: 45px;
+}
+div.button-add-userInfo:hover {
+    background-color: #2fbc6b;
+}
+div.button-add-userInfo p {
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    line-height: 45px;
+    text-align: center;
+    margin: 0;
+}
 
 @media only screen and (max-width: 980px) {
-    div.content {
-        width: 720px;
-    }
     form.login-form,
     form.register-form {
         width: 55%;
@@ -99,11 +131,7 @@ div#error-block p {
 }
 
 @media only screen and (max-width: 720px) {
-    div.content {
-        width: 480px;
-    }
-    form.login-form,
-    form.register-form {
+    form {
         width: 78%;
     }
     div#error-block {
@@ -112,14 +140,15 @@ div#error-block p {
 }
 
 @media only screen and (max-width: 480px) {
-    div.content {
-        width: 100%;
-    }
-    form.login-form,
-    form.register-form {
+    form {
         width: 87%;
     }
     div#error-block {
         width: 87%;
+    }
+}
+@media only screen and (max-width: 968px) {
+    div.container {
+        width: 100%;
     }
 }

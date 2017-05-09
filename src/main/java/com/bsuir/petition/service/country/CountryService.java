@@ -15,5 +15,5 @@ public interface CountryService {
     CountryListDTO getCountries() throws ServerException;
     void deleteCountry(long id) throws CountryNotFoundException, ServerException;
     void updateCountry(CountryDTO countryDTO, long id) throws CountryNotFoundException, ErrorInputException, ServerException;
-    void addCountry(CountryDTO countryDTO) throws ErrorInputException, ServerException, SuchCountryExistsException;
+    void addCountry(ShortCountryDTO countryDTO) throws ErrorInputException, ServerException, SuchCountryExistsException;
 }

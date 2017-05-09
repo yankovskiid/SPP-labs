@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CommentExceptionController {
 
     @ExceptionHandler(CommentNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ResponseBody
     public MessageDTO commentNotFoundExceptionHandler(CommentNotFoundException exception) {
         return getErrorMessage(exception);
     }
 
     @ExceptionHandler(SuchCommentExistsException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public MessageDTO suchCommentExistsExceptionHandler(SuchCommentExistsException exception) {
         return getErrorMessage(exception);

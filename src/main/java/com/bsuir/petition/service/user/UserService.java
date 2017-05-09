@@ -2,6 +2,7 @@ package com.bsuir.petition.service.user;
 
 import com.bsuir.petition.bean.dto.user.*;
 import com.bsuir.petition.bean.entity.User;
+import com.bsuir.petition.service.city.exception.CityNotFoundException;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.exception.*;
@@ -17,8 +18,8 @@ public interface UserService {
             DifferentPasswordsException, ServerException;
 
     void updateUserInformation(long id, UserInformationDTO userInformationDTO)
-            throws ErrorInputException, ServerException;
+            throws ErrorInputException, ServerException, CityNotFoundException;
 
     void addUserInformation(long id, UserInformationDTO userInformationDTO)
-            throws ErrorInputException, ServerException;
+            throws ErrorInputException, ServerException, CityNotFoundException;
 }

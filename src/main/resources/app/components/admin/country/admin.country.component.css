@@ -1,0 +1,19 @@
+div#error-block, div#success-block {
+    display: none;
+    width: 45%;
+    min-height: 30px;
+    background-color: #f9362f;
+    padding: 5px;
+    margin: 15px auto;
+    border-radius: 15px;
+    line-height: 30px;
+}
+div#success-block {
+    background-color: #2fbc6b;
+}
+div#error-block p, div#success-block p {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    margin: 0;
+}

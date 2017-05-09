@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CountryServiceImpl implements CountryService {
 
     private CountryDataValidator countryDataValidator;
@@ -53,6 +53,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
+    @Transactional
     public CountryListDTO getCountries() throws ServerException {
         CountryListDTO countryListDTO;
         List<Country> countries;
@@ -97,7 +98,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public void addCountry(CountryDTO countryDTO) throws ErrorInputException, ServerException, SuchCountryExistsException {
+    public void addCountry(ShortCountryDTO countryDTO) throws ErrorInputException, ServerException, SuchCountryExistsException {
 
         countryDataValidator.validate(countryDTO);
 
@@ -106,7 +107,7 @@ public class CountryServiceImpl implements CountryService {
         try {
             countryDao.addCountry(country);
         } catch (HibernateException exception) {
-            throw new SuchCountryExistsException("Server exception!", exception);
+            throw new SuchCountryExistsException("Such country exist!");
         }
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="pdfBuilder" class="com.bsuir.petition.util.documents.pdf.PdfBuilder" />
+    <bean id="csvBuilder" class="com.bsuir.petition.util.documents.csv.CsvBuilder" />
+    <bean id="xlsBuilder" class="com.bsuir.petition.util.documents.xls.XlsBuilder" />
+
+</beans>

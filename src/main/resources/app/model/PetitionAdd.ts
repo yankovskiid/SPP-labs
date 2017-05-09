@@ -17,7 +17,7 @@ export class PetitionAdd {
         res.name = data.name;
         res.description = data.description;
         res.numberNecessaryVotes = data.numberNecessaryVotes;
-        res.expiryDate = Date.now() + 604800;
+        res.expiryDate = Date.now() + 604800000;
 
         for(var i = 0; i < categories.length; i++) {
             if(categories[i].isActive)

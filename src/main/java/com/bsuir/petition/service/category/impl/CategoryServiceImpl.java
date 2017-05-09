@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CategoryServiceImpl implements CategoryService {
 
     private CategoryDataValidator categoryDataValidator;
@@ -52,6 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public CategoryListDTO getCategories() throws ServerException {
         CategoryListDTO categoryListDTO;
         List<Category> categories;
@@ -104,7 +105,7 @@ public class CategoryServiceImpl implements CategoryService {
         try {
             categoryDao.addCategory(category);
         } catch (HibernateException exception) {
-            throw new SuchCategoryExistsException("Server exception!", exception);
+            throw new SuchCategoryExistsException("Such category exists!", exception);
         }
     }
 }

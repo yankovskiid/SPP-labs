@@ -11,4 +11,7 @@
     </tr>
 </table>
 <span class="button button-add" (click)="addCategory()">Add</span>
+<div id="error-block" [hidden]="errorHidden">
+    <p>{{errorMessage}}</p>
+</div>
 <div *ngIf="editingCategory !== null" category-edit [category]="editingCategory" (endEdit)="saveCategory($event)"></div>

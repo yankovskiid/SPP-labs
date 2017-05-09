@@ -8,8 +8,8 @@ import 'rxjs/add/operator/catch';
 @Component ({
 	templateUrl: 'app/components/user/login-component/login.component.html',
 	styleUrls: [
-		'app/components/user/registration-component/registration.component.css',
-		'app/components/user/login-component/login.component.css'
+		'app/components/user/login-component/login.component.css',
+		'app/components/user/registration-component/registration.component.css'
 	]
 })
 export class LoginComponent {

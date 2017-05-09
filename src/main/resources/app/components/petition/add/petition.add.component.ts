@@ -13,6 +13,8 @@ export class PetitionAddComponent implements OnInit {
 
 	private petition: PetitionAdd = new PetitionAdd();
 	private categories: Array<CategoryForPetition> = [];
+	private errorHidden: boolean = true;
+	private errorMessage: string;
 
     constructor(private http: HttpService,
 				private router : Router) { }
@@ -29,9 +31,23 @@ export class PetitionAddComponent implements OnInit {
     }
 
 	createPetition() {
-		console.log(this.petition);
+		this.errorHidden = true;
+		var el = document.getElementById('error-block');
+		// console.log(this.petition);
 		this.http
 			.sendDataNoResponse("/petition", PetitionAdd.deserialize(this.petition, this.categories))
+			.catch((response) => {
+				this.errorHidden = false;
+				this.errorMessage = response.json().message;
+				setTimeout(function(){
+					el.style.display = "block";
+				}, 50);
+				setTimeout(function () {
+					el.style.display = "none";
+				}, 3000);
+
+				return null;
+			})
 			.subscribe(() => {
 				this.petition = null;
 				this.router.navigate(['/petitions']);

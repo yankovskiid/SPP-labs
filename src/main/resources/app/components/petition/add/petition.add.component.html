@@ -1,35 +1,52 @@
-<h1>Add petition</h1>
-<form #petitionForm="ngForm">
-    <input type="text"
-           placeholder="Name"
-           name="name"
-           required
-           [(ngModel)]="petition.name"
-           #name="ngModel">
-    <br>
+<div class="container">
+    <h2>Create petition</h2>
+    <div id="error-block" [hidden]="errorHidden">
+        <p>{{errorMessage}}</p>
+    </div>
+    <form #petitionForm="ngForm">
+        <input type="text"
+               placeholder="Name"
+               class="form-control"
+               name="name"
+               required
+               [(ngModel)]="petition.name"
+               #name="ngModel">
+        <br>
 
-    <input type="text"
-           placeholder="Description"
-           name="description"
-           required
-           [(ngModel)]="petition.description"
-           #description="ngModel">
-    <br>
+        <textarea placeholder="Description"
+                  class="form-control description-input"
+                  name="description"
+                  required
+                  [(ngModel)]="petition.description"
+                  #description="ngModel"></textarea>
+        <!--<input type="text"-->
+               <!--placeholder="Description"-->
+               <!--class="form-control"-->
+               <!--name="description"-->
+               <!--required-->
+               <!--[(ngModel)]="petition.description"-->
+               <!--#description="ngModel">-->
+        <br>
 
-    <input type="number"
-           placeholder="Number necessary votes"
-           name="numberNecessaryVotes"
-           required
-           [(ngModel)]="petition.numberNecessaryVotes"
-           #numberNecessaryVotes="ngModel">
-    <br>
+        <input type="number"
+               class="form-control"
+               placeholder="Number necessary votes"
+               name="numberNecessaryVotes"
+               min="1"
+               required
+               [(ngModel)]="petition.numberNecessaryVotes"
+               #numberNecessaryVotes="ngModel">
+        <br>
 
-    <label *ngFor="let category of categories">
-        <input type="checkbox" name="awesome" [(ngModel)]="category.isActive">
-        {{category.name}}
-    </label>
+        <div class="categories">
+            <label *ngFor="let category of categories">
+                <input type="checkbox" name="awesome" id="{{category.name}}" [(ngModel)]="category.isActive">
+                <label class="category-label" for="{{category.name}}">{{category.name}}</label>
+            </label>
+        </div>
+        <br>
 
-    <button (click)="createPetition()" [disabled]="!petitionForm.valid">Create</button>
-</form>
-
-{{petition | json}}
+        <button (click)="createPetition()" [disabled]="!petitionForm.valid" class="button-save">Create</button>
+    </form>
+</div>
+<!--{{petition | json}}-->

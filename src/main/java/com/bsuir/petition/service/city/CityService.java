@@ -13,6 +13,6 @@ public interface CityService {
     CityListDTO getCities() throws ServerException;
     CityListDTO getCities(long countryId) throws ServerException, CountryNotFoundException;
     void deleteCity(long id) throws CityNotFoundException, ServerException;
-    void updateCity(CityDTO cityDTO, long id) throws CityNotFoundException, ErrorInputException, ServerException;
-    void addCity(CityDTO cityDTO) throws ErrorInputException, ServerException, SuchCityExistsException;
+    void updateCity(CityDTO cityDTO, long id) throws CityNotFoundException, ErrorInputException, ServerException, CountryNotFoundException;
+    void addCity(CityDTO cityDTO) throws ErrorInputException, ServerException, SuchCityExistsException, CountryNotFoundException;
 }

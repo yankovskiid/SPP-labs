@@ -10,6 +10,8 @@ export class AdminCityComponent implements OnInit {
 
     private editingCity: City = null;
     private cities: City[] = [];
+    private errorHidden: boolean = true;
+    private errorMessage: string;
 
     constructor(private http: HttpService) {}
 
@@ -49,10 +51,24 @@ export class AdminCityComponent implements OnInit {
     }
 
     saveCity(temp : boolean) {
+        this.errorHidden = true;
+        var el = document.getElementById('error-block');
         if (temp) {
             if (this.editingCity.id) {
                 this.http
                     .sendDataNoResponse("/city/" + this.editingCity.id, City.deserialize(this.editingCity))
+                    .catch((response) => {
+                        this.errorHidden = false;
+                        this.errorMessage = response.json().message;
+                        setTimeout(function(){
+                            el.style.display = "block";
+                        }, 50);
+                        setTimeout(function () {
+                            el.style.display = "none";
+                        }, 3000);
+
+                        return null;
+                    })
                     .subscribe(() => {
                         this.getCities();
                         this.editingCity = null;
@@ -60,6 +76,18 @@ export class AdminCityComponent implements OnInit {
             } else {
                 this.http
                     .sendDataNoResponse("/city", City.deserialize(this.editingCity))
+                    .catch((response) => {
+                        this.errorHidden = false;
+                        this.errorMessage = response.json().message;
+                        setTimeout(function(){
+                            el.style.display = "block";
+                        }, 50);
+                        setTimeout(function () {
+                            el.style.display = "none";
+                        }, 3000);
+
+                        return null;
+                    })
                     .subscribe(() => {
                         this.getCities();
                         this.editingCity = null;

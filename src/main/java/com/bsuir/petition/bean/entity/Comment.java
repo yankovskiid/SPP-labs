@@ -9,7 +9,7 @@ public class Comment extends BaseTable {
     @Column(name = "text", nullable = false, columnDefinition = "VARCHAR(1024)")
     private String text;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

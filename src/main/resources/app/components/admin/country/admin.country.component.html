@@ -11,4 +11,7 @@
         </tr>
 </table>
 <span class="button button-add" (click)="addCountry()">Add</span>
+<div id="error-block" [hidden]="errorHidden">
+    <p>{{errorMessage}}</p>
+</div>
 <div *ngIf="editingCountry !== null" country-edit [country]="editingCountry" (endEdit)="saveCountry($event)"></div>
