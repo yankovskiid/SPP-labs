@@ -6,6 +6,7 @@ import com.bsuir.petition.bean.dto.user.UserListDTO;
 import com.bsuir.petition.util.documents.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -28,27 +29,34 @@ public class Users extends Document {
 
     @Override
     public void buildPdf(com.itextpdf.text.Document doc) throws DocumentException {
-        ArrayList<ShortUserInformationDTO> users = this.userListDTO.getUsers();
-        doc.add(new Paragraph("Users statistic"));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph("Total users: " + users.size()));
-        doc.add(new Paragraph(" "));
-        PdfPTable table = new PdfPTable(4);
-        table.addCell(new PdfPCell(new Paragraph("User id")));
-        table.addCell(new PdfPCell(new Paragraph("Email")));
-        table.addCell(new PdfPCell(new Paragraph("Nick")));
-        table.addCell(new PdfPCell(new Paragraph("Roles")));
-        for (ShortUserInformationDTO user : users) {
-            table.addCell(new PdfPCell(new Paragraph(String.valueOf(user.getId()))));
-            table.addCell(new PdfPCell(new Paragraph(user.getEmail())));
-            table.addCell(new PdfPCell(new Paragraph(user.getNick())));
-            StringJoiner stringJoiner = new StringJoiner(",");
-            for (String role : user.getRoles()) {
-                stringJoiner.add(role);
+        try {
+            BaseFont baseFont = BaseFont.createFont("C:\\Windows\\Fonts\\Arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            com.itextpdf.text.Font font = new com.itextpdf.text.Font(baseFont);
+
+            ArrayList<ShortUserInformationDTO> users = this.userListDTO.getUsers();
+            doc.add(new Paragraph("Users statistic"));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph("Total users: " + users.size()));
+            doc.add(new Paragraph(" "));
+            PdfPTable table = new PdfPTable(4);
+            table.addCell(new PdfPCell(new Paragraph("User id")));
+            table.addCell(new PdfPCell(new Paragraph("Email")));
+            table.addCell(new PdfPCell(new Paragraph("Nick")));
+            table.addCell(new PdfPCell(new Paragraph("Roles")));
+            for (ShortUserInformationDTO user : users) {
+                table.addCell(new PdfPCell(new Paragraph(String.valueOf(user.getId()))));
+                table.addCell(new PdfPCell(new Paragraph(user.getEmail(), font)));
+                table.addCell(new PdfPCell(new Paragraph(user.getNick(), font)));
+                StringJoiner stringJoiner = new StringJoiner(",");
+                for (String role : user.getRoles()) {
+                    stringJoiner.add(role);
+                }
+                table.addCell(new PdfPCell(new Paragraph(stringJoiner.toString(), font)));
             }
-            table.addCell(new PdfPCell(new Paragraph(stringJoiner.toString())));
+            doc.add(table);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        doc.add(table);
     }
 
     @Override

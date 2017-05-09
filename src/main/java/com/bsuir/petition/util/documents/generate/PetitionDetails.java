@@ -9,6 +9,7 @@ import com.bsuir.petition.util.documents.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -30,39 +31,46 @@ public class PetitionDetails extends Document {
 
     @Override
     public void buildPdf(com.itextpdf.text.Document doc) throws DocumentException {
-        Font bold = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
+        try {
+            BaseFont baseFont = BaseFont.createFont("C:\\Windows\\Fonts\\Arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            com.itextpdf.text.Font font = new com.itextpdf.text.Font(baseFont);
 
-        doc.add(new Paragraph("Petition \"" + petition.getName() + "\" statistic", bold));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph("Categories", bold));
+            Font bold = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
 
-        StringJoiner categories = new StringJoiner(",");
-        for (CategoryDTO category : petition.getCategories()) {
-            categories.add(category.getName());
+            doc.add(new Paragraph("Petition \"" + petition.getName() + "\" statistic", bold));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph("Categories", bold));
+
+            StringJoiner categories = new StringJoiner(",");
+            for (CategoryDTO category : petition.getCategories()) {
+                categories.add(category.getName());
+            }
+            String categoriesList = categories.toString();
+            doc.add(new Paragraph(categoriesList, font));
+
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph("Description", bold));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph(petition.getDescription(), font));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph("Votes count", bold));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph(String.valueOf(petition.getNumberVotes())));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph("Needed votes count", bold));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph(String.valueOf(petition.getNumberNecessaryVotes())));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph("Comments count", bold));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph(String.valueOf(petition.getCommentsCount())));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph("Expiry date", bold));
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph(petition.getExpiryDate().toString()));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        String categoriesList = categories.toString();
-        doc.add(new Paragraph(categoriesList));
-
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph("Description", bold));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph(petition.getDescription()));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph("Votes count", bold));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph(String.valueOf(petition.getNumberVotes())));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph("Needed votes count", bold));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph(String.valueOf(petition.getNumberNecessaryVotes())));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph("Comments count", bold));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph(String.valueOf(petition.getCommentsCount())));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph("Expiry date", bold));
-        doc.add(new Paragraph(" "));
-        doc.add(new Paragraph(petition.getExpiryDate().toString()));
     }
 
     @Override

@@ -2,12 +2,13 @@ package com.bsuir.petition.util.documents.generate;
 
 import com.bsuir.petition.bean.entity.Comment;
 import com.bsuir.petition.util.documents.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Font;
 import org.supercsv.exception.SuperCsvException;
 import org.supercsv.io.ICsvBeanWriter;
 
@@ -27,16 +28,23 @@ public class Comments extends Document {
 
     @Override
     public void buildPdf(com.itextpdf.text.Document doc) throws DocumentException {
-        doc.add(new Paragraph("Comments statistics"));
-        doc.add(new Paragraph("Total comments: " + comments.size()));
-        PdfPTable table = new PdfPTable(2);
-        table.addCell(new PdfPCell(new Paragraph("Comment text")));
-        table.addCell(new PdfPCell(new Paragraph("User nickname")));
-        for (Comment comment : comments) {
-            table.addCell(new PdfPCell(new Paragraph(comment.getText())));
-            table.addCell(new PdfPCell(new Paragraph(comment.getUser().getNick())));
+        try {
+            BaseFont baseFont = BaseFont.createFont("C:\\Windows\\Fonts\\Arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            com.itextpdf.text.Font font = new com.itextpdf.text.Font(baseFont);
+
+            doc.add(new Paragraph("Comments statistics"));
+            doc.add(new Paragraph("Total comments: " + comments.size()));
+            PdfPTable table = new PdfPTable(2);
+            table.addCell(new PdfPCell(new Paragraph("Comment text")));
+            table.addCell(new PdfPCell(new Paragraph("User nickname")));
+            for (Comment comment : comments) {
+                table.addCell(new PdfPCell(new Paragraph(comment.getText(), font)));
+                table.addCell(new PdfPCell(new Paragraph(comment.getUser().getNick(), font)));
+            }
+            doc.add(table);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        doc.add(table);
     }
 
     @Override

@@ -30,6 +30,7 @@ public abstract class AbstractPdfView extends AbstractView {
         prepareWriter(model, writer, request);
         buildPdfMetadata(model, document, request);
 
+        writer.setEncryption(null, null, ~(PdfWriter.ALLOW_COPY), PdfWriter.STANDARD_ENCRYPTION_128);
         document.open();
         buildPdfDocument(model, document, writer, request, response);
         document.close();
