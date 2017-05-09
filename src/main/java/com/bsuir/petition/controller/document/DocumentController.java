@@ -15,6 +15,14 @@ public interface DocumentController {
     ModelAndView generatePetitionsDocument(String type);
 
     @PreAuthorize("permitAll()")
-    @RequestMapping(value = "/document/petitions/{id}/{type}")
+    @RequestMapping(value = "/document/petitions/completed/{type}")
+    ModelAndView generateCompletedPetitions(String type);
+
+    @PreAuthorize("permitAll()")
+    @RequestMapping(value = "/document/users/{type}")
+    ModelAndView generateUsersDocument(String type);
+
+    @PreAuthorize("permitAll()")
+    @RequestMapping(value = "/document/petition/{id}/{type}")
     ModelAndView generatePetitionDetailsDocument(long id, String type);
 }

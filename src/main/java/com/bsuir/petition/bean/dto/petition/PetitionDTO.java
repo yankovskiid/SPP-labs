@@ -12,6 +12,7 @@ public class PetitionDTO {
     protected String status;
     protected int numberNecessaryVotes;
     protected int numberVotes;
+    protected int commentsCount;
     private Date expiryDate;
     private UserInformationDTO userInformationDTO;
     private ArrayList<CategoryDTO> categories = new ArrayList<>(0);
@@ -78,5 +79,13 @@ public class PetitionDTO {
 
     public void setNumberVotes(int numberVotes) {
         this.numberVotes = numberVotes;
+    }
+
+    public void setCommentsCount(int commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+
+    public int getCommentsCount() {
+        return this.commentsCount;
     }
 }

@@ -63,6 +63,7 @@ public class PetitionDtoExchangerImpl implements PetitionDtoExchanger {
         PetitionDTO petitionDTO = new PetitionDTO();
         setPetitionDTO(petitionDTO, petition);
         petitionDTO.setExpiryDate(petition.getExpiryDate());
+        petitionDTO.setCommentsCount(petition.getComments().size());
 
         UserInformationDTO userDTO;
         userDTO = userDtoExchanger.getUserInformationDTO(petition.getCreatedUser().getUserInformation());
@@ -78,6 +79,8 @@ public class PetitionDtoExchangerImpl implements PetitionDtoExchanger {
         shortPetitionDTO.setDescription(petition.getDescription());
         shortPetitionDTO.setNumberNecessaryVotes(petition.getNumberNecessaryVotes());
         shortPetitionDTO.setNumberVotes(petition.getVoteSet().size());
+        shortPetitionDTO.setNumberComments(petition.getComments().size());
+        shortPetitionDTO.setExpiryDate(petition.getExpiryDate());
 
         ArrayList<CategoryDTO> temp = shortPetitionDTO.getCategories();
         for (Category category : petition.getCategories()) {

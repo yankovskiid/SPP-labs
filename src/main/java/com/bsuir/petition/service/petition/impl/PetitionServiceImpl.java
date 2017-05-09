@@ -15,6 +15,7 @@ import com.bsuir.petition.service.petition.exception.PetitionNotFoundException;
 import com.bsuir.petition.service.petition.util.PetitionDataValidator;
 import com.bsuir.petition.service.petition.util.PetitionDtoExchanger;
 import com.bsuir.petition.service.petition.util.PetitionExchanger;
+import com.sun.security.ntlm.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,14 @@ public class PetitionServiceImpl implements PetitionService {
     public List<Petition> getPetitionsList() {
         List<Petition> petitions = petitionDao.getPetitions();
         return petitions;
+    }
+
+    @Override
+    public PetitionListDTO getCompletedPetitions() throws ServerException {
+        PetitionListDTO petitionDTOList;
+        List<Petition> petitions = petitionDao.getCompletedPetitions();
+        petitionDTOList = petitionDtoExchanger.getPetitionListDTO(petitions);
+        return petitionDTOList;
     }
 
     @Override

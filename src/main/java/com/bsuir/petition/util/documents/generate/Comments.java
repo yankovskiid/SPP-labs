@@ -6,6 +6,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import org.supercsv.io.ICsvBeanWriter;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Comments extends Document {
     private List<Comment> comments;
 
     @Override
-    public void setObjectList(List<?> objectList) {
+    public void setObjectList(Object objectList) {
         this.comments = (List<Comment>) objectList;
     }
 
@@ -38,7 +39,7 @@ public class Comments extends Document {
     }
 
     @Override
-    public void buildCsv() {
+    public void buildCsv(ICsvBeanWriter writer) {
 
     }
 }
