@@ -46,13 +46,13 @@ public class Petitions extends Document {
     @Override
     public void buildXls(Workbook workbook) throws Exception {
         Sheet sheet = workbook.createSheet("Petitions");
-        sheet.setDefaultColumnWidth(22);
+        sheet.setDefaultColumnWidth(20);
 
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
         font.setFontName("Arial");
         style.setWrapText(true);
-        style.setFillForegroundColor(HSSFColor.BLUE.index);
+        style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         font.setBold(true);
         font.setColor(HSSFColor.WHITE.index);

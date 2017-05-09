@@ -55,7 +55,7 @@ public class Users extends Document {
     public void buildXls(Workbook workbook) throws Exception {
         ArrayList<ShortUserInformationDTO> users = this.userListDTO.getUsers();
         Sheet sheet = workbook.createSheet("Users");
-        sheet.setDefaultColumnWidth(22);
+        sheet.setDefaultColumnWidth(20);
 
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
