@@ -99,7 +99,7 @@ ul.inline li {
     width: 100%;
     background: #27ae60;
     border-radius: 2px;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     padding: 10px;
     box-sizing: border-box;
     color: white;
@@ -133,7 +133,7 @@ ul.inline li {
 .table {
     background: white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    margin: 10px;
+    /*margin: 10px;*/
     border-collapse: collapse;
 }
 .table tr > td,
@@ -181,7 +181,7 @@ ul.inline li {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     margin-top: 10px;
 }
 .card-content {

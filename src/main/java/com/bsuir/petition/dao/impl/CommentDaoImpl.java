@@ -58,4 +58,13 @@ public class CommentDaoImpl implements CommentDao{
         comments = (List<Comment>)query.getResultList();
         return comments;
     }
+
+    @Override
+    public List<Comment> getAllComments() {
+        Session session = sessionFactory.getCurrentSession();
+        List<Comment> comments;
+        Query query = session.createQuery("from Comment");
+        comments = (List<Comment>)query.getResultList();
+        return comments;
+    }
 }

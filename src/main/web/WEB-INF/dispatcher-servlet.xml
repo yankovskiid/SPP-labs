@@ -30,6 +30,11 @@
 
     </bean>
 
+    <bean id="viewPdfResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="order" value="1"/>
+        <property name="basename" value=""/>
+    </bean>
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -41,6 +46,14 @@
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <import resource="spring-views.xml"/>
+    <bean class="org.springframework.web.servlet.view.XmlViewResolver">
+        <property name="order" value="0" />
+        <property name="location">
+            <value>/WEB-INF/spring-views.xml</value>
+        </property>
     </bean>
 
 </beans>
