@@ -7,6 +7,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import org.supercsv.io.ICsvBeanWriter;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class Petitions extends Document {
     }
 
     @Override
-    public void buildCsv() {
+    public void buildCsv(ICsvBeanWriter writer) {
 
     }
 }

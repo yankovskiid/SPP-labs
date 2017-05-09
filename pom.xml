@@ -205,10 +205,18 @@
         </dependency>
 
         <!-- Documents generator -->
+        <!-- PDF iTextPDF -->
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
             <version>5.0.6</version>
+        </dependency>
+
+        <!-- CSV SuperCSV -->
+        <dependency>
+            <groupId>net.sf.supercsv</groupId>
+            <artifactId>super-csv</artifactId>
+            <version>2.4.0</version>
         </dependency>
 
     </dependencies>
