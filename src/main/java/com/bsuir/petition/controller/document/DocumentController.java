@@ -9,4 +9,12 @@ public interface DocumentController {
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/document/comments/{type}")
     ModelAndView generateCommentsDocument(String type);
+
+    @PreAuthorize("permitAll()")
+    @RequestMapping(value = "/document/petitions/{type}")
+    ModelAndView generatePetitionsDocument(String type);
+
+    @PreAuthorize("permitAll()")
+    @RequestMapping(value = "/document/petitions/{id}/{type}")
+    ModelAndView generatePetitionDetailsDocument(long id, String type);
 }
