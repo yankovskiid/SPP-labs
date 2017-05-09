@@ -10,6 +10,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.supercsv.io.ICsvBeanWriter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -54,7 +55,7 @@ public class Users extends Document {
     }
 
     @Override
-    public void buildCsv(ICsvBeanWriter writer) {
+    public void buildCsv(ICsvBeanWriter writer) throws IOException {
 
     }
 }

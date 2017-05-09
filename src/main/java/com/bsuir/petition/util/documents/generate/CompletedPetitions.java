@@ -10,6 +10,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.supercsv.io.ICsvBeanWriter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CompletedPetitions extends Document{
@@ -50,7 +51,55 @@ public class CompletedPetitions extends Document{
     }
 
     @Override
-    public void buildCsv(ICsvBeanWriter writer) {
+    public void buildCsv(ICsvBeanWriter writer) throws IOException {
+        String[] header = {"id", "name", "votes", "necessaryVotes", "expiryDate"};
+        writer.writeHeader(header);
+        ArrayList<ShortPetitionDTO> petitions = this.petitionListDTO.getPetitions();
+        for (ShortPetitionDTO petition: petitions) {
+            writer.write(
+                    new CompletedPetitionBean(
+                            petition.getId(),
+                            petition.getName(),
+                            petition.getNumberVotes(),
+                            petition.getNumberNecessaryVotes(),
+                            petition.getExpiryDate().toString()
+                    ), header);
+        }
+    }
 
+    public class CompletedPetitionBean {
+        private long id;
+        private String name;
+        private int votes;
+        private int necessaryVotes;
+        private String expiryDate;
+
+        public CompletedPetitionBean(long id, String name, int votes, int necessaryVotes, String expiryDate) {
+            this.id = id;
+            this.name = name;
+            this.votes = votes;
+            this.necessaryVotes = necessaryVotes;
+            this.expiryDate = expiryDate;
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getVotes() {
+            return votes;
+        }
+
+        public int getNecessaryVotes() {
+            return necessaryVotes;
+        }
+
+        public String getExpiryDate() {
+            return expiryDate;
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.bsuir.petition.util.documents;
 import com.itextpdf.text.DocumentException;
 import org.supercsv.io.ICsvBeanWriter;
 
+import java.io.IOException;
 import java.util.List;
 
 public abstract class Document {
@@ -13,5 +14,5 @@ public abstract class Document {
 
     public abstract void buildXls();
 
-    public abstract void buildCsv(ICsvBeanWriter writer);
+    public abstract void buildCsv(ICsvBeanWriter writer) throws IOException;
 }
