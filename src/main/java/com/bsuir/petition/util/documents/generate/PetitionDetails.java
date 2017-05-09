@@ -2,6 +2,7 @@ package com.bsuir.petition.util.documents.generate;
 
 import com.bsuir.petition.bean.dto.category.CategoryDTO;
 import com.bsuir.petition.bean.dto.petition.PetitionDTO;
+import com.bsuir.petition.bean.dto.petition.ShortPetitionDTO;
 import com.bsuir.petition.bean.entity.Category;
 import com.bsuir.petition.bean.entity.Petition;
 import com.bsuir.petition.util.documents.Document;
@@ -10,7 +11,8 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.*;
 import org.supercsv.io.ICsvBeanWriter;
 
 import java.io.IOException;
@@ -65,7 +67,36 @@ public class PetitionDetails extends Document {
 
     @Override
     public void buildXls(Workbook workbook) throws Exception {
+        Sheet sheet = workbook.createSheet("Comments");
+        sheet.setDefaultColumnWidth(30);
 
+        CellStyle style = workbook.createCellStyle();
+        org.apache.poi.ss.usermodel.Font font = workbook.createFont();
+        font.setFontName("Arial");
+        style.setFillForegroundColor(HSSFColor.BLUE.index);
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        font.setBold(true);
+        font.setColor(HSSFColor.WHITE.index);
+        style.setFont(font);
+
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("Title");
+        header.getCell(0).setCellStyle(style);
+        header.createCell(1).setCellValue("Votes count");
+        header.getCell(1).setCellStyle(style);
+        header.createCell(2).setCellValue("Needed votes");
+        header.getCell(2).setCellStyle(style);
+        header.createCell(3).setCellValue("Comments count");
+        header.getCell(3).setCellStyle(style);
+        header.createCell(4).setCellValue("Expiry date");
+        header.getCell(4).setCellStyle(style);
+
+        Row commentRow = sheet.createRow(1);
+        commentRow.createCell(0).setCellValue(petition.getName());
+        commentRow.createCell(1).setCellValue(String.valueOf(petition.getNumberVotes()));
+        commentRow.createCell(2).setCellValue(String.valueOf(petition.getNumberNecessaryVotes()));
+        commentRow.createCell(3).setCellValue(String.valueOf(petition.getCommentsCount()));
+        commentRow.createCell(4).setCellValue(petition.getExpiryDate().toString());
     }
 
     @Override

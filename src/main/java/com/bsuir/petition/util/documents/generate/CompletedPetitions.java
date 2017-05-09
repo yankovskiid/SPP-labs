@@ -2,13 +2,14 @@ package com.bsuir.petition.util.documents.generate;
 
 import com.bsuir.petition.bean.dto.petition.PetitionListDTO;
 import com.bsuir.petition.bean.dto.petition.ShortPetitionDTO;
-import com.bsuir.petition.bean.entity.Petition;
+import com.bsuir.petition.bean.entity.*;
 import com.bsuir.petition.util.documents.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.*;
 import org.supercsv.io.ICsvBeanWriter;
 
 import java.io.IOException;
@@ -48,7 +49,40 @@ public class CompletedPetitions extends Document{
 
     @Override
     public void buildXls(Workbook workbook) throws Exception {
+        Sheet sheet = workbook.createSheet("Comments");
+        sheet.setDefaultColumnWidth(30);
 
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        font.setFontName("Arial");
+        style.setFillForegroundColor(HSSFColor.BLUE.index);
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        font.setBold(true);
+        font.setColor(HSSFColor.WHITE.index);
+        style.setFont(font);
+
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("Petition id");
+        header.getCell(0).setCellStyle(style);
+        header.createCell(1).setCellValue("Name");
+        header.getCell(1).setCellStyle(style);
+        header.createCell(2).setCellValue("Votes");
+        header.getCell(2).setCellStyle(style);
+        header.createCell(3).setCellValue("Needed votes");
+        header.getCell(3).setCellStyle(style);
+        header.createCell(4).setCellValue("Expiry date");
+        header.getCell(4).setCellStyle(style);
+
+        int rowCount = 1;
+
+        for (ShortPetitionDTO petition : petitionListDTO.getPetitions()) {
+            Row commentRow = sheet.createRow(rowCount++);
+            commentRow.createCell(0).setCellValue(String.valueOf(petition.getId()));
+            commentRow.createCell(1).setCellValue(petition.getName());
+            commentRow.createCell(2).setCellValue(String.valueOf(petition.getNumberVotes()));
+            commentRow.createCell(3).setCellValue(String.valueOf(petition.getNumberNecessaryVotes()));
+            commentRow.createCell(4).setCellValue(petition.getExpiryDate().toString());
+        }
     }
 
     @Override
