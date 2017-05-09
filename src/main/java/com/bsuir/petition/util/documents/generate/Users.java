@@ -60,19 +60,12 @@ public class Users extends Document {
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
         font.setFontName("Arial");
-        style.setFillForegroundColor(HSSFColor.BLUE.index);
+        style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         font.setBold(true);
         font.setColor(HSSFColor.WHITE.index);
         style.setFont(font);
-
-        CellStyle style1 = workbook.createCellStyle();
-        Font font1 = workbook.createFont();
-        font1.setFontName("Arial");
-        style1.setWrapText(true);
-        font1.setBold(true);
-        font1.setColor(HSSFColor.BLACK.index);
-        style1.setFont(font1);
+        style.setWrapText(true);
 
         Row header = sheet.createRow(0);
         header.createCell(0).setCellValue("User id");
@@ -86,6 +79,9 @@ public class Users extends Document {
 
         int rowCount = 1;
 
+        CellStyle otherCellStyle = workbook.createCellStyle();
+        otherCellStyle.setWrapText(true);
+
         for (ShortUserInformationDTO user: users) {
             StringJoiner stringJoiner = new StringJoiner(",");
             for (String role : user.getRoles()) {
@@ -93,13 +89,13 @@ public class Users extends Document {
             }
             Row commentRow = sheet.createRow(rowCount++);
             commentRow.createCell(0).setCellValue(String.valueOf(user.getId()));
-            commentRow.getCell(0).setCellStyle(style1);
+            commentRow.getCell(0).setCellStyle(otherCellStyle);
             commentRow.createCell(1).setCellValue(user.getEmail());
-            commentRow.getCell(1).setCellStyle(style1);
+            commentRow.getCell(1).setCellStyle(otherCellStyle);
             commentRow.createCell(2).setCellValue(user.getNick());
-            commentRow.getCell(2).setCellStyle(style1);
+            commentRow.getCell(2).setCellStyle(otherCellStyle);
             commentRow.createCell(3).setCellValue(stringJoiner.toString());
-            commentRow.getCell(3).setCellStyle(style1);
+            commentRow.getCell(3).setCellStyle(otherCellStyle);
         }
     }
 

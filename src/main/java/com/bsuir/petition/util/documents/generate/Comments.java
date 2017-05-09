@@ -42,16 +42,16 @@ public class Comments extends Document {
     @Override
     public void buildXls(Workbook workbook) throws Exception {
         Sheet sheet = workbook.createSheet("Comments");
-        sheet.setDefaultColumnWidth(30);
 
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
         font.setFontName("Arial");
-        style.setFillForegroundColor(HSSFColor.BLUE.index);
+        style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         font.setBold(true);
         font.setColor(HSSFColor.WHITE.index);
         style.setFont(font);
+        style.setWrapText(true);
 
         Row header = sheet.createRow(0);
         header.createCell(0).setCellValue("Comment text");
@@ -61,10 +61,15 @@ public class Comments extends Document {
 
         int rowCount = 1;
 
+        CellStyle otherCellStyle = workbook.createCellStyle();
+        otherCellStyle.setWrapText(true);
+
         for (Comment comment : comments) {
             Row commentRow = sheet.createRow(rowCount++);
             commentRow.createCell(0).setCellValue(comment.getText());
+            commentRow.getCell(0).setCellStyle(otherCellStyle);
             commentRow.createCell(1).setCellValue(comment.getUser().getNick());
+            commentRow.getCell(1).setCellStyle(otherCellStyle);
         }
     }
 
