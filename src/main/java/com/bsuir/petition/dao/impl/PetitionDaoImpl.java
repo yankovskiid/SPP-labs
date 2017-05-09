@@ -8,6 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -26,6 +31,20 @@ public class PetitionDaoImpl implements PetitionDao {
         List<Petition> petitions;
         petitions = (List<Petition>) session.createQuery("from Petition ").list();
         return petitions;
+    }
+
+    @Override
+    public List<Petition> getCompletedPetitions() {
+        Session session = sessionFactory.getCurrentSession();
+        List<Petition> petitions;
+        petitions = (List<Petition>) session.createQuery("from Petition").list();
+        List<Petition> completedPetitions = new ArrayList<>();
+        for (Petition petition : petitions) {
+            if (petition.getVoteSet().size() >= petition.getNumberNecessaryVotes()) {
+                completedPetitions.add(petition);
+            }
+        }
+        return completedPetitions;
     }
 
     @Override

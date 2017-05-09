@@ -4,14 +4,17 @@ import com.bsuir.petition.bean.dto.category.CategoryDTO;
 import com.bsuir.petition.bean.dto.category.CategoryListDTO;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ShortPetitionDTO {
     private long id;
     protected String name;
     protected String description;
     protected String status;
+    protected Date expiryDate;
     protected int numberNecessaryVotes;
     protected int numberVotes;
+    protected int numberComments;
 
     private ArrayList<CategoryDTO> categories = new ArrayList<>(0);
 
@@ -71,4 +74,19 @@ public class ShortPetitionDTO {
         this.numberVotes = numberVotes;
     }
 
+    public void setNumberComments(int numberComments) {
+        this.numberComments = numberComments;
+    }
+
+    public int getNumberComments() {
+        return this.numberComments;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public Date getExpiryDate() {
+        return this.expiryDate;
+    }
 }

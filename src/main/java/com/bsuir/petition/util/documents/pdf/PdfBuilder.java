@@ -23,7 +23,7 @@ public class PdfBuilder extends AbstractPdfView {
 
         HashMap<String, Object> modelDoc = (HashMap<String, Object>) model.get("model");
         com.bsuir.petition.util.documents.Document document = (com.bsuir.petition.util.documents.Document) modelDoc.get("object");
-        document.setObjectList((List<?>) modelDoc.get("model"));
+        document.setObjectList(modelDoc.get("model"));
         document.buildPdf(doc);
     }
 }

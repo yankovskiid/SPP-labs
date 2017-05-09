@@ -13,8 +13,8 @@ import java.util.List;
 public interface PetitionService {
     PetitionListDTO getPetitions() throws ServerException;
     List<Petition> getPetitionsList();
+    PetitionListDTO getCompletedPetitions() throws ServerException;
     void deletePetition(long id) throws PetitionNotFoundException, ServerException;
     void addPetition(AddPetitionDTO addPetitionDTO) throws ServerException, ErrorInputException;
     PetitionDTO getPetition(long id) throws PetitionNotFoundException, ServerException;
-
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Document {
 
-    public abstract void setObjectList(List<?> objectList);
+    public abstract void setObjectList(Object object);
 
     public abstract void buildPdf(com.itextpdf.text.Document doc) throws DocumentException;
 

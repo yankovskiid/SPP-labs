@@ -14,7 +14,7 @@ public class Comments extends Document {
     private List<Comment> comments;
 
     @Override
-    public void setObjectList(List<?> objectList) {
+    public void setObjectList(Object objectList) {
         this.comments = (List<Comment>) objectList;
     }
 
