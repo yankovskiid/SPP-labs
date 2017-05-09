@@ -24,9 +24,9 @@
             <p>Get one petition doc</p>
         </div>
         <div class="id-block">
-            <label>
-                <input type="radio" name="awesome" id="1">
-                <label class="id-label" for="1">1</label>
+            <label *ngFor="let id of petitionsId">
+                <input type="radio" name="awesome" id="{{id}}">
+                <label class="id-label" for="{{id}}">{{id}}</label>
             </label>
         </div>
         <select name="petition" id="select3">
@@ -39,7 +39,7 @@
         <div class="button-get-doc">
             <p>Get completed petition doc</p>
         </div>
-        <select name="completed-petition" id="select4">
+        <select name="petitions/completed" id="select4">
             <option value="pdf">PDF</option>
             <option value="xls">XLS</option>
             <option value="csv">CSV</option>
