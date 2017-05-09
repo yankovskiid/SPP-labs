@@ -68,16 +68,16 @@ public class PetitionDetails extends Document {
     @Override
     public void buildXls(Workbook workbook) throws Exception {
         Sheet sheet = workbook.createSheet("Comments");
-        sheet.setDefaultColumnWidth(30);
 
         CellStyle style = workbook.createCellStyle();
         org.apache.poi.ss.usermodel.Font font = workbook.createFont();
         font.setFontName("Arial");
-        style.setFillForegroundColor(HSSFColor.BLUE.index);
+        style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         font.setBold(true);
         font.setColor(HSSFColor.WHITE.index);
         style.setFont(font);
+        style.setWrapText(true);
 
         Row header = sheet.createRow(0);
         header.createCell(0).setCellValue("Title");
@@ -91,12 +91,20 @@ public class PetitionDetails extends Document {
         header.createCell(4).setCellValue("Expiry date");
         header.getCell(4).setCellStyle(style);
 
+        CellStyle otherCellStyle = workbook.createCellStyle();
+        otherCellStyle.setWrapText(true);
+
         Row commentRow = sheet.createRow(1);
         commentRow.createCell(0).setCellValue(petition.getName());
+        commentRow.getCell(0).setCellStyle(otherCellStyle);
         commentRow.createCell(1).setCellValue(String.valueOf(petition.getNumberVotes()));
+        commentRow.getCell(1).setCellStyle(otherCellStyle);
         commentRow.createCell(2).setCellValue(String.valueOf(petition.getNumberNecessaryVotes()));
+        commentRow.getCell(2).setCellStyle(otherCellStyle);
         commentRow.createCell(3).setCellValue(String.valueOf(petition.getCommentsCount()));
+        commentRow.getCell(3).setCellStyle(otherCellStyle);
         commentRow.createCell(4).setCellValue(petition.getExpiryDate().toString());
+        commentRow.getCell(4).setCellStyle(otherCellStyle);
     }
 
     @Override
