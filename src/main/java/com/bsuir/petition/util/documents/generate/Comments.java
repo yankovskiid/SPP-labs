@@ -6,6 +6,8 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.*;
 import org.supercsv.exception.SuperCsvException;
 import org.supercsv.io.ICsvBeanWriter;
 
@@ -38,8 +40,32 @@ public class Comments extends Document {
     }
 
     @Override
-    public void buildXls() {
+    public void buildXls(Workbook workbook) throws Exception {
+        Sheet sheet = workbook.createSheet("Comments");
+        sheet.setDefaultColumnWidth(30);
 
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        font.setFontName("Arial");
+        style.setFillForegroundColor(HSSFColor.BLUE.index);
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        font.setBold(true);
+        font.setColor(HSSFColor.WHITE.index);
+        style.setFont(font);
+
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("Comment text");
+        header.getCell(0).setCellStyle(style);
+        header.createCell(1).setCellValue("User nickname");
+        header.getCell(1).setCellStyle(style);
+
+        int rowCount = 1;
+
+        for (Comment comment : comments) {
+            Row commentRow = sheet.createRow(rowCount++);
+            commentRow.createCell(0).setCellValue(comment.getText());
+            commentRow.createCell(1).setCellValue(comment.getUser().getNick());
+        }
     }
 
     @Override

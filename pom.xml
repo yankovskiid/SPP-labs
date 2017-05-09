@@ -219,6 +219,14 @@
             <version>2.4.0</version>
         </dependency>
 
+        <!-- XLS Apache.POI -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.16</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>

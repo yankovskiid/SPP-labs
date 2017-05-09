@@ -8,6 +8,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.supercsv.io.ICsvBeanWriter;
 
 import java.io.IOException;
@@ -46,7 +47,7 @@ public class CompletedPetitions extends Document{
     }
 
     @Override
-    public void buildXls() {
+    public void buildXls(Workbook workbook) throws Exception {
 
     }
 

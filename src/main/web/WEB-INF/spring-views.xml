@@ -5,5 +5,6 @@
 
     <bean id="pdfBuilder" class="com.bsuir.petition.util.documents.pdf.PdfBuilder" />
     <bean id="csvBuilder" class="com.bsuir.petition.util.documents.csv.CsvBuilder" />
+    <bean id="xlsBuilder" class="com.bsuir.petition.util.documents.xls.XlsBuilder" />
 
 </beans>

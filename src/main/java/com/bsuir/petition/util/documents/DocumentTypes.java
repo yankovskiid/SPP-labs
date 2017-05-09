@@ -17,7 +17,8 @@ public class DocumentTypes {
     }
 
     private static void initTypes() {
-        types.put("pdf", "pdfBuilder");
+        types.put("xls", "xlsBuilder");
         types.put("csv", "csvBuilder");
+        types.put("pdf", "pdfBuilder");
     }
 }
