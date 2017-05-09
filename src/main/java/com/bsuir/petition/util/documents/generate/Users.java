@@ -10,6 +10,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.supercsv.io.ICsvBeanWriter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -54,7 +55,64 @@ public class Users extends Document {
     }
 
     @Override
-    public void buildCsv(ICsvBeanWriter writer) {
+    public void buildCsv(ICsvBeanWriter writer) throws IOException {
+        String[] header = {"id","email","nick","roles"};
 
+        writer.writeHeader(header);
+
+        ArrayList<ShortUserInformationDTO> users = this.userListDTO.getUsers();
+        for (ShortUserInformationDTO user : users) {
+            StringJoiner stringJoiner = new StringJoiner(",");
+            for (String role : user.getRoles()) {
+                stringJoiner.add(role);
+            }
+            writer.write(new UserBean(String.valueOf(user.getId()), user.getEmail(), user.getNick(), stringJoiner.toString()), header);
+        }
+    }
+
+    public class UserBean {
+        private String id;
+        private String email;
+        private String nick;
+        private String roles;
+
+        public UserBean(String id, String email, String nick, String roles) {
+            this.id = id;
+            this.email = email;
+            this.nick = nick;
+            this.roles = roles;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getNick() {
+            return nick;
+        }
+
+        public void setNick(String nick) {
+            this.nick = nick;
+        }
+
+        public String getRoles() {
+            return roles;
+        }
+
+        public void setRoles(String roles) {
+            this.roles = roles;
+        }
     }
 }

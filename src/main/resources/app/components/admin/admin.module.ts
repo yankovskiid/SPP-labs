@@ -15,6 +15,7 @@ import {AdminUserComponent} from "./user/admin.user.component";
 import {UserEditComponent} from "./user/edit/user.edit.component";
 import {AdminCategoryComponent} from "./category/admin.category.component";
 import {CategoryEditComponent} from "./category/edit/category.edit.component";
+import {AdminDocumentsComponent} from "./documents/admin.documents.component";
 
 @NgModule({
 	imports: [
@@ -36,7 +37,8 @@ import {CategoryEditComponent} from "./category/edit/category.edit.component";
 		AdminUserComponent,
 		UserEditComponent,
 		AdminCategoryComponent,
-		CategoryEditComponent
+		CategoryEditComponent,
+		AdminDocumentsComponent
 	],
 	exports: [
 		AdminMainComponent

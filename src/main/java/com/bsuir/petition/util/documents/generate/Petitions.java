@@ -9,6 +9,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.supercsv.io.ICsvBeanWriter;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Petitions extends Document {
@@ -46,7 +47,13 @@ public class Petitions extends Document {
     }
 
     @Override
-    public void buildCsv(ICsvBeanWriter writer) {
+    public void buildCsv(ICsvBeanWriter writer) throws IOException {
+        String[] header = {"id","name","numberNecessaryVotes","expiryDate"};
 
+        writer.writeHeader(header);
+
+        for (Petition petition : petitions) {
+            writer.write(petition, header);
+        }
     }
 }

@@ -1,0 +1,74 @@
+.buttons-block {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 15px 0px;
+}
+.doc-button-block {
+    text-align: center;
+    padding: 7px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 5px;
+    background-color: #faf9f9;
+    align-self: center;
+    max-width: 200px;
+}
+.button-get-doc {
+    color: white;
+    text-align: center;
+    line-height: 35px;
+    font-size: 14px;
+    background-color: #2ecc71;
+    border-radius: 7px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    padding: 0px 10px;
+}
+.button-get-doc:hover {
+    background-color: #2fbc6b;
+}
+select {
+    border: none;
+    cursor: pointer;
+    background-color: #faf9f9;
+}
+
+.id-block > label {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    display: flex;
+}
+.id-block {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 5px;
+    flex-wrap: wrap;
+}
+.id-block .id-label {
+    min-height: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    line-height: 15px;
+    background-color: #35c0e3;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+.id-block .id-label:hover {
+    background-color: #0597c2;
+}
+input[type="radio"] {
+    display: none;
+}
+input[type=radio]:checked ~ .id-label {
+    background-color: #2fbc6b;
+}
