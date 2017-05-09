@@ -34,9 +34,11 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
 
         if (token == null || token.isEmpty()) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("token")) {
-                    token = cookie.getValue();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("token")) {
+                        token = cookie.getValue();
+                    }
                 }
             }
         }
