@@ -1,0 +1,58 @@
+<div class="buttons-block">
+    <div class="doc-button-block">
+        <div class="button-get-doc">
+            <p>Get comments doc</p>
+        </div>
+        <select name="comments" id="select1">
+            <option value="pdf">PDF</option>
+            <option value="xls">XLS</option>
+            <option value="csv">CSV</option>
+        </select>
+    </div>
+    <div class="doc-button-block">
+        <div class="button-get-doc">
+            <p>Get petitions doc</p>
+        </div>
+        <select name="petitions" id="select2">
+            <option value="pdf">PDF</option>
+            <option value="xls">XLS</option>
+            <option value="csv">CSV</option>
+        </select>
+    </div>
+    <div class="doc-button-block">
+        <div class="button-get-doc">
+            <p>Get one petition doc</p>
+        </div>
+        <div class="id-block">
+            <label *ngFor="let id of petitionsId">
+                <input type="radio" name="awesome" id="{{id}}">
+                <label class="id-label" for="{{id}}">{{id}}</label>
+            </label>
+        </div>
+        <select name="petition" id="select3">
+            <option value="pdf">PDF</option>
+            <option value="xls">XLS</option>
+            <option value="csv">CSV</option>
+        </select>
+    </div>
+    <div class="doc-button-block">
+        <div class="button-get-doc">
+            <p>Get completed petition doc</p>
+        </div>
+        <select name="petitions/completed" id="select4">
+            <option value="pdf">PDF</option>
+            <option value="xls">XLS</option>
+            <option value="csv">CSV</option>
+        </select>
+    </div>
+    <div class="doc-button-block">
+        <div class="button-get-doc">
+            <p>Get users doc</p>
+        </div>
+        <select name="users" id="select5">
+            <option value="pdf">PDF</option>
+            <option value="xls">XLS</option>
+            <option value="csv">CSV</option>
+        </select>
+    </div>
+</div>
