@@ -4,6 +4,7 @@ import { TokenService } from "./../../global.settings";
 import { Observable } from 'rxjs/Rx';
 
  import 'rxjs/add/operator/map';
+import {Cookies} from "../../cookies";
 
 
 @Injectable()
@@ -71,20 +72,22 @@ export class HttpService {
 		if (TokenService.token !== "") {
 			return TokenService.token;
 		} else {
-			return "";
-			//TODO : get from cookie
+			let cookies: Cookies = new Cookies();
+			return cookies.getCookie("token");
 		}
 
 	}
 
 	public setToken(temp : string) {
 		TokenService.token = temp;
-		// TODO : set to cookie
+		let cookies: Cookies = new Cookies();
+		cookies.setCookie("token", temp, 3600 * 24, "/");
 	}
 
 	public deleteToken() {
 		TokenService.token = "";
-		// TODO : delete from cookie
+		let cookies: Cookies = new Cookies();
+		cookies.deleteCookie("token");
 	}
 
 }

@@ -48,6 +48,12 @@ public class Petitions extends Document {
 
     @Override
     public void buildCsv(ICsvBeanWriter writer) throws IOException {
+        String[] header = {"id","name","numberNecessaryVotes","expiryDate"};
 
+        writer.writeHeader(header);
+
+        for (Petition petition : petitions) {
+            writer.write(petition, header);
+        }
     }
 }

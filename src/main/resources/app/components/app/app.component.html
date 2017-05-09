@@ -23,10 +23,10 @@
                 <ul class="inline no-margin-padding" id="navbar-menu">
                     <li routerLink="/petitions">Petitions</li>
                     <li routerLink="/">Main page</li>
-                    <li routerLink="/admin" *ngIf="authService.isAuth()">Admin</li>
+                    <li routerLink="/admin" *ngIf="authService.isAdmin()">Admin</li>
 
                     <li class="float-right" (click)="logout()" *ngIf="authService.isAuth()"><span class="material-icons material-flex">exit_to_app</span> Logout</li>
-                    <li class="float-right" routerLink="/user/information" *ngIf="authService.isAuth()"><span class="material-icons material-flex">account_circle</span> User info</li>
+                    <li class="float-right" routerLink="/user/information" *ngIf="authService.isAuth()"><span class="material-icons material-flex">account_circle</span>{{authService.getUserNick()}}</li>
                     <li class="float-right" routerLink="/login" *ngIf="!authService.isAuth()">Login</li>
                     <li class="float-right" routerLink="/registration" *ngIf="!authService.isAuth()">Registration</li>
                 </ul>

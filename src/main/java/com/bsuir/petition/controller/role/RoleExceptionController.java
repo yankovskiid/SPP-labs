@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice (basePackages = "com.bsuir.petition.controller.role")
 public class RoleExceptionController {
     @ExceptionHandler(RoleNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ResponseBody
     public MessageDTO roleNotFoundExceptionHandler(RoleNotFoundException e) {
         MessageDTO messageDTO = new MessageDTO();
@@ -22,7 +22,8 @@ public class RoleExceptionController {
     }
 
     @ExceptionHandler(SuchRoleExistsException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ResponseBody
     public MessageDTO suchRoleExistsException(SuchRoleExistsException e) {
         MessageDTO messageDTO = new MessageDTO();
         messageDTO.setMessage(e.getMessage());

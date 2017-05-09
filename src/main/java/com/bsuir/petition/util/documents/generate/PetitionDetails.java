@@ -69,6 +69,95 @@ public class PetitionDetails extends Document {
 
     @Override
     public void buildCsv(ICsvBeanWriter writer) throws IOException {
+        String[] header = {"name","categories","description","votes","neededVotes","comments","expiryDate"};
 
+        writer.writeHeader(header);
+
+        StringJoiner categories = new StringJoiner(",");
+        for (CategoryDTO category : petition.getCategories()) {
+            categories.add(category.getName());
+        }
+        String categoriesList = categories.toString();
+
+        writer.write(new PetitionDetailsBean(petition.getName(), categoriesList, petition.getDescription(),
+                                             String.valueOf(petition.getNumberVotes()), String.valueOf(petition.getNumberNecessaryVotes()),
+                                             String.valueOf(petition.getCommentsCount()), petition.getExpiryDate().toString()), header);
+    }
+
+    public class PetitionDetailsBean {
+        private String name;
+        private String categories;
+        private String description;
+        private String votes;
+        private String neededVotes;
+        private String comments;
+        private String expiryDate;
+
+        public PetitionDetailsBean(String name, String categories, String description, String votes, String neededVotes, String comments, String expiryDate) {
+            this.name = name;
+            this.categories = categories;
+            this.description = description;
+            this.votes = votes;
+            this.neededVotes = neededVotes;
+            this.comments = comments;
+            this.expiryDate = expiryDate;
+        }
+
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getCategories() {
+            return categories;
+        }
+
+        public void setCategories(String categories) {
+            this.categories = categories;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public String getVotes() {
+            return votes;
+        }
+
+        public void setVotes(String votes) {
+            this.votes = votes;
+        }
+
+        public String getNeededVotes() {
+            return neededVotes;
+        }
+
+        public void setNeededVotes(String neededVotes) {
+            this.neededVotes = neededVotes;
+        }
+
+        public String getComments() {
+            return comments;
+        }
+
+        public void setComments(String comments) {
+            this.comments = comments;
+        }
+
+        public String getExpiryDate() {
+            return expiryDate;
+        }
+
+        public void setExpiryDate(String expiryDate) {
+            this.expiryDate = expiryDate;
+        }
     }
 }

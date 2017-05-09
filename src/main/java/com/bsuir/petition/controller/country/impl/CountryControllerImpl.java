@@ -23,8 +23,9 @@ public class CountryControllerImpl implements CountryController {
     public void setCountryService(CountryService countryService) {
         this.countryService = countryService;
     }
+
     @Override
-    public void addCountry(@RequestBody CountryDTO countryDTO) throws ServerException, ErrorInputException, SuchCountryExistsException {
+    public void addCountry(@RequestBody ShortCountryDTO countryDTO) throws ServerException, ErrorInputException, SuchCountryExistsException {
         countryService.addCountry(countryDTO);
     }
 

@@ -1,12 +1,11 @@
 div.button-petition-create {
     width: 75%;
     display: block;
-    margin: 0 auto;
+    margin: 10px auto;
     height: 45px;
     background-color: #2ecc71;
     border-radius: 30px;
     cursor: pointer;
-    margin-bottom: 10px;
 }
 div.button-petition-create:hover {
     background-color: #2fbc6b;
@@ -82,6 +81,12 @@ div.button-petition-create p {
     margin: 0;
 }
 
+.container {
+    width: 980px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
 
 div.petition-progress {
     width: 100%;
@@ -137,6 +142,12 @@ div.petition-progress div.progress-value p.need-signatures {
     margin: 0;
     margin-right: 15px;
     line-height: 1.6;
+}
+
+@media only screen and (max-width: 968px) {
+    div.container {
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 600px) {

@@ -4,6 +4,7 @@ import com.bsuir.petition.bean.dto.user.*;
 import com.bsuir.petition.bean.entity.User;
 import com.bsuir.petition.bean.entity.UserInformation;
 import com.bsuir.petition.dao.UserDao;
+import com.bsuir.petition.service.city.exception.CityNotFoundException;
 import com.bsuir.petition.service.exception.ErrorInputException;
 import com.bsuir.petition.service.exception.ServerException;
 import com.bsuir.petition.service.user.UserService;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService {
 
     private UserCreator userCreator;
@@ -193,7 +194,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUserInformation(long id, UserInformationDTO userInformationDTO)
-            throws ErrorInputException, ServerException {
+            throws ErrorInputException, ServerException, CityNotFoundException {
 
         userDataValidator.validate(userInformationDTO);
 
@@ -207,13 +208,15 @@ public class UserServiceImpl implements UserService {
             }
             userExchanger.setUserInformation(userInformation, userInformationDTO);
             userDao.updateUserInformation(userInformation);
+        } catch (CityNotFoundException e) {
+            throw new CityNotFoundException("City not found!");
         } catch (HibernateException exception) {
             throw new ServerException("Server exception!", exception);
         }
     }
 
     @Override
-    public void addUserInformation(long id, UserInformationDTO userInformationDTO) throws ErrorInputException, ServerException {
+    public void addUserInformation(long id, UserInformationDTO userInformationDTO) throws ErrorInputException, ServerException, CityNotFoundException {
         userDataValidator.validate(userInformationDTO);
 
         UserInformation userInformation = new UserInformation();
@@ -223,6 +226,8 @@ public class UserServiceImpl implements UserService {
             userDao.addUserInformation(userInformation);
         } catch (HibernateException exception) {
             throw new ServerException("Server exception!", exception);
+        } catch (CityNotFoundException e) {
+            throw new CityNotFoundException("City not found!");
         }
     }
 

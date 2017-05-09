@@ -11,4 +11,7 @@
     </tr>
 </table>
 <span class="button button-add" (click)="addRole()">Add</span>
+<div id="error-block" [hidden]="errorHidden">
+    <p>{{errorMessage}}</p>
+</div>
 <div *ngIf="editingRole !== null" role-edit [role]="editingRole" (endEdit)="saveRole($event)"></div>

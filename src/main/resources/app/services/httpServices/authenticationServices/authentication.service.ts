@@ -9,26 +9,35 @@ export class AuthenticationService {
 
     constructor(private http: HttpService) {}
 
-    // public isAdmin(): boolean {
-    //     var result = false;
-    //     this.http
-    //         .getData("/isAdmin")
-    //         .subscribe(data => {
-    //             return data;
-    //         });
-    //     return result;
-    // }
+    public getUserNick(): string {
+        var token = this.http.getToken();
+        if(token != "") {
+            return this.decodingToken(token)["NICK"];
+        }
+
+        return "голубец";
+    }
+
+    public isAdmin(): boolean {
+        var token = this.http.getToken();
+        if(token != "") {
+            return this.decodingToken(token)["IS_ADMIN"];
+        }
+        return false;
+    }
 
     public isAuth(): boolean {
         var token = this.http.getToken();
-        if (token === "") {
-            let cookies: Cookies = new Cookies();
-            token = cookies.getCookie("token");
-        }
         if(token === "")
             return false;
         else
             return true;
+    }
+
+    private decodingToken(token: String): any {
+        var encodeString = token.split(".")[1];
+        var decodeObject = JSON.parse(atob(encodeString));
+        return decodeObject;
     }
 
 }
