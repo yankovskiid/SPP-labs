@@ -40,6 +40,8 @@ public class Comments extends Document {
 
     @Override
     public void buildCsv(ICsvBeanWriter writer) {
-
+        for (Comment comment : comments) {
+            System.out.println(comment.getText());
+        }
     }
 }
