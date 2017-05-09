@@ -11,6 +11,7 @@ import { HttpService } from './services/httpServices/http.service';
 import { MainComponent } from './components/main/main.component';
 import {AdminModule} from "./components/admin/admin.module";
 import {AuthenticationService} from "./services/httpServices/authenticationServices/authentication.service";
+import {NotFoundComponent} from "./components/error/not-found.component";
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import {AuthenticationService} from "./services/httpServices/authenticationServi
     ],
     declarations: [
     	MyApp,
-        MainComponent
+        MainComponent,
+        NotFoundComponent
     ],
     bootstrap: [ MyApp ],
     providers: [ HttpService, AuthenticationService ]

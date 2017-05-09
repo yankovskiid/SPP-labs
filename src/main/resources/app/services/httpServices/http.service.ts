@@ -10,6 +10,8 @@ import {Cookies} from "../../cookies";
 @Injectable()
 export class HttpService {
 
+	private api : string = "/api/";
+
 	constructor(private http: Http) {
 
 	}
@@ -18,7 +20,7 @@ export class HttpService {
 		var headers = this.getHeaders();
 		return this
 			.http
-			.get(url, { headers: headers })
+			.get(this.api + url, { headers: headers })
 			.map((data) => data.json());
 	}
 
@@ -26,7 +28,7 @@ export class HttpService {
 		var headers = this.getSendHeaders();
 		return this
 				.http
-				.post(url, JSON.stringify(data), { headers: headers })
+				.post(this.api + url, JSON.stringify(data), { headers: headers })
 				.map((response) => response.json());
 	}
 
@@ -34,7 +36,7 @@ export class HttpService {
 		var headers = this.getSendHeaders();
 		return this
 				.http
-				.post(url, JSON.stringify(data), { headers: headers });
+				.post(this.api + url, JSON.stringify(data), { headers: headers });
 	}
 
 	private getSendHeaders() {
@@ -50,14 +52,14 @@ export class HttpService {
 		var headers = this.getSendHeaders();
 		return this
 			.http
-			.delete(url, { headers: headers });
+			.delete(this.api + url, { headers: headers });
 	}
 
 	public updateData(url: string,  data: any) {
 		var headers = this.getSendHeaders();
 		return this
 			.http
-			.put(url, JSON.stringify(data), { headers: headers });
+			.put(this.api + url, JSON.stringify(data), { headers: headers });
 	}
 
 	private getHeaders() {
