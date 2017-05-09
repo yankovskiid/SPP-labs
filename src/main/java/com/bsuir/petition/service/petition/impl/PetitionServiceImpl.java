@@ -69,6 +69,12 @@ public class PetitionServiceImpl implements PetitionService {
     }
 
     @Override
+    public List<Petition> getPetitionsList() {
+        List<Petition> petitions = petitionDao.getPetitions();
+        return petitions;
+    }
+
+    @Override
     public void deletePetition(long id) throws PetitionNotFoundException, ServerException {
         Petition petition;
         petition = petitionDao.getPetition(id);
