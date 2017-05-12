@@ -13,11 +13,12 @@
     <div class="main-photo-info container">
         <h4 class="title no-margin-padding">What do you want change?</h4>
         <h5 class="subtitle no-margin-padding">Create a petition and describe what do you want change in world</h5>
-        <button class="create-petition-btn">Create a petition</button>
+        <button class="create-petition-btn" *ngIf="authService.isAuth()" routerLink="/petition/add">Create a petition</button>
     </div>
 </div>
 <div class="petitions container">
     <p class="block-title">Description</p>
+    <p>Create a petition and describe what do you want change in world</p>
     <!--<div class="petition-block xl-4 md-3 sm-2 xs-1">-->
         <!--<div class="petition-image">-->
             <!--<p class="petition-desc">Описание Описание Описание Описание Описание Описание Описание</p>-->
