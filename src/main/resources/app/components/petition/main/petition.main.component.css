@@ -66,6 +66,7 @@ div.petition-info p.petition-date {
 div.petition-info p.petition-title {
     color: black;
     font-size: 28px;
+    word-wrap: break-word;
     font-weight: bold;
     text-align: justify;
     margin: 10px 0 0;

@@ -8,6 +8,7 @@
                placeholder="Name"
                class="form-control"
                name="name"
+               id="createPetitionName"
                required
                [(ngModel)]="petition.name"
                #name="ngModel">
@@ -33,11 +34,14 @@
                placeholder="Number necessary votes"
                name="numberNecessaryVotes"
                min="1"
+               max="500000"
+               id="createPetitionVotesNumber"
                required
                [(ngModel)]="petition.numberNecessaryVotes"
                #numberNecessaryVotes="ngModel">
         <br>
 
+        <p>Select categories</p>
         <div class="categories">
             <label *ngFor="let category of categories">
                 <input type="checkbox" name="awesome" id="{{category.name}}" [(ngModel)]="category.isActive">

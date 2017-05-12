@@ -14,6 +14,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.supercsv.io.ICsvBeanWriter;
 
 import java.io.IOException;
@@ -40,6 +41,7 @@ public class PetitionDetails extends Document {
             doc.add(new Paragraph("Petition \"" + petition.getName() + "\" statistic", bold));
             doc.add(new Paragraph(" "));
             doc.add(new Paragraph("Categories", bold));
+            doc.add(new Paragraph(" "));
 
             StringJoiner categories = new StringJoiner(",");
             for (CategoryDTO category : petition.getCategories()) {
@@ -80,6 +82,7 @@ public class PetitionDetails extends Document {
         CellStyle style = workbook.createCellStyle();
         org.apache.poi.ss.usermodel.Font font = workbook.createFont();
         font.setFontName("Arial");
+        style.setBorderBottom(BorderStyle.MEDIUM);
         style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         font.setBold(true);
@@ -87,7 +90,20 @@ public class PetitionDetails extends Document {
         style.setFont(font);
         style.setWrapText(true);
 
-        Row header = sheet.createRow(0);
+        CellStyle headerStyle = workbook.createCellStyle();
+        org.apache.poi.ss.usermodel.Font fontS = workbook.createFont();
+        font.setFontName("Arial");
+        font.setBold(true);
+        headerStyle.setBorderBottom(BorderStyle.MEDIUM);
+        headerStyle.setFont(fontS);
+        headerStyle.setWrapText(true);
+        Row headerTitle = sheet.createRow(0);
+        headerTitle.createCell(0).setCellValue("Petition details statistic");;
+        headerTitle.getCell(0).setCellStyle(headerStyle);
+
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 4));
+
+        Row header = sheet.createRow(1);
         header.createCell(0).setCellValue("Title");
         header.getCell(0).setCellStyle(style);
         header.createCell(1).setCellValue("Votes count");
@@ -100,9 +116,10 @@ public class PetitionDetails extends Document {
         header.getCell(4).setCellStyle(style);
 
         CellStyle otherCellStyle = workbook.createCellStyle();
+        otherCellStyle.setBorderBottom(BorderStyle.MEDIUM);
         otherCellStyle.setWrapText(true);
 
-        Row commentRow = sheet.createRow(1);
+        Row commentRow = sheet.createRow(2);
         commentRow.createCell(0).setCellValue(petition.getName());
         commentRow.getCell(0).setCellStyle(otherCellStyle);
         commentRow.createCell(1).setCellValue(String.valueOf(petition.getNumberVotes()));

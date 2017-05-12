@@ -14,6 +14,9 @@
     font-family: Lato-Bold;
     src: url('/fonts/Lato-Bold.ttf');
 }
+p, div, span, label{
+    word-break: break-all;
+}
 :root {
     --bg-color: #f6f6f6;
     --header: #2ecc71;
@@ -31,7 +34,7 @@ body {
     font-family: Lato-Medium, sans-serif;
     position: relative;
     padding-bottom: 6rem;
-    min-height: 100%;
+    min-height: 82%;
 }
 body, html {
     margin: 0;
@@ -263,7 +266,7 @@ ul.inline li {
     width: 280px;
     font-size: 20px;
     color: white;
-    background: var(--header);
+    background: #27ae60;
     border: none;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
@@ -276,7 +279,7 @@ ul.inline li {
     transition: all .1s linear;
 }
 .create-petition-btn:hover {
-    background: var(--header-active)
+    background: #218142;
 }
 .create-petition-btn:focus {
     outline: none;
@@ -500,6 +503,21 @@ ul.inline li {
     .subtitle {
         font-size: 14px;
     }
+    .footer .float-right,
+    .footer .float-left {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .footer .float-right {
+        margin-top: 10px;
+    }
+    .footer {
+        height: 80px;
+    }
+}
+.footer {
+    padding: 10px;
 }
 /*.pointer-cursor:hover {*/
     /*cursor: pointer;*/

@@ -87,7 +87,8 @@ div#error-block p, div#success-block p {
     padding: 7px;
     font-size: 14px;
     resize: none;
-    border-radius: 7px;
+    font-family: Lato-Medium, sans-serif;
+    border-radius: 3px;
     border: 1px solid rgba(75, 75, 75, 0.7);
 }
 .categories > label {
@@ -114,6 +115,7 @@ div#error-block p, div#success-block p {
     font-size: 14px;
     text-align: center;
     cursor: pointer;
+    opacity: .3;
 }
 .categories .category-label:hover {
     background-color: #0597c2;
@@ -123,6 +125,7 @@ input[type="checkbox"] {
 }
 input[type=checkbox]:checked ~ .category-label {
     background-color: #2fbc6b;
+    opacity: 1;
 }
 
 @media only screen and (max-width: 720px) {

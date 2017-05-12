@@ -1,10 +1,7 @@
 package com.bsuir.petition.util.documents.pdf;
 
 import com.bsuir.petition.bean.entity.Comment;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,10 +25,12 @@ public class PdfBuilder extends AbstractPdfView {
         HashMap<String, Object> modelDoc = (HashMap<String, Object>) model.get("model");
         com.bsuir.petition.util.documents.Document document = (com.bsuir.petition.util.documents.Document) modelDoc.get("object");
 
+        addFormBlank(writer);
         document.setObjectList(modelDoc.get("model"));
         document.buildPdf(doc);
+    }
 
-        // form style pdf of team
+    private void addFormBlank(PdfWriter writer) throws IOException, DocumentException {
         PdfContentByte canvas = writer.getDirectContentUnder();
         Image image = Image.getInstance("http://images.vfl.ru/ii/1494350324/0cde5a42/17163504.jpg");
         image.scaleAbsolute(PageSize.A4.getWidth(), PageSize.A4.getHeight());

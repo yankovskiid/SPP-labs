@@ -4,13 +4,14 @@ import com.bsuir.petition.bean.dto.petition.ShortPetitionDTO;
 import com.bsuir.petition.bean.dto.user.ShortUserInformationDTO;
 import com.bsuir.petition.bean.dto.user.UserListDTO;
 import com.bsuir.petition.util.documents.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.supercsv.io.ICsvBeanWriter;
 
 import java.io.IOException;
@@ -32,11 +33,12 @@ public class Users extends Document {
         try {
             BaseFont baseFont = BaseFont.createFont("C:\\Windows\\Fonts\\Arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             com.itextpdf.text.Font font = new com.itextpdf.text.Font(baseFont);
+            com.itextpdf.text.Font bold = new com.itextpdf.text.Font(com.itextpdf.text.Font.FontFamily.TIMES_ROMAN, 14, com.itextpdf.text.Font.BOLD);
 
             ArrayList<ShortUserInformationDTO> users = this.userListDTO.getUsers();
-            doc.add(new Paragraph("Users statistic"));
+            doc.add(new Paragraph("Users statistic", bold));
             doc.add(new Paragraph(" "));
-            doc.add(new Paragraph("Total users: " + users.size()));
+            doc.add(new Paragraph("Total users: " + users.size(), bold));
             doc.add(new Paragraph(" "));
             PdfPTable table = new PdfPTable(4);
             table.addCell(new PdfPCell(new Paragraph("User id")));
@@ -68,6 +70,7 @@ public class Users extends Document {
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
         font.setFontName("Arial");
+        style.setBorderBottom(BorderStyle.MEDIUM);
         style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         font.setBold(true);
@@ -75,7 +78,20 @@ public class Users extends Document {
         style.setFont(font);
         style.setWrapText(true);
 
-        Row header = sheet.createRow(0);
+        CellStyle headerStyle = workbook.createCellStyle();
+        Font fontS = workbook.createFont();
+        font.setFontName("Arial");
+        font.setBold(true);
+        headerStyle.setBorderBottom(BorderStyle.MEDIUM);
+        headerStyle.setFont(fontS);
+        headerStyle.setWrapText(true);
+        Row headerTitle = sheet.createRow(0);
+        headerTitle.createCell(0).setCellValue("Users statistic");;
+        headerTitle.getCell(0).setCellStyle(headerStyle);
+
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 3));
+
+        Row header = sheet.createRow(1);
         header.createCell(0).setCellValue("User id");
         header.getCell(0).setCellStyle(style);
         header.createCell(1).setCellValue("User email");
@@ -85,9 +101,10 @@ public class Users extends Document {
         header.createCell(3).setCellValue("User roles");
         header.getCell(3).setCellStyle(style);
 
-        int rowCount = 1;
+        int rowCount = 2;
 
         CellStyle otherCellStyle = workbook.createCellStyle();
+        otherCellStyle.setBorderBottom(BorderStyle.MEDIUM);
         otherCellStyle.setWrapText(true);
 
         for (ShortUserInformationDTO user: users) {

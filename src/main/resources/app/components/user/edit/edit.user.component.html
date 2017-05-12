@@ -7,6 +7,7 @@
         <p>User information is updated!</p>
     </div>
     <form #userInfoForm="ngForm" *ngIf="userInfo !== null">
+        <label>Username</label>
         <input type="text"
                placeholder="Username"
                name="username"
@@ -15,6 +16,7 @@
                [(ngModel)]="userInfo.username"
                #name="ngModel">
         <br>
+        <label>Surname</label>
         <input type="text"
                placeholder="Surname"
                name="surname"
@@ -23,6 +25,7 @@
                [(ngModel)]="userInfo.surname"
                #name="ngModel">
         <br>
+        <label>City</label>
         <input type="text"
                placeholder="City"
                name="city"
